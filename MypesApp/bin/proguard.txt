@@ -1,0 +1,9 @@
+# view AndroidManifest.xml #generated:9
+-keep class com.mypes.app.ui.LoginActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:16
+-keep class com.mypes.app.ui.MenuActivity { <init>(...); }
+
+# onClick res/layout/login.xml #generated:126
+-keepclassmembers class * { *** btnIngresar(...); }
+

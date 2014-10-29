@@ -1,0 +1,19 @@
+C:\Users\EdHam\Desktop\Otiniano\MypesApp\gen\com\mypes\app\ui\R.java \
+ : C:\Users\EdHam\Desktop\Otiniano\MypesApp\res\drawable\agent.png \
+C:\Users\EdHam\Desktop\Otiniano\MypesApp\res\drawable\blanco.xml \
+C:\Users\EdHam\Desktop\Otiniano\MypesApp\res\drawable\boton_negro.xml \
+C:\Users\EdHam\Desktop\Otiniano\MypesApp\res\drawable\celeste.xml \
+C:\Users\EdHam\Desktop\Otiniano\MypesApp\res\drawable\end_green.png \
+C:\Users\EdHam\Desktop\Otiniano\MypesApp\res\drawable\ic_launcher.png \
+C:\Users\EdHam\Desktop\Otiniano\MypesApp\res\drawable\lock.png \
+C:\Users\EdHam\Desktop\Otiniano\MypesApp\res\drawable\start_blue.png \
+C:\Users\EdHam\Desktop\Otiniano\MypesApp\res\layout\login.xml \
+C:\Users\EdHam\Desktop\Otiniano\MypesApp\res\layout\menu.xml \
+C:\Users\EdHam\Desktop\Otiniano\MypesApp\res\values\color.xml \
+C:\Users\EdHam\Desktop\Otiniano\MypesApp\res\values\strings.xml \
+C:\Users\EdHam\Desktop\Otiniano\MypesApp\bin\res\drawable\agent.png \
+C:\Users\EdHam\Desktop\Otiniano\MypesApp\bin\res\drawable\end_green.png \
+C:\Users\EdHam\Desktop\Otiniano\MypesApp\bin\res\drawable\ic_launcher.png \
+C:\Users\EdHam\Desktop\Otiniano\MypesApp\bin\res\drawable\lock.png \
+C:\Users\EdHam\Desktop\Otiniano\MypesApp\bin\res\drawable\start_blue.png \
+C:\Users\EdHam\Desktop\Otiniano\MypesApp\bin\AndroidManifest.xml \
