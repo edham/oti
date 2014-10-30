@@ -19,7 +19,7 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${reference.PayPanEntidades.jar}</file>
+                    <file>${reference.PayPlanEntidades.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
@@ -33,7 +33,7 @@
         </data>
         <references xmlns="http://www.netbeans.org/ns/ant-project-references/1">
             <reference>
-                <foreign-project>PayPanEntidades</foreign-project>
+                <foreign-project>PayPlanDAO</foreign-project>
                 <artifact-type>jar</artifact-type>
                 <script>build.xml</script>
                 <target>jar</target>
@@ -41,7 +41,7 @@
                 <id>jar</id>
             </reference>
             <reference>
-                <foreign-project>PayPlanDAO</foreign-project>
+                <foreign-project>PayPlanEntidades</foreign-project>
                 <artifact-type>jar</artifact-type>
                 <script>build.xml</script>
                 <target>jar</target>
