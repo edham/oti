@@ -15,11 +15,11 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${reference.PayPlamDAO.jar}</file>
+                    <file>${reference.PayPlamEntidades.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${reference.PayPlamEntidades.jar}</file>
+                    <file>${reference.PayPlamDAO.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>

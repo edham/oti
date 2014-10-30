@@ -19,3 +19,6 @@
 /PayPlamEntidades/dist/
 /PayPlamWeb/build/
 /PayPlamWeb/dist/
+/PayPlamDAO/nbproject/private/
+/PayPlamDAO/build/
+/PayPlamDAO/dist/
