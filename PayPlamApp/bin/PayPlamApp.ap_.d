@@ -1,0 +1,19 @@
+C:\Users\EdHam\Desktop\oti\PayPlamApp\bin\PayPlamApp.ap_ \
+ : C:\Users\EdHam\Desktop\oti\PayPlamApp\res\drawable\agent.png \
+C:\Users\EdHam\Desktop\oti\PayPlamApp\res\drawable\blanco.xml \
+C:\Users\EdHam\Desktop\oti\PayPlamApp\res\drawable\boton_negro.xml \
+C:\Users\EdHam\Desktop\oti\PayPlamApp\res\drawable\celeste.xml \
+C:\Users\EdHam\Desktop\oti\PayPlamApp\res\drawable\end_green.png \
+C:\Users\EdHam\Desktop\oti\PayPlamApp\res\drawable\ic_launcher.png \
+C:\Users\EdHam\Desktop\oti\PayPlamApp\res\drawable\lock.png \
+C:\Users\EdHam\Desktop\oti\PayPlamApp\res\drawable\start_blue.png \
+C:\Users\EdHam\Desktop\oti\PayPlamApp\res\layout\login.xml \
+C:\Users\EdHam\Desktop\oti\PayPlamApp\res\layout\menu.xml \
+C:\Users\EdHam\Desktop\oti\PayPlamApp\res\values\color.xml \
+C:\Users\EdHam\Desktop\oti\PayPlamApp\res\values\strings.xml \
+C:\Users\EdHam\Desktop\oti\PayPlamApp\bin\res\drawable\agent.png \
+C:\Users\EdHam\Desktop\oti\PayPlamApp\bin\res\drawable\end_green.png \
+C:\Users\EdHam\Desktop\oti\PayPlamApp\bin\res\drawable\ic_launcher.png \
+C:\Users\EdHam\Desktop\oti\PayPlamApp\bin\res\drawable\lock.png \
+C:\Users\EdHam\Desktop\oti\PayPlamApp\bin\res\drawable\start_blue.png \
+C:\Users\EdHam\Desktop\oti\PayPlamApp\bin\AndroidManifest.xml \
