@@ -58,24 +58,44 @@
         <text>Inicio%20Pago</text>
       </controlProperties>
     </control>
-    <control controlID="22" controlTypeID="com.balsamiq.mockups::Label" x="550" y="307" w="-1" h="-1" measuredW="29" measuredH="21" zOrder="11" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Total</text>
-      </controlProperties>
-    </control>
-    <control controlID="23" controlTypeID="com.balsamiq.mockups::TextInput" x="627" y="304" w="116" h="-1" measuredW="79" measuredH="26" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="24" controlTypeID="com.balsamiq.mockups::TextArea" x="550" y="410" w="192" h="29" measuredW="200" measuredH="140" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <text/>
       </controlProperties>
     </control>
-    <control controlID="24" controlTypeID="com.balsamiq.mockups::TextArea" x="550" y="367" w="192" h="72" measuredW="200" measuredH="140" zOrder="13" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text/>
-      </controlProperties>
-    </control>
-    <control controlID="25" controlTypeID="com.balsamiq.mockups::Label" x="550" y="346" w="-1" h="-1" measuredW="42" measuredH="21" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="25" controlTypeID="com.balsamiq.mockups::Label" x="550" y="383" w="-1" h="-1" measuredW="42" measuredH="21" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Detalle</text>
+      </controlProperties>
+    </control>
+    <control controlID="26" controlTypeID="com.balsamiq.mockups::Label" x="550" y="302" w="-1" h="-1" measuredW="82" measuredH="21" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Total%20Mensual</text>
+      </controlProperties>
+    </control>
+    <control controlID="27" controlTypeID="com.balsamiq.mockups::TextInput" x="642" y="299" w="97" h="-1" measuredW="79" measuredH="26" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="30" controlTypeID="com.balsamiq.mockups::Label" x="550" y="332" w="-1" h="-1" measuredW="72" measuredH="21" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Alertas%20dias</text>
+      </controlProperties>
+    </control>
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::TextInput" x="642" y="329" w="101" h="-1" measuredW="79" measuredH="26" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="32" controlTypeID="com.balsamiq.mockups::Label" x="550" y="364" w="-1" h="-1" measuredW="84" measuredH="21" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Tiempo%20Alerta</text>
+      </controlProperties>
+    </control>
+    <control controlID="33" controlTypeID="com.balsamiq.mockups::TextInput" x="642" y="361" w="101" h="-1" measuredW="79" measuredH="26" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
       </controlProperties>
     </control>
   </controls>

@@ -68,22 +68,42 @@
         <text/>
       </controlProperties>
     </control>
-    <control controlID="24" controlTypeID="com.balsamiq.mockups::TextArea" x="550" y="382" w="192" h="57" measuredW="200" measuredH="140" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="24" controlTypeID="com.balsamiq.mockups::TextArea" x="550" y="415" w="192" h="24" measuredW="200" measuredH="140" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
         <text/>
       </controlProperties>
     </control>
-    <control controlID="25" controlTypeID="com.balsamiq.mockups::Label" x="550" y="355" w="-1" h="-1" measuredW="42" measuredH="21" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="25" controlTypeID="com.balsamiq.mockups::Label" x="550" y="394" w="-1" h="-1" measuredW="42" measuredH="21" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Detalle</text>
       </controlProperties>
     </control>
-    <control controlID="26" controlTypeID="com.balsamiq.mockups::Label" x="550" y="325" w="-1" h="-1" measuredW="43" measuredH="21" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="26" controlTypeID="com.balsamiq.mockups::Label" x="550" y="316" w="-1" h="-1" measuredW="43" measuredH="21" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Coutas</text>
       </controlProperties>
     </control>
-    <control controlID="27" controlTypeID="com.balsamiq.mockups::TextInput" x="642" y="322" w="101" h="-1" measuredW="79" measuredH="26" zOrder="16" locked="false" isInGroup="-1">
+    <control controlID="27" controlTypeID="com.balsamiq.mockups::TextInput" x="642" y="313" w="101" h="-1" measuredW="79" measuredH="26" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="29" controlTypeID="com.balsamiq.mockups::Label" x="550" y="340" w="-1" h="-1" measuredW="72" measuredH="21" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Alertas%20dias</text>
+      </controlProperties>
+    </control>
+    <control controlID="30" controlTypeID="com.balsamiq.mockups::TextInput" x="642" y="337" w="101" h="-1" measuredW="79" measuredH="26" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::Label" x="550" y="364" w="-1" h="-1" measuredW="84" measuredH="21" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Tiempo%20Alerta</text>
+      </controlProperties>
+    </control>
+    <control controlID="32" controlTypeID="com.balsamiq.mockups::TextInput" x="642" y="361" w="101" h="-1" measuredW="79" measuredH="26" zOrder="20" locked="false" isInGroup="-1">
       <controlProperties>
         <text/>
       </controlProperties>
