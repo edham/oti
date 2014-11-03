@@ -5,9 +5,11 @@
         <model>IPhone5</model>
       </controlProperties>
     </control>
-    <control controlID="7" controlTypeID="com.balsamiq.mockups::Button" x="575" y="366" w="-1" h="-1" measuredW="141" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Button" x="575" y="366" w="147" h="27" measuredW="82" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Registrar%20Productos</text>
+        <href>producto%26bm%3Bproducto.bmml%26bm%3Bproducto.bmml%26bm%3Bproducto.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2268%2C358%2C215%2C385%22%20href%3D%22producto.bmml%22%20alt%3D%22producto%22%20id%3D%227%22/%3E</map>
+        <text>Productos</text>
       </controlProperties>
     </control>
     <control controlID="8" controlTypeID="com.balsamiq.mockups::Button" x="575" y="162" w="147" h="27" measuredW="89" measuredH="27" zOrder="2" locked="false" isInGroup="-1">
@@ -26,6 +28,8 @@
     </control>
     <control controlID="11" controlTypeID="com.balsamiq.mockups::Button" x="575" y="263" w="147" h="27" measuredW="134" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
+        <href>proforma%26bm%3Bproforma.bmml%26bm%3Bproforma.bmml%26bm%3Bproforma.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2268%2C255%2C215%2C282%22%20href%3D%22proforma.bmml%22%20alt%3D%22proforma%22%20id%3D%2211%22/%3E</map>
         <text>Registrar%20Proforma</text>
       </controlProperties>
     </control>
@@ -37,6 +41,8 @@
     </control>
     <control controlID="13" controlTypeID="com.balsamiq.mockups::Button" x="575" y="315" w="147" h="27" measuredW="131" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
+        <href>cotizar%26bm%3Bcotizar.bmml%26bm%3Bcotizar.bmml%26bm%3Bcotizar.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2268%2C307%2C215%2C334%22%20href%3D%22cotizar.bmml%22%20alt%3D%22cotizar%22%20id%3D%2213%22/%3E</map>
         <text>Cotizar%20Proformas</text>
       </controlProperties>
     </control>

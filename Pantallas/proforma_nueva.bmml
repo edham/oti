@@ -1,0 +1,71 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="789" measuredH="581" mockupW="282" mockupH="573">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::iPhone" x="507" y="8" w="-1" h="-1" measuredW="282" measuredH="573" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <model>IPhone5</model>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Title" x="547" y="111" w="-1" h="-1" measuredW="202" measuredH="31" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>28</size>
+        <text>Nueva%20Proforma</text>
+      </controlProperties>
+    </control>
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::Label" x="541" y="144" w="86" h="-1" measuredW="30" measuredH="21" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%20Tipo</text>
+      </controlProperties>
+    </control>
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::ComboBox" x="628" y="142" w="124" h="-1" measuredW="101" measuredH="24" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Seleccionar</text>
+      </controlProperties>
+    </control>
+    <control controlID="19" controlTypeID="com.balsamiq.mockups::Button" x="689" y="467" w="-1" h="-1" measuredW="69" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>proforma%26bm%3Bproforma.bmml%26bm%3Bproforma.bmml%26bm%3Bproforma.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22182%2C459%2C251%2C486%22%20href%3D%22proforma.bmml%22%20alt%3D%22proforma%22%20id%3D%2219%22/%3E</map>
+        <size>11</size>
+        <text>Registrar</text>
+      </controlProperties>
+    </control>
+    <control controlID="21" controlTypeID="com.balsamiq.mockups::Button" x="538" y="467" w="-1" h="-1" measuredW="69" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>proforma%26bm%3Bproforma.bmml%26bm%3Bproforma.bmml%26bm%3Bproforma.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2231%2C459%2C100%2C486%22%20href%3D%22proforma.bmml%22%20alt%3D%22proforma%22%20id%3D%2221%22/%3E</map>
+        <size>11</size>
+        <text>Cancelar</text>
+      </controlProperties>
+    </control>
+    <control controlID="25" controlTypeID="com.balsamiq.mockups::Label" x="543" y="178" w="86" h="-1" measuredW="37" measuredH="21" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Marca</text>
+      </controlProperties>
+    </control>
+    <control controlID="26" controlTypeID="com.balsamiq.mockups::ComboBox" x="630" y="176" w="124" h="-1" measuredW="101" measuredH="24" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Seleccionar</text>
+      </controlProperties>
+    </control>
+    <control controlID="27" controlTypeID="com.balsamiq.mockups::Label" x="538" y="216" w="86" h="-1" measuredW="53" measuredH="21" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Producto</text>
+      </controlProperties>
+    </control>
+    <control controlID="28" controlTypeID="com.balsamiq.mockups::ComboBox" x="625" y="214" w="124" h="-1" measuredW="101" measuredH="24" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Seleccionar</text>
+      </controlProperties>
+    </control>
+    <control controlID="29" controlTypeID="com.balsamiq.mockups::List" x="547" y="293" w="201" h="145" measuredW="100" measuredH="153" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Producto%201%20-%20Catidad%0AProducto%202%20-%20Catidad%0AProducto%203%20-%20Catidad%0AProducto%204%20-%20Catidad%0AProducto%205%20-%20Catidad%0AProducto%206%20-%20Catidad%0A%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="30" controlTypeID="com.balsamiq.mockups::Button" x="618" y="258" w="-1" h="-1" measuredW="71" measuredH="27" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Agregar</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

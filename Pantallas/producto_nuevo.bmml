@@ -1,0 +1,116 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="789" measuredH="581" mockupW="282" mockupH="573">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::iPhone" x="507" y="8" w="-1" h="-1" measuredW="282" measuredH="573" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <model>IPhone5</model>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Title" x="560" y="111" w="-1" h="-1" measuredW="129" measuredH="31" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>28</size>
+        <text>Productos</text>
+      </controlProperties>
+    </control>
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::Label" x="541" y="144" w="86" h="-1" measuredW="30" measuredH="21" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%20Tipo</text>
+      </controlProperties>
+    </control>
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::ComboBox" x="628" y="142" w="124" h="-1" measuredW="101" measuredH="24" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Seleccionar</text>
+      </controlProperties>
+    </control>
+    <control controlID="18" controlTypeID="com.balsamiq.mockups::iPhoneMenu" x="541" y="211" w="-1" h="-1" measuredW="215" measuredH="242" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs/>
+        <text>+%20Producto%201%2C%20%3E%0A+%20Producto%202%2C%20%3E%0A+%20Producto%203%2C%20%3E%0A+%20Producto%204%2C%20%3E%0A+%20Producto%205%2C%20%3E%0A+%20Producto%206%2C%20%3E%0A+%20Producto%207%2C%20%3E%0A+%20Producto%208%2C%20%3E</text>
+      </controlProperties>
+    </control>
+    <control controlID="19" controlTypeID="com.balsamiq.mockups::Button" x="701" y="467" w="-1" h="-1" measuredW="53" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>11</size>
+        <text>Nuevo</text>
+      </controlProperties>
+    </control>
+    <control controlID="21" controlTypeID="com.balsamiq.mockups::Button" x="538" y="467" w="-1" h="-1" measuredW="69" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>11</size>
+        <text>Cancelar</text>
+      </controlProperties>
+    </control>
+    <control controlID="25" controlTypeID="com.balsamiq.mockups::Label" x="543" y="178" w="86" h="-1" measuredW="37" measuredH="21" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Marca</text>
+      </controlProperties>
+    </control>
+    <control controlID="26" controlTypeID="com.balsamiq.mockups::ComboBox" x="630" y="176" w="124" h="-1" measuredW="101" measuredH="24" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Seleccionar</text>
+      </controlProperties>
+    </control>
+    <control controlID="34" controlTypeID="com.balsamiq.mockups::Canvas" x="541" y="165" w="212" h="234" measuredW="100" measuredH="70" zOrder="9" locked="false" isInGroup="-1"/>
+    <control controlID="35" controlTypeID="com.balsamiq.mockups::Label" x="556" y="213" w="86" h="-1" measuredW="30" measuredH="21" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%20Tipo</text>
+      </controlProperties>
+    </control>
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::ComboBox" x="615" y="211" w="124" h="-1" measuredW="101" measuredH="24" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Seleccionar</text>
+      </controlProperties>
+    </control>
+    <control controlID="37" controlTypeID="com.balsamiq.mockups::Label" x="556" y="247" w="86" h="-1" measuredW="37" measuredH="21" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Marca</text>
+      </controlProperties>
+    </control>
+    <control controlID="38" controlTypeID="com.balsamiq.mockups::ComboBox" x="615" y="245" w="124" h="-1" measuredW="101" measuredH="24" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Seleccionar</text>
+      </controlProperties>
+    </control>
+    <control controlID="39" controlTypeID="com.balsamiq.mockups::Label" x="551" y="287" w="-1" h="-1" measuredW="46" measuredH="21" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Nombre</text>
+      </controlProperties>
+    </control>
+    <control controlID="40" controlTypeID="com.balsamiq.mockups::TextInput" x="615" y="286" w="124" h="-1" measuredW="79" measuredH="26" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="41" controlTypeID="com.balsamiq.mockups::Label" x="551" y="324" w="-1" h="-1" measuredW="37" measuredH="21" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Precio</text>
+      </controlProperties>
+    </control>
+    <control controlID="42" controlTypeID="com.balsamiq.mockups::TextInput" x="615" y="323" w="124" h="-1" measuredW="79" measuredH="26" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="43" controlTypeID="com.balsamiq.mockups::Button" x="689" y="360" w="-1" h="-1" measuredW="53" measuredH="27" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>producto%26bm%3Bproducto.bmml%26bm%3Bproducto.bmml%26bm%3Bproducto.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22182%2C352%2C235%2C379%22%20href%3D%22producto.bmml%22%20alt%3D%22producto%22%20id%3D%2243%22/%3E</map>
+        <size>11</size>
+        <text>Nuevo</text>
+      </controlProperties>
+    </control>
+    <control controlID="44" controlTypeID="com.balsamiq.mockups::Button" x="556" y="360" w="-1" h="-1" measuredW="69" measuredH="27" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>producto%26bm%3Bproducto.bmml%26bm%3Bproducto.bmml%26bm%3Bproducto.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2249%2C352%2C118%2C379%22%20href%3D%22producto.bmml%22%20alt%3D%22producto%22%20id%3D%2244%22/%3E</map>
+        <size>11</size>
+        <text>Cancelar</text>
+      </controlProperties>
+    </control>
+    <control controlID="45" controlTypeID="com.balsamiq.mockups::Title" x="569" y="175" w="-1" h="-1" measuredW="159" measuredH="27" zOrder="20" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>24</size>
+        <text>Nuevo%20/%20Editar</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
