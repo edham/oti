@@ -1,0 +1,44 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="789" measuredH="581" mockupW="282" mockupH="573">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::iPhone" x="507" y="8" w="-1" h="-1" measuredW="282" measuredH="573" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <model>IPhone5</model>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Button" x="575" y="366" w="-1" h="-1" measuredW="141" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Registrar%20Productos</text>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::Button" x="575" y="162" w="147" h="27" measuredW="89" measuredH="27" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>movimiento%26bm%3Bmovimiento.bmml%26bm%3Bmovimiento.bmml%26bm%3Bmovimiento.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2268%2C154%2C215%2C181%22%20href%3D%22movimiento.bmml%22%20alt%3D%22movimiento%22%20id%3D%228%22/%3E</map>
+        <text>Movimiento</text>
+      </controlProperties>
+    </control>
+    <control controlID="9" controlTypeID="com.balsamiq.mockups::Button" x="575" y="210" w="147" h="27" measuredW="111" measuredH="27" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>agente%26bm%3Bagente.bmml%26bm%3Bagente.bmml%26bm%3Bagente.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2268%2C202%2C215%2C229%22%20href%3D%22agente.bmml%22%20alt%3D%22agente%22%20id%3D%229%22/%3E</map>
+        <text>Buscar%20Agente</text>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::Button" x="575" y="263" w="147" h="27" measuredW="134" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Registrar%20Proforma</text>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Title" x="596" y="116" w="-1" h="-1" measuredW="79" measuredH="31" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>28</size>
+        <text>MENU</text>
+      </controlProperties>
+    </control>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::Button" x="575" y="315" w="147" h="27" measuredW="131" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Cotizar%20Proformas</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

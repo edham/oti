@@ -1,0 +1,38 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="789" measuredH="581" mockupW="282" mockupH="573">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::iPhone" x="507" y="8" w="-1" h="-1" measuredW="282" measuredH="573" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <model>IPhone5</model>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Button" x="600" y="381" w="83" h="27" measuredW="73" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>menu%26bm%3Bmenu.bmml%26bm%3Bmenu.bmml%26bm%3Bmenu.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2293%2C373%2C176%2C400%22%20href%3D%22menu.bmml%22%20alt%3D%22menu%22%20id%3D%221%22/%3E</map>
+        <text>Ingresar</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::TextInput" x="600" y="291" w="83" h="-1" measuredW="60" measuredH="27" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Usuario</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::TextInput" x="600" y="333" w="-1" h="-1" measuredW="83" measuredH="27" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Contrase%F1a</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Title" x="553" y="181" w="190" h="-1" measuredW="178" measuredH="43" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Play%20Plam</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Link" x="605" y="443" w="-1" h="-1" measuredW="72" measuredH="19" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>registro1%26bm%3Bregistro1.bmml%26bm%3Bregistro1.bmml%26bm%3Bregistro1.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2298%2C435%2C170%2C454%22%20href%3D%22registro1.bmml%22%20alt%3D%22registro1%22%20id%3D%226%22/%3E</map>
+        <text>Registrarme</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

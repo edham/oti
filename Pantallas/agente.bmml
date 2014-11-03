@@ -1,0 +1,77 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="789" measuredH="581" mockupW="282" mockupH="573">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::iPhone" x="507" y="8" w="-1" h="-1" measuredW="282" measuredH="573" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <model>IPhone5</model>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Title" x="547" y="114" w="-1" h="-1" measuredW="199" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>24</size>
+        <text>BUSCAR%20AGENTE</text>
+      </controlProperties>
+    </control>
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::Label" x="543" y="146" w="-1" h="-1" measuredW="49" measuredH="21" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Servicio</text>
+      </controlProperties>
+    </control>
+    <control controlID="15" controlTypeID="com.balsamiq.mockups::ComboBox" x="652" y="143" w="-1" h="-1" measuredW="93" measuredH="24" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Selecionar</text>
+      </controlProperties>
+    </control>
+    <control controlID="16" controlTypeID="com.balsamiq.mockups::Map" x="542" y="182" w="210" h="267" measuredW="252" measuredH="222" zOrder="4" locked="false" isInGroup="-1"/>
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::Button" x="542" y="461" w="-1" h="-1" measuredW="77" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Cancelar</text>
+      </controlProperties>
+    </control>
+    <control controlID="19" controlTypeID="com.balsamiq.mockups::RoundButton" x="635" y="306" w="19" h="18" measuredW="32" measuredH="32" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>545684</color>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="22" controlTypeID="com.balsamiq.mockups::PointyButton" x="567" y="215" w="-1" h="-1" measuredW="83" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>none</borderStyle>
+        <direction>left</direction>
+        <href>agente_detalle%26bm%3Bagente_detalle.bmml%26bm%3Bagente_detalle.bmml%26bm%3Bagente_detalle.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2260%2C207%2C143%2C234%22%20href%3D%22agente_detalle.bmml%22%20alt%3D%22agente_detalle%22%20id%3D%2222%22/%3E</map>
+        <newLayout>true</newLayout>
+        <text>Agente%201</text>
+      </controlProperties>
+    </control>
+    <control controlID="23" controlTypeID="com.balsamiq.mockups::PointyButton" x="662" y="390" w="-1" h="-1" measuredW="86" measuredH="27" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>none</borderStyle>
+        <direction>left</direction>
+        <href>agente_detalle%26bm%3Bagente_detalle.bmml%26bm%3Bagente_detalle.bmml%26bm%3Bagente_detalle.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22155%2C382%2C241%2C409%22%20href%3D%22agente_detalle.bmml%22%20alt%3D%22agente_detalle%22%20id%3D%2223%22/%3E</map>
+        <newLayout>true</newLayout>
+        <text>Agente%204</text>
+      </controlProperties>
+    </control>
+    <control controlID="24" controlTypeID="com.balsamiq.mockups::PointyButton" x="662" y="249" w="-1" h="-1" measuredW="86" measuredH="27" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>none</borderStyle>
+        <direction>left</direction>
+        <href>agente_detalle%26bm%3Bagente_detalle.bmml%26bm%3Bagente_detalle.bmml%26bm%3Bagente_detalle.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22155%2C241%2C241%2C268%22%20href%3D%22agente_detalle.bmml%22%20alt%3D%22agente_detalle%22%20id%3D%2224%22/%3E</map>
+        <newLayout>true</newLayout>
+        <text>Agente%202</text>
+      </controlProperties>
+    </control>
+    <control controlID="25" controlTypeID="com.balsamiq.mockups::PointyButton" x="550" y="363" w="-1" h="-1" measuredW="85" measuredH="27" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>none</borderStyle>
+        <direction>left</direction>
+        <href>agente_detalle%26bm%3Bagente_detalle.bmml%26bm%3Bagente_detalle.bmml%26bm%3Bagente_detalle.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2243%2C355%2C128%2C382%22%20href%3D%22agente_detalle.bmml%22%20alt%3D%22agente_detalle%22%20id%3D%2225%22/%3E</map>
+        <newLayout>true</newLayout>
+        <text>Agente%203</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
