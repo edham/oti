@@ -60,9 +60,9 @@ public class LoginActivity extends Activity
                     message.setData(bundle);
                     handler.sendMessage(message);     
                 } 
-            }.start();  
+        }.start();  
 
-      }
+    }
       
     else	    
         Toast.makeText(this,"Por favor ingrese todos los campos.", Toast.LENGTH_SHORT).show();
@@ -98,7 +98,7 @@ public class LoginActivity extends Activity
                     Toast.makeText(LoginActivity.this,"Error Servidor", Toast.LENGTH_SHORT).show();
                 else if(objeto.getInt("error")==3)
                     Toast.makeText(LoginActivity.this,"Error Conexion", Toast.LENGTH_SHORT).show();
-            } catch (JSONException ex) {
+            }catch (JSONException ex) {
                 Logger.getLogger(LoginActivity.class.getName()).log(Level.SEVERE, null, ex);
             }
 
