@@ -26,3 +26,5 @@
 /PayPlanApp/libs/google-play-services_lib/gen/
 /PayPlanApp/libs/google-play-services_lib/nbandroid/
 /PayPlanApp/nbandroid/
+/PayPlanCOM/dist/
+/PayPlanCOM/build/
