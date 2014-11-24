@@ -9,6 +9,9 @@
     <color name="celeste_claro">#d9edf7</color>
     <color name="celeste_oscuro">#bce8f1</color>
     
+    <color name="azul_claro">#1c87b2</color>
+    <color name="azul_oscuro">#10526c</color>
+    
     <color name="azul_letras">#006dcc</color>
    <color name="blanco">#ffffff</color>
    <color name="negro">#000000</color>
