@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:descendantFocusability="beforeDescendants"
+   android:background="@color/blanco"
+    android:focusableInTouchMode="true" >
+
+    <LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/blanco"
+    android:gravity="center"
+        android:orientation="vertical" >
+
+        <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gris_oscuro"
+        android:orientation="vertical" >
+            
+            <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+
+                <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/chain" />
+
+                <Spinner
+                android:id="@+id/ComboTipoMovimiento"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="14dp"
+                android:textColor="@color/negro_claro"/>    
+
+            </LinearLayout>
+            
+            <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+                    <Button
+                    android:id="@+id/btnIzquierda"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"   
+                    android:background="@drawable/btn_izquierda"/>	
+                      <TextView
+                        android:id="@+id/lblFecha"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="Mes"
+                        android:typeface="monospace"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/negro" />
+                  
+                    <Button
+                    android:id="@+id/btnDerecha"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"   
+                    android:background="@drawable/btn_derecha"/>	
+
+            </LinearLayout>
+
+        </LinearLayout>
+        
+        <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="10"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/blanco"
+        android:orientation="vertical" >
+
+        <ListView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/lista"></ListView>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/gris_claro"
+        android:gravity="center"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/btnNuevo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"                                         
+            android:text="Buscar"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/boton_negro"
+            android:textColor="@color/blanco"
+            android:onClick="btnItinerarios"/>	
+    </LinearLayout>
+        
+    </LinearLayout>
+
+    
+</LinearLayout>

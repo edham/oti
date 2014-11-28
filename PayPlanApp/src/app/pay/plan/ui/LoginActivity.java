@@ -44,11 +44,13 @@ public class LoginActivity extends Activity
     {
          Intent i=new Intent(LoginActivity.this,RegistroActivity.class);
             startActivity(i); 
+            finish();
     }
     public void btnIngresar(View v) 
     {
          Intent i=new Intent(LoginActivity.this,MenuActivity.class);
             startActivity(i); 
+            finish();
 
 //        if(!txtUsuario.getText().toString().equals(null) && !txtUsuario.getText().toString().equals(null)
 //           && !txtPassword.getText().toString().equals("") && !txtPassword.getText().toString().equals(""))

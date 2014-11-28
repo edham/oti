@@ -4,45 +4,140 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
-import android.text.util.Linkify;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Spinner;
 import android.widget.Toast;
-import app.pay.plan.entidades.clsUsuario;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.json.JSONException;
-import org.json.JSONObject;
+import app.pay.plan.entidades.clsDepartamento;
+import app.pay.plan.entidades.clsDistrito;
+import app.pay.plan.entidades.clsProvincia;
+import app.pay.plan.utilidades.clsUbigeo;
+import java.util.List;
 
 public class RegistroActivity extends Activity
 {
     /** Called when the activity is first created. */
+    private EditText txtNombres;
+    private EditText txtApellidos;
+    private EditText txtTelefono;
+    private EditText txtCelular;
+    private EditText txtEmail;
+    private EditText txtRuc;
+    private EditText txtRazonSocial;
     private EditText txtUsuario;
     private EditText txtPassword;
+    private EditText txtRPassword;
+    
+    private Spinner ComboDepartamento;
+    private Spinner ComboProvincia;
+    private Spinner ComboDistrito;
+ 
+    private View viewEmpresa;
+    private CheckBox chkEmpresa;
     private  ProgressDialog pd;
+    
+      public void onResume() {
+            super.onResume();
+            getActionBar().setTitle("Registro de Usuario");
+      }
+            
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
-//        txtUsuario = (EditText)findViewById(R.id.txtUsuario);
-//        txtPassword = (EditText)findViewById(R.id.txtPassword);
+        chkEmpresa = (CheckBox)findViewById(R.id.chkEmpresa);   
+        viewEmpresa = (View)findViewById(R.id.viewEmpresa);   
+        txtNombres = (EditText)findViewById(R.id.txtNombres);
+        txtApellidos = (EditText)findViewById(R.id.txtApellidos);
+        txtTelefono = (EditText)findViewById(R.id.txtTelefono);
+        txtCelular = (EditText)findViewById(R.id.txtCelular);
+        txtEmail = (EditText)findViewById(R.id.txtEmail);
+        txtRuc = (EditText)findViewById(R.id.txtRuc);
+        txtRazonSocial = (EditText)findViewById(R.id.txtRazonSocial);
+        txtUsuario = (EditText)findViewById(R.id.txtUsuario);
+        txtPassword = (EditText)findViewById(R.id.txtPassword);
+        txtRPassword = (EditText)findViewById(R.id.txtRPassword);
         
-       
-//       
-//        txtUsuario.setText("otiniano");
-//        txtPassword.setText("123456");
+        ComboDepartamento = (Spinner)findViewById(R.id.ComboDepartamento);   
+        ComboDepartamento();
+        ComboProvincia = (Spinner)findViewById(R.id.ComboProvincia);   
+   
+        ComboDistrito = (Spinner)findViewById(R.id.ComboDistrito);   
+    }
+    public void ComboDepartamento (){
+        List<clsDepartamento> lista=clsUbigeo.getListDepartamento();
+        lista.add(0,new clsDepartamento(0,"Selecciones un Departamento"));
+        
+        ArrayAdapter<clsDepartamento> adapter = new ArrayAdapter<clsDepartamento>(this,
+        android.R.layout.simple_spinner_item,lista);       
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        ComboDepartamento.setAdapter(adapter);     
+        ComboDepartamento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {          
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {  
+                ComboProvincia(((clsDepartamento)ComboDepartamento.getSelectedItem()).getInt_id_depatamento());
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+                //User selected same item. Nothing to do.
+            }
+        });
+        ComboDepartamento.setSelection(0);
     }
     
-    public void btnIngresar(View v) 
+    public void ComboProvincia(int idDepartamento){
+        List<clsProvincia> lista=clsUbigeo.getListProvinciaXDepartamento(idDepartamento);
+        
+        lista.add(0,new clsProvincia(0,"Selecciones un Provincia"));
+        
+        ArrayAdapter<clsProvincia> adapter = new ArrayAdapter<clsProvincia>(this,
+        android.R.layout.simple_spinner_item,lista);       
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        ComboProvincia.setAdapter(adapter);     
+        ComboProvincia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {          
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {                    
+                ComboDistrito(((clsProvincia)ComboProvincia.getSelectedItem()).getInt_id_provincia());;
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+                //User selected same item. Nothing to do.
+            }
+        });
+        ComboProvincia.setSelection(0);
+    }
+    
+    public void ComboDistrito(int idProvincia){
+        List<clsDistrito> lista=clsUbigeo.getListDistritoXProvincia(idProvincia);
+        
+        lista.add(0,new clsDistrito(0,"Selecciones una Provincia"));
+        
+        ArrayAdapter<clsDistrito> adapter = new ArrayAdapter<clsDistrito>(this,
+        android.R.layout.simple_spinner_item,lista);       
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        ComboDistrito.setAdapter(adapter);     
+        ComboDistrito.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {          
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {                    
+                Toast.makeText(RegistroActivity.this,((clsDistrito)ComboDistrito.getSelectedItem()).getStr_nombre(), Toast.LENGTH_SHORT).show();
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+                //User selected same item. Nothing to do.
+            }
+        });
+        ComboDistrito.setSelection(0);
+    }
+    public void chkEmpresa(View v)
     {
-         Intent i=new Intent(RegistroActivity.this,MenuActivity.class);
+          if(chkEmpresa.isChecked())
+             viewEmpresa.setVisibility(View.VISIBLE);
+          else
+              viewEmpresa.setVisibility(View.GONE);
+    }
+    public void btnRegistrar(View v) 
+    {
+         Intent i=new Intent(RegistroActivity.this,LoginActivity.class);
             startActivity(i); 
+            finish();
 
 //        if(!txtUsuario.getText().toString().equals(null) && !txtUsuario.getText().toString().equals(null)
 //           && !txtPassword.getText().toString().equals("") && !txtPassword.getText().toString().equals(""))
@@ -67,6 +162,12 @@ public class RegistroActivity extends Activity
 //        Toast.makeText(this,"Por favor ingrese todos los campos.", Toast.LENGTH_SHORT).show();
     }
     
+    public void btnCancelar(View v){
+        Intent i=new Intent(RegistroActivity.this,LoginActivity.class);
+            startActivity(i); 
+            finish();
+         
+    }
     
     
     

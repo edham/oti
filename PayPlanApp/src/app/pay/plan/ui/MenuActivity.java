@@ -26,6 +26,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import app.pay.plan.entidades.clsDrawerItem;
+import app.pay.plan.fragment.FragmentListaMovimientos;
+import app.pay.plan.fragment.FragmentMapa;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -137,7 +139,10 @@ public class MenuActivity extends FragmentActivity {
 			fragment = new FragmentCodigo();
 			break;
                 case 1:
-			fragment = new FragmentCodigo();
+			fragment = new FragmentListaMovimientos();
+			break;
+                case 2:
+			fragment = new FragmentMapa();
 			break;
 //		case 1:
 //                        if(utilidades.verificaConexion(this))

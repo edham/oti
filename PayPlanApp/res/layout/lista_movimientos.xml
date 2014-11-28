@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/negro"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+            
+        <TextView
+        android:id="@+id/lblDiaMovimiento"
+        android:visibility="gone"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Datos de Usuario"
+        android:typeface="monospace"
+        android:layout_marginTop="5dp"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/blanco" />
+
+    <LinearLayout
+        android:id="@+id/viewAntes"
+        android:visibility="gone"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rojo"
+        android:gravity="center"
+        android:orientation="vertical" >
+            
+        <TextView
+        android:id="@+id/lblMovimientoAntes"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Datos de Usuario"
+        android:typeface="monospace"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/negro" />
+        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/viewActual"
+        android:visibility="gone"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/gris"
+        android:gravity="center"
+        android:orientation="vertical" >
+            
+        <TextView
+        android:id="@+id/lblMovimientoActual"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Datos de Usuario"
+        android:typeface="monospace"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/negro" />
+        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/viewDespues"
+        android:visibility="gone"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/azul"
+        android:gravity="center"
+        android:orientation="vertical" >
+            
+        <TextView
+        android:id="@+id/lblMovimientoDespues"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Datos de Usuario"
+        android:typeface="monospace"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/negro" />
+        </LinearLayout>
+ </LinearLayout>

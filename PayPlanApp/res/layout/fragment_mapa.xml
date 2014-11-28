@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="fill_parent"
+  android:orientation="vertical" >
+
+      
+ <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+  	android:id="@+id/map"
+  	 android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+  	class="com.google.android.gms.maps.SupportMapFragment"/>
+ 
+ 
+ 
+         <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="70dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:adjustViewBounds="true"  
+            android:scaleType="centerCrop"
+            android:background="@drawable/blanco"
+            android:orientation="horizontal" >
+                <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/chain" />
+                <Spinner
+                android:id="@+id/ComboServicio"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="14dp"
+                android:textColor="@color/negro_claro"/>                
+                
+            </LinearLayout>  
+	
+    
+    
+  
+</RelativeLayout>
