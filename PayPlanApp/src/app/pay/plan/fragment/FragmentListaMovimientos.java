@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import app.pay.plan.entidades.clsMovimiento;
 import app.pay.plan.ui.R;
 import app.pay.plan.utilidades.Utilidades;
@@ -26,8 +25,9 @@ import java.util.Date;
 import java.util.List;
 
 public class FragmentListaMovimientos extends Fragment {
-
+    
     private  List<clsMovimiento> itensTemp=null;
+    private  List<clsMovimiento> itens=null;
     private Adaptador adaptador;
     private ListView lista;
     private Calendar calendar;
@@ -37,6 +37,8 @@ public class FragmentListaMovimientos extends Fragment {
     private TextView lblFecha;
     private Button btnIzquierda;
     private Button btnDerecha;
+    private Button btnRefresh;
+    
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -45,6 +47,13 @@ public class FragmentListaMovimientos extends Fragment {
                 
                 lista = (ListView)view.findViewById(R.id.lista); 
                 
+                btnRefresh = (Button) view.findViewById(R.id.btnRefresh);
+                btnRefresh.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        btnRefresh();
+                    }
+                }); 
                 btnIzquierda = (Button) view.findViewById(R.id.btnIzquierda);
                 btnIzquierda.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -67,8 +76,29 @@ public class FragmentListaMovimientos extends Fragment {
                     }
                 });   
                 calendar = Calendar.getInstance();
+                
+                
+                
+                
+                Calendar calendarA = Calendar.getInstance();
+                calendarA.add(Calendar.DAY_OF_YEAR, -3);
+                itens=new ArrayList<clsMovimiento>();    
+                itens.add(new clsMovimiento(new Date(calendarA.getTimeInMillis())));  
+                itens.add(new clsMovimiento(new Date(calendarA.getTimeInMillis())));  
+                 calendarA.add(Calendar.DAY_OF_YEAR, 1);
+                itens.add(new clsMovimiento(new Date(calendarA.getTimeInMillis())));  
+                itens.add(new clsMovimiento(new Date(calendarA.getTimeInMillis())));  
+                itens.add(new clsMovimiento(new Date()));
+                itens.add(new clsMovimiento(new Date()));
+                calendarA.add(Calendar.DAY_OF_YEAR, 3);
+                itens.add(new clsMovimiento(new Date(calendarA.getTimeInMillis())));  
+                itens.add(new clsMovimiento(new Date(calendarA.getTimeInMillis())));  
+                calendarA.add(Calendar.DAY_OF_YEAR, 1);
+                itens.add(new clsMovimiento(new Date(calendarA.getTimeInMillis())));  
+                itens.add(new clsMovimiento(new Date(calendarA.getTimeInMillis())));  
+        
+                
                 setFecha();
-                setAdapter();
 		return view;
 	}
         
@@ -87,6 +117,10 @@ public class FragmentListaMovimientos extends Fragment {
             newFragment.show(getFragmentManager(), "DatePicker");
         }
         
+        public void btnRefresh(){
+            calendar = Calendar.getInstance();
+            setFecha();
+        }
         
         
      
@@ -121,28 +155,18 @@ public class FragmentListaMovimientos extends Fragment {
             lblFecha.setTextColor(getResources().getColor(R.color.negro));
         if(diffDays>0)   
             lblFecha.setTextColor(Color.BLUE);
+        
+        setAdapter();
     
     }
     
      public void setAdapter( )
     {    
-        Calendar calendarAdapter = Calendar.getInstance();
-        calendarAdapter.add(Calendar.DAY_OF_YEAR, -3);
+        itensTemp=new ArrayList<clsMovimiento>();   
+        for(clsMovimiento entidad : itens)
+         if(0<=Utilidades.getDias(entidad.getDat_fecha_creacion(),calendar.getTime()))
+             itensTemp.add(entidad);
         
-        itensTemp=new ArrayList<clsMovimiento>();    
-        itensTemp.add(new clsMovimiento(new Date(calendarAdapter.getTimeInMillis()))); 
-        itensTemp.add(new clsMovimiento(new Date(calendarAdapter.getTimeInMillis()))); 
-        calendarAdapter.add(Calendar.DAY_OF_YEAR, 1);
-        itensTemp.add(new clsMovimiento(new Date(calendarAdapter.getTimeInMillis())));  
-        itensTemp.add(new clsMovimiento(new Date(calendarAdapter.getTimeInMillis())));  
-        itensTemp.add(new clsMovimiento(new Date()));
-        itensTemp.add(new clsMovimiento(new Date()));
-        calendarAdapter.add(Calendar.DAY_OF_YEAR, 3);
-        itensTemp.add(new clsMovimiento(new Date(calendarAdapter.getTimeInMillis())));  
-        itensTemp.add(new clsMovimiento(new Date(calendarAdapter.getTimeInMillis())));  
-        calendarAdapter.add(Calendar.DAY_OF_YEAR, 1);
-        itensTemp.add(new clsMovimiento(new Date(calendarAdapter.getTimeInMillis())));
-        itensTemp.add(new clsMovimiento(new Date(calendarAdapter.getTimeInMillis()))); 
         
         adaptador = new Adaptador(this.getActivity());
         lista.setAdapter(adaptador);
@@ -151,64 +175,40 @@ public class FragmentListaMovimientos extends Fragment {
      class Adaptador extends ArrayAdapter {
     	
     	Activity context;
-    	Calendar calendarAdapter = calendar;
-        
-        
-        boolean fecha=true;
-        
+
     	Adaptador(Activity context) {
     		super(context, R.layout.lista_movimientos, itensTemp);
-    		this.context = context;
-                
+    		this.context = context;         
     	}
     	
     	public View getView(int position, View convertView, ViewGroup parent) {
-            final int posicion = position;
+//            final int posicion = position;
             LayoutInflater inflater = context.getLayoutInflater();
             View item = inflater.inflate(R.layout.lista_movimientos, null);
-            if(fecha)
-            {               
-                TextView lblDiaMovimiento = (TextView)item.findViewById(R.id.lblDiaMovimiento);
-                lblDiaMovimiento.setVisibility(View.VISIBLE);
-                lblDiaMovimiento.setText(Utilidades.getFecha(itensTemp.get(position).getDat_fecha_creacion()));
-                fecha=false;
-            }
-            else
-            {
-                int diffDays = Utilidades.getDias(itensTemp.get(position).getDat_fecha_creacion(),calendarAdapter.getTime());
-                if(diffDays!=0)
-                {
-                    TextView lblDiaMovimiento = (TextView)item.findViewById(R.id.lblDiaMovimiento);
-                    lblDiaMovimiento.setVisibility(View.VISIBLE);
-                    lblDiaMovimiento.setText(Utilidades.getFecha(itensTemp.get(position).getDat_fecha_creacion()));
-                    calendarAdapter.setTime(itensTemp.get(position).getDat_fecha_creacion());
-                }
-            }
-           
             
-            int diffDays = Utilidades.getDias(itensTemp.get(position).getDat_fecha_creacion(),new Date());
-            if(diffDays<0)
+            int diffDays2 = Utilidades.getDias(itensTemp.get(position).getDat_fecha_creacion(),new Date());
+            if(diffDays2<0)
             {
                 View viewAntes = (View)item.findViewById(R.id.viewAntes);
                 viewAntes.setVisibility(View.VISIBLE);
             }
-            else if(diffDays==0)
+            else if(diffDays2==0)
             {
                 View viewActual = (View)item.findViewById(R.id.viewActual);
                 viewActual.setVisibility(View.VISIBLE);                
             }
-            if(diffDays>0)   
+            if(diffDays2>0)   
             {
                 View viewDespues = (View)item.findViewById(R.id.viewDespues);
                 viewDespues.setVisibility(View.VISIBLE);                
             }
             
-            
-            
-            
-             
-            
+        
+            TextView lblDiaMovimiento = (TextView)item.findViewById(R.id.lblDiaMovimiento);
+            lblDiaMovimiento.setText(Utilidades.getFechaString(itensTemp.get(position).getDat_fecha_creacion()));
 
+
+         
             return(item);
 	}
     }

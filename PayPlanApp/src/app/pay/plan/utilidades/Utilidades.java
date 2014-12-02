@@ -22,6 +22,11 @@ public class Utilidades {
         return e.format(fecha);
     }
     
+    public static String getFechaString(Date fecha)
+    {
+        SimpleDateFormat e=new SimpleDateFormat("EEEE dd MMMM yyyy - HH:mm a");
+        return e.format(fecha);
+    }
     public static int getDias(Date date,Date dateActual)
     {
         Calendar calendarActual = Calendar.getInstance();

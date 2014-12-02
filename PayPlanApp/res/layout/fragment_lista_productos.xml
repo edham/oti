@@ -28,6 +28,8 @@
             <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
             android:layout_marginBottom="5dp"
             android:orientation="horizontal">
 
@@ -38,7 +40,7 @@
                 android:src="@drawable/chain" />
 
                 <Spinner
-                android:id="@+id/ComboTipoMovimiento"
+                android:id="@+id/ComboTipo"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -47,41 +49,27 @@
 
             </LinearLayout>
             
-            <LinearLayout
+           <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:gravity="center"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
             android:orientation="horizontal">
 
-                    <Button
-                    android:id="@+id/btnIzquierda"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"   
-                    android:background="@drawable/btn_izquierda"/>	
-                      <TextView
-                        android:id="@+id/lblFecha"
-                        android:layout_width="140dp"
-                        android:layout_height="wrap_content"
-                        android:text="Mes"
-                        android:typeface="monospace"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
-                        android:gravity="center"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/negro" />
-                   
-                    <Button
-                    android:id="@+id/btnDerecha"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"   
-                    android:background="@drawable/btn_derecha"/>	
-                     <Button
-                    android:id="@+id/btnRefresh"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"   
-                    android:layout_marginLeft="20dp"
-                    android:background="@drawable/btn_refresh"/>
+
+                <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/chain" />
+
+                <Spinner
+                android:id="@+id/ComboMarca"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="14dp"
+                android:textColor="@color/negro_claro"/>    
 
             </LinearLayout>
 
@@ -114,40 +102,20 @@
         android:gravity="center"
         android:orientation="horizontal"
         android:layout_weight="1">
-            <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1">
+
                 <Button
                 android:id="@+id/btnNuevo"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"                                         
                 android:text="Nuevo"
                 android:textSize="15dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
                 android:textStyle="bold"
                 android:background="@drawable/boton_negro"
                 android:textColor="@color/blanco"
                 android:onClick="btnItinerarios"/>	
-            </LinearLayout>
-            <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"    
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1">
-                <Button
-                android:id="@+id/btnEstadisticas"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"                                         
-                android:text="Estadisticas"
-                android:textSize="15dp"
-                android:textStyle="bold"
-                android:background="@drawable/boton_negro"
-                android:textColor="@color/blanco"
-                android:onClick="btnItinerarios"/>	
-             </LinearLayout>
+           
           
         </LinearLayout>
     </LinearLayout>
