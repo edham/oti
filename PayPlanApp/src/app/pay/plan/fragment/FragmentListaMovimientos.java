@@ -8,24 +8,30 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import app.pay.plan.entidades.clsMovimiento;
 import app.pay.plan.ui.R;
 import app.pay.plan.utilidades.Utilidades;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 public class FragmentListaMovimientos extends Fragment {
     
+    private Spinner ComboTipoMovimiento;
     private  List<clsMovimiento> itensTemp=null;
     private  List<clsMovimiento> itens=null;
     private Adaptador adaptador;
@@ -38,6 +44,8 @@ public class FragmentListaMovimientos extends Fragment {
     private Button btnIzquierda;
     private Button btnDerecha;
     private Button btnRefresh;
+    private Button btnNuevo;
+    private Button btnEstadisticas;
     
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,6 +55,23 @@ public class FragmentListaMovimientos extends Fragment {
                 
                 lista = (ListView)view.findViewById(R.id.lista); 
                 
+                ComboTipoMovimiento = (Spinner)view.findViewById(R.id.ComboTipoMovimiento);   
+                ComboTipoMovimiento();
+                
+                btnNuevo = (Button) view.findViewById(R.id.btnNuevo);
+                btnNuevo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        btnNuevo();
+                    }
+                }); 
+                btnEstadisticas = (Button) view.findViewById(R.id.btnEstadisticas);
+                btnEstadisticas.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        btnEstadisticas();
+                    }
+                }); 
                 btnRefresh = (Button) view.findViewById(R.id.btnRefresh);
                 btnRefresh.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -186,30 +211,77 @@ public class FragmentListaMovimientos extends Fragment {
             LayoutInflater inflater = context.getLayoutInflater();
             View item = inflater.inflate(R.layout.lista_movimientos, null);
             
-            int diffDays2 = Utilidades.getDias(itensTemp.get(position).getDat_fecha_creacion(),new Date());
-            if(diffDays2<0)
+            View viewMovimiento = (View)item.findViewById(R.id.viewMovimiento);
+            ImageView imageTipoMovimiento = (ImageView)item.findViewById(R.id.imageTipoMovimiento);
+            Button btnVer = (Button)item.findViewById(R.id.btnVer);
+            btnVer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                        btnIzquierda();
+                }
+            });  
+            int diffDays = Utilidades.getDias(itensTemp.get(position).getDat_fecha_creacion(),new Date());
+            
+            if(diffDays<0)
             {
-                View viewAntes = (View)item.findViewById(R.id.viewAntes);
-                viewAntes.setVisibility(View.VISIBLE);
+               viewMovimiento.setBackgroundResource(R.drawable.rojo);
             }
-            else if(diffDays2==0)
+            else if(diffDays==0)
             {
-                View viewActual = (View)item.findViewById(R.id.viewActual);
-                viewActual.setVisibility(View.VISIBLE);                
+                
             }
-            if(diffDays2>0)   
+            if(diffDays>0)   
             {
-                View viewDespues = (View)item.findViewById(R.id.viewDespues);
-                viewDespues.setVisibility(View.VISIBLE);                
+                viewMovimiento.setBackgroundResource(R.drawable.azul); 
             }
             
-        
+            if(position%2==0)
+            {
+                imageTipoMovimiento.setImageResource(R.drawable.btn_menos); 
+            }
+            
             TextView lblDiaMovimiento = (TextView)item.findViewById(R.id.lblDiaMovimiento);
             lblDiaMovimiento.setText(Utilidades.getFechaString(itensTemp.get(position).getDat_fecha_creacion()));
 
-
-         
+            TextView lblMovimiento = (TextView)item.findViewById(R.id.lblMovimiento);
+            lblMovimiento.setText(Utilidades.getFechaString(itensTemp.get(position).getDat_fecha_creacion()));
+            
+               
             return(item);
 	}
     }
+     
+     
+   public void ComboTipoMovimiento (){
+        List<String> listString = Arrays.asList("Todos", "Entrada", "Salida");
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(),android.R.layout.simple_spinner_item,listString);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        ComboTipoMovimiento.setAdapter(adapter);     
+        ComboTipoMovimiento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {          
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {  
+//                ComboProvincia(((clsServicio)ComboTipoMovimiento.getSelectedItem()).getInt_id_depatamento());
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+                //User selected same item. Nothing to do.
+            }
+        });
+        ComboTipoMovimiento.setSelection(0);
+    }
+   
+   public void btnNuevo()
+   {
+        Bundle args = new Bundle();
+        args.putInt("IdPersona",0);
+        Fragment InicioFragment = new FragmentNuevoMovimiento();
+        InicioFragment.setArguments(args);	
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.content_frame, InicioFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+       
+   }
+   public void btnEstadisticas()
+   {
+       
+   }
 }

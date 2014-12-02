@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:descendantFocusability="beforeDescendants"
+    android:background="@color/blanco"
+    android:gravity="center"
+    android:focusableInTouchMode="true" >
+    
+<ScrollView
+android:layout_width="fill_parent"
+android:layout_height="wrap_content" >
+
+    
+    <LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/blanco"
+    android:gravity="center"
+    android:orientation="vertical" >
+    
+    
+    <LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+             
+         
+         <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/blanco"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+                <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/chain" />
+                <Spinner
+                android:id="@+id/ComboTipo"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="14dp"
+                android:textColor="@color/negro_claro"/>                
+                
+        </LinearLayout>  
+         <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/blanco"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+                <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/chain" />
+                <Spinner
+                android:id="@+id/ComboTipoMovimiento"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="14dp"
+                android:textColor="@color/negro_claro"/>                
+                
+        </LinearLayout>  
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/blanco"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+                <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/chain" />
+                <Spinner
+                android:id="@+id/ComboTiempo"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="14dp"
+                android:textColor="@color/negro_claro"/>                
+                
+        </LinearLayout>  
+        
+        
+        <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/celeste"
+        android:gravity="center"
+        android:orientation="vertical" >
+            
+        <TextView
+        android:id="@+id/lblTipo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Datos de Usuario"
+        android:typeface="monospace"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/azul_letras" />
+        </LinearLayout>
+        
+        
+            <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:background="@drawable/blanco"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+                <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+                    <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Inicio de Pago:"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:gravity="left"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/azul_letras" />         
+                </LinearLayout>   
+        
+                <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+                    <TextView
+                    android:id="@+id/lblInicioPago"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Inicio de Pago:"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:gravity="center"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/negro_claro" />                 
+                </LinearLayout>   
+                
+            </LinearLayout>   
+            <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/blanco"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+                <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+                    <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pago Total:"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:gravity="left"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/azul_letras" />         
+                </LinearLayout>   
+        
+                <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+                    <EditText
+                    android:id="@+id/txtPagoTotal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:digits="0123456789."
+                    android:inputType="numberDecimal"
+                    android:textSize="14dp"
+                    android:ems="10"
+                    android:hint="Ingrese Pago"   
+                    android:textColor="@color/negro_claro"/>                
+                </LinearLayout>   
+                
+            </LinearLayout>   
+            <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/blanco"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+                <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+                    <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Número de Cuotas:"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:gravity="left"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/azul_letras" />         
+                </LinearLayout>   
+        
+                <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+                    <EditText
+                    android:id="@+id/txtNumeroCoutas"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="14dp"
+                    android:digits="0123456789"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:hint="Coutas"   
+                    android:textColor="@color/negro_claro"/>                
+                </LinearLayout>   
+                
+            </LinearLayout>   
+            <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:background="@drawable/blanco"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+                <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+                    <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pago Mensual:"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:gravity="left"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/azul_letras" />         
+                </LinearLayout>   
+        
+                <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+                    <TextView
+                    android:id="@+id/lblCoutaPago"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" Pago:"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:gravity="center"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/negro_claro" />                 
+                </LinearLayout>   
+                
+            </LinearLayout>   
+            
+            <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/blanco"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+                <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+                    <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Dias Alerta:"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:gravity="left"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/azul_letras" />         
+                </LinearLayout>   
+        
+                <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+                    <Spinner
+                    android:id="@+id/ComboDiasAlerta"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="14dp"
+                    android:textColor="@color/negro_claro"/>                      
+                    </LinearLayout>   
+                
+            </LinearLayout>   
+            <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/blanco"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+                <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+                    <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tiempo de Alerta:"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:gravity="left"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/azul_letras" />         
+                </LinearLayout>   
+        
+                <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+                    <Spinner
+                    android:id="@+id/ComboTiempoAlerta"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="14dp"
+                    android:textColor="@color/negro_claro"/>                
+                </LinearLayout>   
+                
+            </LinearLayout>   
+            
+            
+            
+            
+            
+            <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/blanco"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical" >
+        
+                <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Detalle:"
+                android:textStyle="bold"
+                android:textSize="14dp"
+                android:gravity="left"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/azul_letras" />     
+                
+                <EditText
+                android:id="@+id/txtNumeroCoutas"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="14dp"
+                android:ems="10"
+                android:hint="Ingrese Detalle"   
+                android:layout_centerInParent="true"
+                android:gravity="top|left"
+                android:inputType="textMultiLine"
+                android:lines="5"
+                android:maxWidth="300sp"
+                android:minWidth="10.0dip"
+                android:scrollHorizontally="false"
+                android:textColor="@color/negro_claro"/>      
+                    
+
+            </LinearLayout>   
+    </LinearLayout>
+    
+   
+  
+        
+    
+   
+        
+    <LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/gris_claro"
+    android:layout_marginBottom="10dp"
+    android:gravity="center"
+    android:orientation="horizontal" >
+         
+           <Button
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"  
+            android:layout_marginRight="5dp"    
+            android:layout_marginTop="10dp"    
+            android:layout_marginBottom="10dp"                             
+            android:text="Registrar"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:background="@drawable/boton_negro"
+            android:textColor="@color/blanco"
+            android:onClick="btnRegistrar"/>	
+        
+           <Button
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"    
+            android:layout_marginLeft="5dp"  
+            android:layout_marginTop="10dp"    
+            android:layout_marginBottom="10dp"                             
+            android:text="Cancelar"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:background="@drawable/boton_negro"
+            android:textColor="@color/blanco"
+            android:onClick="btnCancelar"/>	
+    </LinearLayout>
+         
+    </LinearLayout>
+
+</ScrollView>
+    
+</LinearLayout>
