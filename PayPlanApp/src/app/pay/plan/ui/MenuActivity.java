@@ -26,10 +26,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import app.pay.plan.entidades.clsDrawerItem;
-import app.pay.plan.fragment.FragmentCodigo;
-import app.pay.plan.fragment.FragmentListaMovimientos;
-import app.pay.plan.fragment.FragmentListaProductos;
-import app.pay.plan.fragment.FragmentMapa;
+import app.pay.plan.fragment.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,7 +66,7 @@ public class MenuActivity extends FragmentActivity {
                 dataList.add(new clsDrawerItem("BUSCAR AGENTES", R.drawable.agents));
                 dataList.add(new clsDrawerItem("REGISTRAR PROFORMAS", R.drawable.add_item));
                 dataList.add(new clsDrawerItem("COTIZAR PROFORMAS", R.drawable.dollar));
-                dataList.add(new clsDrawerItem("PRODUCTO", R.drawable.tree));
+                dataList.add(new clsDrawerItem("MIS PRODUCTO", R.drawable.tree));
                 dataList.add(new clsDrawerItem("CERRAR SESION", R.drawable.shut_down));
 //		dataList.add(new clsDrawerItem(getString(R.string.str_mapa), R.drawable.ic_action_map));
 //		dataList.add(new clsDrawerItem(getString(R.string.str_crud_sqlite), R.drawable.ic_action_crud));
@@ -147,13 +144,13 @@ public class MenuActivity extends FragmentActivity {
 			fragment = new FragmentMapa();
 			break;
                 case 3:
-			fragment = new FragmentListaMovimientos();
+			fragment = new FragmentListaRegistroProformas();
 			break;
                 case 4:
-			fragment = new FragmentListaMovimientos();
+			fragment = new FragmentListaCotizarProformas();
 			break;
                 case 5:
-			fragment = new FragmentListaProductos();
+			fragment = new FragmentListaMisProductos();
 			break;    
                 
 //		case 1:

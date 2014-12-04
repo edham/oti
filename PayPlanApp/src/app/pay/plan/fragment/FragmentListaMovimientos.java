@@ -212,6 +212,7 @@ public class FragmentListaMovimientos extends Fragment {
             View item = inflater.inflate(R.layout.lista_movimientos, null);
             
             View viewMovimiento = (View)item.findViewById(R.id.viewMovimiento);
+            
             ImageView imageTipoMovimiento = (ImageView)item.findViewById(R.id.imageTipoMovimiento);
             Button btnVer = (Button)item.findViewById(R.id.btnVer);
             btnVer.setOnClickListener(new View.OnClickListener() {
@@ -259,7 +260,7 @@ public class FragmentListaMovimientos extends Fragment {
         ComboTipoMovimiento.setAdapter(adapter);     
         ComboTipoMovimiento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {          
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {  
-//                ComboProvincia(((clsServicio)ComboTipoMovimiento.getSelectedItem()).getInt_id_depatamento());
+//                ComboProvincia(((clsServicio)ComboTipo.getSelectedItem()).getInt_id_depatamento());
             }
             public void onNothingSelected(AdapterView<?> parent) {
                 //User selected same item. Nothing to do.

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:descendantFocusability="beforeDescendants"
+    android:background="@color/blanco"
+    android:gravity="center"
+    android:focusableInTouchMode="true" >
+
+    
+    <LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/blanco"
+    android:orientation="vertical" >
+        
+        <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/negro"
+        android:gravity="center"
+        android:orientation="vertical" >
+            
+        <TextView
+        android:id="@+id/lblTipo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Datos de Usuario"
+        android:typeface="monospace"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/blanco" />
+        </LinearLayout>
+        
+        
+        <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:background="@drawable/blanco"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+            <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+                <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Inicio de Pago:"
+                android:textStyle="bold"
+                android:textSize="14dp"
+                android:gravity="left"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/azul_letras" />         
+            </LinearLayout>   
+
+            <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+                <TextView
+                android:id="@+id/lblInicioPago"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Inicio de Pago:"
+                android:textStyle="bold"
+                android:textSize="14dp"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/negro_claro" />                 
+            </LinearLayout>   
+
+        </LinearLayout>   
+        
+        <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:background="@drawable/blanco"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+            <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+                <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Inicio de Pago:"
+                android:textStyle="bold"
+                android:textSize="14dp"
+                android:gravity="left"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/azul_letras" />         
+            </LinearLayout>   
+
+            <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+                <TextView
+                android:id="@+id/lblInicioPago"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Inicio de Pago:"
+                android:textStyle="bold"
+                android:textSize="14dp"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/negro_claro" />                 
+            </LinearLayout>   
+
+        </LinearLayout>   
+
+                    
+         <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/blanco"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+                <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+                    <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pago Total:"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:gravity="left"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/azul_letras" />         
+                </LinearLayout>   
+        
+                <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+                    <EditText
+                    android:id="@+id/txtPagoTotal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:digits="0123456789."
+                    android:inputType="numberDecimal"
+                    android:textSize="14dp"
+                    android:ems="10"
+                    android:hint="Ingrese Pago"   
+                    android:textColor="@color/negro_claro"/>                
+                </LinearLayout>   
+                
+            </LinearLayout>  
+            
+        
+    </LinearLayout>
+    
+   
+  
+        
+    
+   
+        
+    <LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/gris_claro"
+    android:layout_marginBottom="10dp"
+    android:gravity="center"
+    android:orientation="horizontal" >
+         
+           <Button
+            android:id="@+id/btnRegistrar"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"  
+            android:layout_marginRight="5dp"    
+            android:layout_marginTop="10dp"    
+            android:layout_marginBottom="10dp"                             
+            android:text="Registrar"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:background="@drawable/boton_negro"
+            android:textColor="@color/blanco"/>	
+        
+           <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"    
+            android:layout_marginLeft="5dp"  
+            android:layout_marginTop="10dp"    
+            android:layout_marginBottom="10dp"                             
+            android:text="Cancelar"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:background="@drawable/boton_negro"
+            android:textColor="@color/blanco"/>	
+    </LinearLayout>
+         
+
+    
+</LinearLayout>
