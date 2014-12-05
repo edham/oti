@@ -7,10 +7,7 @@
 package app.pay.plan.entidades;
 
 
-/**
- *
- * @author EdHam
- */
+
 public class clsTipoMovimiento {
 
     private int int_id_tipo_movimiento;
