@@ -40,10 +40,6 @@ public class clsUsuarioDAO {
                 objUsuario.setStr_nombre(dr.getString(2));
                 objUsuario.setStr_apellidos(dr.getString(3));
                 objUsuario.setStr_email(dr.getString(4));
-                objUsuario.setStr_telefono(dr.getString(5));
-                objUsuario.setStr_usuario(dr.getString(6));
-                objUsuario.setStr_clave(dr.getString(7));
-                objUsuario.setInt_estado(dr.getInt(8));
                 objUsuario.setFat_fecha_creacion(dr.getTimestamp(9));
             }
 
