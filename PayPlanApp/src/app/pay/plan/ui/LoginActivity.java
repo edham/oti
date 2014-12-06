@@ -13,9 +13,16 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import app.pay.plan.entidades.clsUsuario;
+import app.pay.plan.entidades.clsEmpresa;
+import app.pay.plan.entidades.clsMarca;
+import app.pay.plan.entidades.clsProducto;
+import app.pay.plan.entidades.clsTipoProducto;
+import app.pay.plan.http.http;
+import app.pay.plan.sqlite.clsProductoDAO;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -42,37 +49,77 @@ public class LoginActivity extends Activity
     }
     public void btnRegistrarme(View v) 
     {
-         Intent i=new Intent(LoginActivity.this,RegistroActivity.class);
-            startActivity(i); 
-            finish();
+//         Intent i=new Intent(LoginActivity.this,RegistroActivity.class);
+//            startActivity(i); 
+//            finish();
+        String dato=http.getListarProductos();
+        try {
+            JSONObject objeto = new JSONObject(dato);
+            if(objeto.getInt("error")==0)
+            {
+               JSONArray Array = new JSONArray(objeto.getString("lista"));
+               for(int i=0;i<Array.length();i++){
+                
+                JSONObject json_data = Array.getJSONObject(i);
+                clsTipoProducto objTipoProducto = new clsTipoProducto();
+                objTipoProducto.setInt_id_tipo_producto(json_data.getInt("int_id_tipo_producto"));
+                objTipoProducto.setStr_nombre(json_data.getString("str_nombre_tipo_producto"));
+                
+                clsMarca objMarca = new clsMarca();
+                objMarca.setInt_id_marca(json_data.getInt("int_id_marca"));
+                objMarca.setStr_nombre(json_data.getString("str_nombre_marca"));
+                
+                clsProducto entidad= new clsProducto();            
+                entidad.setInt_id_producto(json_data.getInt("int_id_producto"));
+                entidad.setStr_nombre(json_data.getString("str_nombre"));
+                entidad.setDat_fecha_actualizacion(new Date(json_data.getLong("dat_fecha_actualizacion")));
+                entidad.setObjTipoProducto(objTipoProducto);
+                entidad.setObjMarca(objMarca);
+                clsProductoDAO.Agregar(this, entidad);
+//                   Toast.makeText(LoginActivity.this,""+json_data.getString("str_nombre"), Toast.LENGTH_SHORT).show();
+               }
+            }
+             } catch (JSONException ex) {
+            Logger.getLogger(LoginActivity.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public void btnIngresar(View v) 
     {
-         Intent i=new Intent(LoginActivity.this,MenuActivity.class);
-            startActivity(i); 
-            finish();
-
+        Intent i=new Intent(LoginActivity.this,MenuActivity.class);
+        startActivity(i); 
+        finish();
+            
+       
+            
+//             Toast.makeText(LoginActivity.this,""+dato, Toast.LENGTH_SHORT).show();
+            
+            
+            
+            
+            
+            
 //        if(!txtUsuario.getText().toString().equals(null) && !txtUsuario.getText().toString().equals(null)
 //           && !txtPassword.getText().toString().equals("") && !txtPassword.getText().toString().equals(""))
 //        {
 //            pd = new ProgressDialog(this);
 //            pd.setTitle("Cargando Datos");
-//            pd.setMessage("Espere un momento");     
-//            pd.show();        
-//            new Thread() { 
-//                public void run() { 
+//            pd.setMessage("Espere un momento");
+//            pd.show();
+//            new Thread() {
+//                public void run() {
 //                    Message message = handler.obtainMessage();    
 //                    Bundle bundle = new Bundle();
 //                    bundle.putString("data",  http.getLogin(txtUsuario.getText().toString(), txtPassword.getText().toString()));
 //                    message.setData(bundle);
-//                    handler.sendMessage(message);     
-//                } 
+//                    handler.sendMessage(message);
+//                }
 //        }.start();  
 //
 //    }
-//      
+//
 //    else	    
 //        Toast.makeText(this,"Por favor ingrese todos los campos.", Toast.LENGTH_SHORT).show();
+       
     }
     
     
@@ -88,7 +135,7 @@ public class LoginActivity extends Activity
                 JSONObject objeto = new JSONObject(bundle.getString("data"));
                 if(objeto.getInt("error")==0)
                 {
-                    clsUsuario entidad=new clsUsuario();
+                    clsEmpresa entidad=new clsEmpresa();
                     entidad.setInt_id_usuario(objeto.getInt("int_id_usuario"));
                     entidad.setStr_nombre(objeto.getString("str_nombre"));
                     entidad.setStr_apellidos(objeto.getString("str_apellidos"));

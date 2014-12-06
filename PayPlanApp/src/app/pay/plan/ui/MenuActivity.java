@@ -25,7 +25,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import app.pay.plan.entidades.clsDrawerItem;
+import app.pay.plan.utilidades.clsDrawerItem;
 import app.pay.plan.fragment.*;
 import java.util.ArrayList;
 import java.util.List;

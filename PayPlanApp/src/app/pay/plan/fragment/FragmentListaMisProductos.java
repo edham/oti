@@ -19,7 +19,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import app.pay.plan.entidades.clsMovimiento;
+import app.pay.plan.entidades.clsProducto;
+import app.pay.plan.sqlite.clsProductoDAO;
 import app.pay.plan.ui.R;
 import app.pay.plan.utilidades.Utilidades;
 import java.util.ArrayList;
@@ -29,8 +30,8 @@ import java.util.List;
 
 public class FragmentListaMisProductos extends Fragment {
 
-    private  List<clsMovimiento> itensTemp=null;
-    private  List<clsMovimiento> itens=null;
+    private  List<clsProducto> itensTemp=null;
+    private  List<clsProducto> itens=null;
     private Adaptador adaptador;
     private ListView lista;
     private Spinner ComboTipo;
@@ -55,9 +56,8 @@ public class FragmentListaMisProductos extends Fragment {
                 ComboTipo();
                 ComboMarca = (Spinner)view.findViewById(R.id.ComboMarca);   
                 ComboMarca();
-                
+                itens=clsProductoDAO.Listar(this.getActivity(),0,0);          
                 setAdapter();
-//                
 		return view;
 	}
 
@@ -95,18 +95,7 @@ public class FragmentListaMisProductos extends Fragment {
         
       public void setAdapter( )
     {    
-        itensTemp=new ArrayList<clsMovimiento>();          
-        itensTemp.add(new clsMovimiento());
-        itensTemp.add(new clsMovimiento());
-        itensTemp.add(new clsMovimiento());
-        itensTemp.add(new clsMovimiento());
-        itensTemp.add(new clsMovimiento());
-        itensTemp.add(new clsMovimiento());
-        itensTemp.add(new clsMovimiento());
-        itensTemp.add(new clsMovimiento());
-        itensTemp.add(new clsMovimiento());
-        
-        
+        itensTemp=itens;
         adaptador = new Adaptador(this.getActivity());
         lista.setAdapter(adaptador);
     }
@@ -124,11 +113,9 @@ public class FragmentListaMisProductos extends Fragment {
             final int posicion = position;
             LayoutInflater inflater = context.getLayoutInflater();
             View item = inflater.inflate(R.layout.lista_mis_productos, null);
-            
-         
-            
+
             TextView lblNombreProducto = (TextView)item.findViewById(R.id.lblNombreProducto);
-            lblNombreProducto.setText("pro ucto - as sas pro ucto - asa as prod cto - asa as pro cto - asa as");
+            lblNombreProducto.setText(itensTemp.get(position).getStr_nombre());
 
             TextView lblDetalleProducto = (TextView)item.findViewById(R.id.lblDetalleProducto);
             lblDetalleProducto.setText("pro ucto - as sas pro ucto - asa as prod cto - asa as pro cto - asa as");

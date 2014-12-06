@@ -7,7 +7,7 @@
 package servicio;
 
 import COM.clsGestor;
-import entidades.clsUsuario;
+import entidades.clsEmpresa;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -33,7 +33,7 @@ public class login extends HttpServlet {
            if(request.getParameter("usuario") != null && request.getParameter("usuario") != "" &&
             request.getParameter("clave") != null && request.getParameter("clave") != "")
             {
-                clsUsuario objUsuario=clsGestor.loginUsuario(request.getParameter("usuario"), request.getParameter("clave"));
+                clsEmpresa objUsuario=clsGestor.loginUsuario(request.getParameter("usuario"), request.getParameter("clave"));
                 
                 if(objUsuario!=null)
                 { 

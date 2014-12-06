@@ -6,8 +6,11 @@
 
 package COM;
 
+import DAO.clsEmpresaDAO;
 import DAO.clsUsuarioDAO;
-import entidades.clsUsuario;
+import entidades.clsProducto;
+import entidades.clsEmpresa;
+import java.util.List;
 
 /**
  *
@@ -15,8 +18,12 @@ import entidades.clsUsuario;
  */
 public class clsGestor {
     
-    public static clsUsuario loginUsuario (String usuario,String clave) throws Exception
+    public static clsEmpresa loginUsuario (String usuario,String clave) throws Exception
     {
         return clsUsuarioDAO.login(usuario, clave);
+    }
+    public static List<clsProducto> ListarProducto () throws Exception
+    {
+        return clsEmpresaDAO.Listar();
     }
 }

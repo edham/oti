@@ -22,7 +22,7 @@ import org.apache.http.util.EntityUtils;
 
 public class http {
 
-    private static String url="http://192.168.1.43:8084/";
+    private static String url="http://192.168.1.47:8084/";
     private static HttpClient client;
     private static HttpResponse responseGet;
     private static HttpEntity resEntityGet;
@@ -52,6 +52,27 @@ public class http {
                 return "{\"error\":3} ";
             }
          return "{\"error\":3} ";
+    }
+    
+    public static String getListarProductos() 
+    {
+    client = new DefaultHttpClient();
+    HttpPost httppost = new HttpPost(url+"listarProducto");
+
+        try {
+            List<NameValuePair> Value = new ArrayList<NameValuePair>(0);            
+            httppost.setEntity(new UrlEncodedFormEntity(Value));
+            responseGet = client.execute(httppost);
+            resEntityGet = responseGet.getEntity();
+            if (resEntityGet != null) {
+                    return  EntityUtils.toString(resEntityGet).trim();
+            }
+            } catch (ClientProtocolException e) {
+                return "{\"error\":2}";
+            } catch (IOException e) {
+                return "{\"error\":2} ";
+            }
+         return "{\"error\":2} ";
     }
 
 }

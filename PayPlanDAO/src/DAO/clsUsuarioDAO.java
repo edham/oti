@@ -7,7 +7,7 @@
 package DAO;
 
 
-import entidades.clsUsuario;
+import entidades.clsEmpresa;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -19,9 +19,9 @@ import java.sql.ResultSet;
 public class clsUsuarioDAO {
 
       
-        public static clsUsuario login (String usuario,String clave) throws Exception
+        public static clsEmpresa login (String usuario,String clave) throws Exception
     {
-        clsUsuario objUsuario = null;
+        clsEmpresa objUsuario = null;
         Connection conn =null;
         CallableStatement stmt = null;
         ResultSet dr = null;
@@ -35,7 +35,7 @@ public class clsUsuarioDAO {
 
             if(dr.next())
             {
-                objUsuario = new clsUsuario();
+                objUsuario = new clsEmpresa();
                 objUsuario.setInt_id_usuario(dr.getInt(1));
                 objUsuario.setStr_nombre(dr.getString(2));
                 objUsuario.setStr_apellidos(dr.getString(3));

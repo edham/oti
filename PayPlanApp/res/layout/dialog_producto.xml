@@ -24,7 +24,7 @@
         android:orientation="vertical" >
             
         <TextView
-        android:id="@+id/lblTipo"
+        android:id="@+id/lblTituloD"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Datos de Usuario"
@@ -35,7 +35,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/blanco" />
         </LinearLayout>
-        
         
         <LinearLayout
         android:layout_width="fill_parent"
@@ -54,7 +53,7 @@
                 <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Inicio de Pago:"
+                android:text="Nombre"
                 android:textStyle="bold"
                 android:textSize="14dp"
                 android:gravity="left"
@@ -68,7 +67,7 @@
             android:layout_weight="1"
             android:orientation="horizontal" >
                 <TextView
-                android:id="@+id/lblInicioPago"
+                android:id="@+id/lblNombreProductoD"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Inicio de Pago:"
@@ -98,7 +97,7 @@
                 <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Inicio de Pago:"
+                android:text="Tipo"
                 android:textStyle="bold"
                 android:textSize="14dp"
                 android:gravity="left"
@@ -112,7 +111,51 @@
             android:layout_weight="1"
             android:orientation="horizontal" >
                 <TextView
-                android:id="@+id/lblInicioPago"
+                android:id="@+id/lblTipoProductoD"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Inicio de Pago:"
+                android:textStyle="bold"
+                android:textSize="14dp"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/negro_claro" />                 
+            </LinearLayout>   
+
+        </LinearLayout>   
+        
+        <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:background="@drawable/blanco"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+            <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+                <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Marca:"
+                android:textStyle="bold"
+                android:textSize="14dp"
+                android:gravity="left"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/azul_letras" />         
+            </LinearLayout>   
+
+            <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+                <TextView
+                android:id="@+id/lblMarcaD"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Inicio de Pago:"
@@ -143,7 +186,7 @@
                     <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Pago Total:"
+                    android:text="Precio:"
                     android:textStyle="bold"
                     android:textSize="14dp"
                     android:gravity="left"
@@ -157,7 +200,7 @@
                 android:layout_weight="1"
                 android:orientation="horizontal" >
                     <EditText
-                    android:id="@+id/txtPagoTotal"
+                    android:id="@+id/txtPrecioD"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -165,7 +208,7 @@
                     android:inputType="numberDecimal"
                     android:textSize="14dp"
                     android:ems="10"
-                    android:hint="Ingrese Pago"   
+                    android:hint="Ingrese Precio"   
                     android:textColor="@color/negro_claro"/>                
                 </LinearLayout>   
                 
