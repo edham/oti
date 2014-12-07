@@ -18,6 +18,10 @@ public class clsDistrito {
     public clsDistrito() {
     }
 
+    public clsDistrito(int int_id_distrito) {
+        this.int_id_distrito = int_id_distrito;
+    }
+
     public clsDistrito(int int_id_distrito, String str_nombre) {
         this.int_id_distrito = int_id_distrito;
         this.str_nombre = str_nombre;

@@ -148,11 +148,11 @@ public class RegistroActivity extends Activity
 //            pd.show();        
 //            new Thread() { 
 //                public void run() { 
-//                    Message message = handler.obtainMessage();    
+//                    Message message = handlerEmpresa.obtainMessage();    
 //                    Bundle bundle = new Bundle();
 //                    bundle.putString("data",  http.getLogin(txtUsuario.getText().toString(), txtPassword.getText().toString()));
 //                    message.setData(bundle);
-//                    handler.sendMessage(message);     
+//                    handlerEmpresa.sendMessage(message);     
 //                } 
 //        }.start();  
 //
@@ -172,7 +172,7 @@ public class RegistroActivity extends Activity
     
     
 //      
-//    final  Handler handler = new Handler()
+//    final  Handler handlerEmpresa = new Handler()
 //    {
 //        @Override
 //        public void handleMessage(Message msg) {

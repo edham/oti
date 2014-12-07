@@ -16,6 +16,10 @@ import java.util.Date;
  */
 public class Utilidades {
     
+    public static double getRedondear(double NDecimal,int decimales)
+    {
+      return Math.round(NDecimal*Math.pow(10,decimales))/Math.pow(10,decimales);
+    } 
     public static String getFecha(Date fecha)
     {
         SimpleDateFormat e=new SimpleDateFormat("dd/MM/yyyy");

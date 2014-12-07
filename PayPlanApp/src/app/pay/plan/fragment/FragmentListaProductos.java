@@ -47,10 +47,10 @@ public class FragmentListaProductos extends Fragment {
     private Button btnNuevo;
     private EditText txtFiltro;
         
-    @Override
+        @Override
         public void onResume() {
             super.onResume();
-            getActivity().getActionBar().setTitle("Lista de Productos");
+            getActivity().getActionBar().setTitle("LISTA DE PRODUCTOS");
         }
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

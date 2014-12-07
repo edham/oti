@@ -7,7 +7,7 @@
 package servicio;
 
 import COM.clsGestor;
-import entidades.clsProducto;
+import entidades.clsProductoEmpresa;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -25,8 +25,8 @@ import org.json.simple.JSONObject;
  *
  * @author EdHam
  */
-@WebServlet(name = "listarProducto", urlPatterns = {"/listarProducto"})
-public class listarProducto extends HttpServlet {
+@WebServlet(name = "listarProductoEmpresa", urlPatterns = {"/listarProductoEmpresa"})
+public class listarProductoEmpresa extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,44 +40,34 @@ public class listarProducto extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+         try (PrintWriter out = response.getWriter()) {
             
-           JSONObject objProductoJSON=new JSONObject();           
-            List<clsProducto> lista=clsGestor.ListarProducto();
-
+        JSONObject objListaProductoEmpresaJSON=new JSONObject();     
+        if(request.getParameter("idEmpresa") != null && request.getParameter("idEmpresa") != "")
+        {
+            List<clsProductoEmpresa> lista=clsGestor.ListarProductoEmpresa(Integer.parseInt(request.getParameter("idEmpresa")));
             if(lista!=null)
             { 
                 JSONArray listJSON = new JSONArray();
-                for(clsProducto entidad : lista)
+                for(clsProductoEmpresa entidad : lista)
                 {
                     JSONObject entidadJSON=new JSONObject();
-                    entidadJSON.put("int_id_producto",entidad.getInt_id_producto());
-                    entidadJSON.put("str_nombre",entidad.getStr_nombre());
-                    entidadJSON.put("dat_fecha_creacion",entidad.getDat_fecha_creacion().getTime());
-                    entidadJSON.put("dat_fecha_actualizacion",entidad.getDat_fecha_actualizacion().getTime());
-                    entidadJSON.put("int_estado",entidad.getInt_estado());
-                    
-                    entidadJSON.put("int_id_tipo_producto",entidad.getObjTipoProducto().getInt_id_tipo_producto());
-                    entidadJSON.put("str_nombre_tipo_producto",entidad.getObjTipoProducto().getStr_nombre());
-                    entidadJSON.put("str_detalle_tipo_producto",entidad.getObjTipoProducto().getStr_detalle());
-                    entidadJSON.put("bool_estado_tipo_producto",entidad.getObjTipoProducto().isBool_estado());
-                    
-                    entidadJSON.put("int_id_marca",entidad.getObjMarca().getInt_id_marca());
-                    entidadJSON.put("str_nombre_marca",entidad.getObjMarca().getStr_nombre());
-                    entidadJSON.put("bool_estado_marca",entidad.getObjMarca().isBool_estado());
+                    entidadJSON.put("int_id_producto_empresa",entidad.getInt_id_producto_empresa());
+                    entidadJSON.put("dou_precio",entidad.getDou_precio());
+                    entidadJSON.put("int_id_producto",entidad.getObjProducto().getInt_id_producto());
                     listJSON.add(entidadJSON);
                 }
-               
                 
-                objProductoJSON.put("lista",listJSON);
-                objProductoJSON.put("error",0);
+                objListaProductoEmpresaJSON.put("lista",listJSON);
+                objListaProductoEmpresaJSON.put("error",0);
             }
             else
-                 objProductoJSON.put("error",1);
-                   
-          
+                 objListaProductoEmpresaJSON.put("error",1);
+        }
+        else
+               objListaProductoEmpresaJSON.put("error",2);      
               
-           out.println(objProductoJSON);
+           out.println(objListaProductoEmpresaJSON);
         } catch (Exception ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }

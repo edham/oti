@@ -106,14 +106,17 @@ public class clsProductoDAO {
         SQLiteDatabase bd=admin.getWritableDatabase();
          if(bd!=null)
          {
-             String query="select int_id_producto,str_nombre,dat_fecha_actualizacion,int_id_tipo_producto,"
-                    +"str_nombre_tipo_producto,int_id_marca,str_nombre_marca from "+NOMBRE_TABLA;
+              String query="select p.int_id_producto,p.str_nombre,p.dat_fecha_actualizacion,p.int_id_tipo_producto,"
+                     + "p.str_nombre_tipo_producto,p.int_id_marca,p.str_nombre_marca from "+NOMBRE_TABLA+" as p "
+                      + "left outer join PRODUCTO_EMPRESA as pe on pe.int_id_producto=p.int_id_producto "
+                      + "where pe.int_id_producto_empresa IS NULL";
+              
                     if(idMarca>0 && idTipoProducto>0)
-                        query+=" where int_id_marca="+idMarca+" and int_id_tipo_producto="+idTipoProducto;
+                        query+=" p.int_id_marca="+idMarca+" and p.int_id_tipo_producto="+idTipoProducto;
                     else if(idMarca>0)
-                        query+=" where int_id_marca="+idMarca;
+                        query+=" p.int_id_marca="+idMarca;
                     else if(idTipoProducto>0)
-                        query+=" where int_id_tipo_producto="+idTipoProducto;
+                        query+=" p.int_id_tipo_producto="+idTipoProducto;
                    
 
             Cursor fila=bd.rawQuery(query,null);

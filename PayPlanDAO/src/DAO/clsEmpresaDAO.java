@@ -6,59 +6,52 @@
 
 package DAO;
 
-import entidades.clsMarca;
-import entidades.clsProducto;
-import entidades.clsTipoProducto;
+
+import entidades.clsDistrito;
+import entidades.clsEmpresa;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
- * @author EdHam
+ * @author Toditos
  */
 public class clsEmpresaDAO {
-     public static List<clsProducto> Listar () throws Exception
+
+      
+        public static clsEmpresa login (String usuario,String clave) throws Exception
     {
-        List<clsProducto> lista = null;
+        clsEmpresa objUsuario = null;
         Connection conn =null;
         CallableStatement stmt = null;
         ResultSet dr = null;
         try {
-            String sql="exec SP_Listar_Producto";
+            String sql="exec SP_Login_Empresa '"+usuario+"','"+clave+"'";
 
             conn = ConexionDAO.getConnection();
             stmt = conn.prepareCall(sql);
             dr = stmt.executeQuery();
 
-            while(dr.next())
+            if(dr.next())
             {
-                if(lista==null)
-                    lista=new ArrayList<clsProducto>();
-                
-                clsTipoProducto objTipoProducto = new clsTipoProducto();
-                objTipoProducto.setInt_id_tipo_producto(dr.getInt(6));
-                objTipoProducto.setStr_nombre(dr.getString(7));
-                objTipoProducto.setStr_detalle(dr.getString(8));
-                objTipoProducto.setBool_estado(dr.getBoolean(9));
-                
-                clsMarca objMarca = new clsMarca();
-                objMarca.setInt_id_marca(dr.getInt(10));
-                objMarca.setStr_nombre(dr.getString(11));
-                objMarca.setBool_estado(dr.getBoolean(12));
-                
-                clsProducto objProducto = new clsProducto();
-                objProducto.setInt_id_producto(dr.getInt(1));
-                objProducto.setStr_nombre(dr.getString(2));
-                objProducto.setDat_fecha_creacion(dr.getTimestamp(3));
-                objProducto.setDat_fecha_actualizacion(dr.getTimestamp(4));
-                objProducto.setInt_estado(dr.getInt(5));
-                objProducto.setObjTipoProducto(objTipoProducto);
-                objProducto.setObjMarca(objMarca);
-                
-                lista.add(objProducto);
+                objUsuario = new clsEmpresa();
+                objUsuario.setInt_id_empresa(dr.getInt(1));
+                objUsuario.setStr_nombre_usuario(dr.getString(2));
+                objUsuario.setStr_apellidos_usuario(dr.getString(3));
+                objUsuario.setStr_email(dr.getString(4));
+                objUsuario.setStr_telefono(dr.getString(5));
+                objUsuario.setStr_celular(dr.getString(6));
+                objUsuario.setStr_usuario(dr.getString(7));
+                objUsuario.setStr_clave(dr.getString(8));
+                objUsuario.setStr_razon_social(dr.getString(9));
+                objUsuario.setStr_ruc(dr.getString(10));
+                objUsuario.setStr_direccion(dr.getString(11));
+                objUsuario.setInt_estado(dr.getInt(12));
+                objUsuario.setBool_empresa(dr.getBoolean(13));
+                objUsuario.setDat_fecha_creacion(dr.getTimestamp(14));
+                objUsuario.setDat_fecha_actualizacion(dr.getTimestamp(15));
+                objUsuario.setObjDistrito(new clsDistrito(dr.getInt(16)));
             }
 
         } catch (Exception e) {
@@ -72,6 +65,9 @@ public class clsEmpresaDAO {
             } catch (Exception e) {
             }
         }
-        return lista;
+        return objUsuario;
     }
+
+      
+    
 }
