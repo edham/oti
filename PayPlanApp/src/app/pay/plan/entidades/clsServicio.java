@@ -11,8 +11,13 @@ package app.pay.plan.entidades;
 public class clsServicio {
     private int int_id_servicio;
     private String str_nombre;
+    private boolean bool_estado;
 
     public clsServicio() {
+    }
+
+    public clsServicio(int int_id_servicio) {
+        this.int_id_servicio = int_id_servicio;
     }
 
     public clsServicio(int int_id_servicio, String str_nombre) {
@@ -36,9 +41,14 @@ public class clsServicio {
         this.str_nombre = str_nombre;
     }
 
-   
- 
-  
+    public boolean isBool_estado() {
+        return bool_estado;
+    }
+
+    public void setBool_estado(boolean bool_estado) {
+        this.bool_estado = bool_estado;
+    }
+
      @Override
     public String toString()
     {

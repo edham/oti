@@ -24,7 +24,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import app.pay.plan.entidades.clsMarca;
-import app.pay.plan.entidades.clsProducto;
 import app.pay.plan.entidades.clsProductoEmpresa;
 import app.pay.plan.entidades.clsTipoProducto;
 import app.pay.plan.sqlite.clsProductoDAO;
@@ -209,7 +208,7 @@ public class FragmentListaMisProductos extends Fragment {
         dialog.setContentView(R.layout.dialog_producto);
         
         TextView lblTituloD = (TextView)dialog.findViewById(R.id.lblTituloD);
-        lblTituloD.setText("Agregar a Mis Productos");
+        lblTituloD.setText("Modificar a Mis Productos");
         
         TextView lblNombreProductoD = (TextView)dialog.findViewById(R.id.lblNombreProductoD);
         lblNombreProductoD.setText(itensTemp.get(posicion).getObjProducto().getStr_nombre());

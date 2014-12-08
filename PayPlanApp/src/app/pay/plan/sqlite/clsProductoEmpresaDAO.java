@@ -24,7 +24,7 @@ public class clsProductoEmpresaDAO {
     
     private static String NOMBRE_TABLA="PRODUCTO_EMPRESA";
     
-     public static int Agregar(Context context,clsProductoEmpresa entidad)
+    public static int Agregar(Context context,clsProductoEmpresa entidad)
     {
         int id = 0;
         bdSQLite admin=new bdSQLite(context,null);
@@ -38,8 +38,8 @@ public class clsProductoEmpresaDAO {
         return id;
 
     }   
-       public  static boolean Actualizar(Context context,int id,double precio)
-     {
+    public  static boolean Actualizar(Context context,int id,double precio)
+    {
         bdSQLite admin=new bdSQLite(context,null);
         SQLiteDatabase bd = admin.getWritableDatabase();
         ContentValues registro = new ContentValues();
@@ -53,8 +53,8 @@ public class clsProductoEmpresaDAO {
             return false;
        
     }  
-     public static  clsProductoEmpresa Buscar(Context context,int id)
-     {
+    public static  clsProductoEmpresa Buscar(Context context,int id)
+    {
         clsProductoEmpresa  entidad=null;
         bdSQLite admin=new bdSQLite(context,null); 
         SQLiteDatabase bd=admin.getWritableDatabase();
@@ -92,10 +92,10 @@ public class clsProductoEmpresaDAO {
         }
         bd.close();   
         return entidad;
-     }
+    }
      
-     public static  List<clsProductoEmpresa> Listar(Context context,int idMarca,int idTipoProducto)
-     {
+    public static  List<clsProductoEmpresa> Listar(Context context,int idMarca,int idTipoProducto)
+    {
         List<clsProductoEmpresa> list=new ArrayList<clsProductoEmpresa>();
         bdSQLite admin=new bdSQLite(context,null); 
         SQLiteDatabase bd=admin.getWritableDatabase();
@@ -144,20 +144,20 @@ public class clsProductoEmpresaDAO {
          }
         bd.close();   
         return list;
-     }
+    }
      
     public static void BorrarId(Context context,int id) {
-     bdSQLite admin=new bdSQLite(context,null);
-     SQLiteDatabase bd=admin.getWritableDatabase();
-     bd.delete(NOMBRE_TABLA, "int_id_producto_empresa=" + id , null);
-     bd.close();
+        bdSQLite admin=new bdSQLite(context,null);
+        SQLiteDatabase bd=admin.getWritableDatabase();
+        bd.delete(NOMBRE_TABLA, "int_id_producto_empresa=" + id , null);
+        bd.close();
    }
      
-     public static void Borrar(Context context) {
-     bdSQLite admin=new bdSQLite(context,null);
-     SQLiteDatabase bd=admin.getWritableDatabase();
-     bd.delete(NOMBRE_TABLA, null, null);
-     bd.close();
+    public static void Borrar(Context context) {
+        bdSQLite admin=new bdSQLite(context,null);
+        SQLiteDatabase bd=admin.getWritableDatabase();
+        bd.delete(NOMBRE_TABLA, null, null);
+        bd.close();
     }
    
 }

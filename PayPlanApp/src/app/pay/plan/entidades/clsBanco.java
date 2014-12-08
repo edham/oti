@@ -4,35 +4,30 @@
  * and open the template in the editor.
  */
 
-package entidades;
+package app.pay.plan.entidades;
 
 /**
  *
  * @author EdHam
  */
-public class clsMarca {
-    private int int_id_marca;
+public class clsBanco {
+    private int int_id_banco;
     private String str_nombre;
     private boolean bool_estado;
 
-    public clsMarca() {
+    public clsBanco() {
     }
 
-    public clsMarca(int int_id_marca) {
-        this.int_id_marca = int_id_marca;
+    public clsBanco(int int_id_banco) {
+        this.int_id_banco = int_id_banco;
     }
 
-    public clsMarca(int int_id_marca, String str_nombre) {
-        this.int_id_marca = int_id_marca;
-        this.str_nombre = str_nombre;
+    public int getInt_id_banco() {
+        return int_id_banco;
     }
 
-    public int getInt_id_marca() {
-        return int_id_marca;
-    }
-
-    public void setInt_id_marca(int int_id_marca) {
-        this.int_id_marca = int_id_marca;
+    public void setInt_id_banco(int int_id_banco) {
+        this.int_id_banco = int_id_banco;
     }
 
     public String getStr_nombre() {
@@ -50,6 +45,4 @@ public class clsMarca {
     public void setBool_estado(boolean bool_estado) {
         this.bool_estado = bool_estado;
     }
-    
-    
 }

@@ -18,7 +18,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
-import app.pay.plan.entidades.clsDepartamento;
 import app.pay.plan.entidades.clsServicio;
 import app.pay.plan.ui.R;
 import app.pay.plan.utilidades.clsUbigeo;

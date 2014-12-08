@@ -39,9 +39,31 @@ public class bdSQLite extends SQLiteOpenHelper {
         
         private static final String CREATE_PRODUCTO_EMPRESA ="CREATE TABLE PRODUCTO_EMPRESA ("
                         +"int_id_producto_empresa integer NOT NULL PRIMARY KEY,"
-                        +"dou_precio text NOT NULL,"
-                        +"int_id_producto numeric NOT NULL);";
+                        +"dou_precio numeric NOT NULL,"
+                        +"int_id_producto integer NOT NULL);";
+        
+        private static final String CREATE_AGENTE ="CREATE TABLE AGENTE ("
+                        +"int_id_agente integer NOT NULL PRIMARY KEY,"
+                        +"str_nombre text NOT NULL,"
+                        +"dou_latitud numeric NOT NULL,"
+                        +"dou_longitud numeric NOT NULL,"
+                        +"str_nombre_encargado text NOT NULL,"
+                        +"str_telefono text NOT NULL,"
+                        +"str_direccion text NOT NULL,"
+                        +"dat_hora_inicio numeric NOT NULL,"
+                        +"dat_hora_fin numeric NOT NULL,"
+                        +"int_id_distrito integer NOT NULL,"
+                        +"int_id_banco integer NOT NULL,"
+                        +"str_nombre_banco text NOT NULL);";
 
+        private static final String CREATE_SERVICIO ="CREATE TABLE SERVICIO ("
+                        +"int_id_servicio integer NOT NULL PRIMARY KEY,"
+                        +"str_nombre text NOT NULL);";
+        
+        private static final String CREATE_AGENTE_SERVICIO ="CREATE TABLE AGENTE_SERVICIO ("
+                        +"int_agente_servicio integer NOT NULL PRIMARY KEY,"
+                        +"int_id_agente integer NOT NULL,"
+                        +"int_id_servicio integer NOT NULL);";
         
 	public bdSQLite(Context context, CursorFactory factory) {
 		super(context, DATABASE_NAME, factory, DATABASE_VERSION);
@@ -52,6 +74,9 @@ public class bdSQLite extends SQLiteOpenHelper {
                 db.execSQL(CREATE_EMPRESA);
                 db.execSQL(CREATE_PRODUCTO);
                 db.execSQL(CREATE_PRODUCTO_EMPRESA);
+                db.execSQL(CREATE_AGENTE);
+                db.execSQL(CREATE_SERVICIO);
+                db.execSQL(CREATE_AGENTE_SERVICIO);
 
         }   
          
@@ -64,5 +89,11 @@ public class bdSQLite extends SQLiteOpenHelper {
                 db.execSQL(CREATE_PRODUCTO);
                 db.execSQL("drop table if exists PRODUCTO_EMPRESA");
                 db.execSQL(CREATE_PRODUCTO_EMPRESA);
+                db.execSQL("drop table if exists AGENTE");
+                db.execSQL(CREATE_AGENTE);
+                db.execSQL("drop table if exists SERVICIO");
+                db.execSQL(CREATE_SERVICIO);
+                db.execSQL("drop table if exists AGENTE_SERVICIO");
+                db.execSQL(CREATE_AGENTE_SERVICIO);
         }
 }

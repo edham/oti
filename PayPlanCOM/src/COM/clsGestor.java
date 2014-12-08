@@ -6,12 +6,18 @@
 
 package COM;
 
-import DAO.clsProductoDAO;
+import DAO.clsAgenteDAO;
+import DAO.clsAgenteServicioDAO;
 import DAO.clsEmpresaDAO;
+import DAO.clsProductoDAO;
 import DAO.clsProductoEmpresaDAO;
-import entidades.clsProducto;
+import DAO.clsServicioDAO;
+import entidades.clsAgente;
+import entidades.clsAgenteServicio;
 import entidades.clsEmpresa;
+import entidades.clsProducto;
 import entidades.clsProductoEmpresa;
+import entidades.clsServicio;
 import java.util.List;
 
 /**
@@ -33,4 +39,16 @@ public class clsGestor {
     {
         return clsProductoEmpresaDAO.Listar(idEmpresa);
     }
+    public static List<clsAgente> ListarAgente() throws Exception
+    {
+        return clsAgenteDAO.Listar();
+    }
+    public static List<clsServicio> ListarServicio () throws Exception
+    {
+        return clsServicioDAO.Listar();
+    }
+     public static List<clsAgenteServicio> ListarAgenteServicio () throws Exception
+     {
+         return clsAgenteServicioDAO.Listar();
+     }
 }

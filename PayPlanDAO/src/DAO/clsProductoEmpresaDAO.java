@@ -64,4 +64,38 @@ public class clsProductoEmpresaDAO {
         }
         return lista;
     }
+     
+      public static int insertar (clsProductoEmpresa entidad) throws Exception
+    {
+        int rpta=-2;
+        Connection conn =null;
+        CallableStatement stmt = null;
+        ResultSet dr = null;
+        try {
+            String sql="exec SP_Insertar_Producto_Empresa "
+                    +entidad.getInt_id_producto_empresa()+","
+                    +entidad.getObjProducto().getInt_id_producto()+","
+                    +entidad.getObjEmpresa().getInt_id_empresa()+","
+                    +entidad.getDou_precio()+","+entidad.getInt_estado();
+            
+            conn = ConexionDAO.getConnection();
+            stmt = conn.prepareCall(sql);
+            dr = stmt.executeQuery();
+
+            if(dr.next())
+                rpta=dr.getInt(1);
+
+        } catch (Exception e) {
+            throw new Exception("Listar "+e.getMessage(), e);
+        }
+        finally{
+            try {
+                dr.close();
+                stmt.close();
+                conn.close();
+            } catch (Exception e) {
+            }
+        }
+        return rpta;
+    }
 }

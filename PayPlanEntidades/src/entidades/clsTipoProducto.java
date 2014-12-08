@@ -23,6 +23,11 @@ public class clsTipoProducto {
         this.int_id_tipo_producto = int_id_tipo_producto;
     }
 
+    public clsTipoProducto(int int_id_tipo_producto, String str_nombre) {
+        this.int_id_tipo_producto = int_id_tipo_producto;
+        this.str_nombre = str_nombre;
+    }
+
     public int getInt_id_tipo_producto() {
         return int_id_tipo_producto;
     }

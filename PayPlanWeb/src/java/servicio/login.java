@@ -7,9 +7,12 @@
 package servicio;
 
 import COM.clsGestor;
+import entidades.clsAgente;
+import entidades.clsAgenteServicio;
 import entidades.clsEmpresa;
 import entidades.clsProducto;
 import entidades.clsProductoEmpresa;
+import entidades.clsServicio;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -96,11 +99,11 @@ public class login extends HttpServlet {
                     
                     //<editor-fold defaultstate="collapsed" desc="objListaProductoEmpresaJSON">
                     JSONObject objListaProductoEmpresaJSON=new JSONObject();   
-                    List<clsProductoEmpresa> lista=clsGestor.ListarProductoEmpresa(objEmpresa.getInt_id_empresa());
-                    if(lista!=null)
+                    List<clsProductoEmpresa> listaProductoEmpresa=clsGestor.ListarProductoEmpresa(objEmpresa.getInt_id_empresa());
+                    if(listaProductoEmpresa!=null)
                     { 
                         JSONArray listJSON = new JSONArray();
-                        for(clsProductoEmpresa entidad : lista)
+                        for(clsProductoEmpresa entidad : listaProductoEmpresa)
                         {
                             JSONObject entidadJSON=new JSONObject();
                             entidadJSON.put("int_id_producto_empresa",entidad.getInt_id_producto_empresa());
@@ -117,7 +120,86 @@ public class login extends HttpServlet {
                     
                     obj.put("listaProductoEmpresa",objListaProductoEmpresaJSON); 
                     // </editor-fold>
-                     
+                    
+//                    //<editor-fold defaultstate="collapsed" desc="objListaAgenteJSON">
+//                    JSONObject objListaAgenteJSON=new JSONObject();   
+//                    List<clsAgente> listaAgente=clsGestor.ListarAgente();
+//                    if(listaAgente!=null)
+//                    { 
+//                        JSONArray listJSON = new JSONArray();
+//                        for(clsAgente entidad : listaAgente)
+//                        {
+//                            JSONObject entidadJSON=new JSONObject();
+//                            entidadJSON.put("int_id_agente",entidad.getInt_id_agente());
+//                            entidadJSON.put("str_nombre",entidad.getStr_nombre());
+//                            entidadJSON.put("dou_latitud",entidad.getDou_latitud());
+//                            entidadJSON.put("dou_longitud",entidad.getDou_longitud());
+//                            entidadJSON.put("str_nombre_encargado",entidad.getStr_nombre_encargado());
+//                            entidadJSON.put("str_telefono",entidad.getStr_telefono());
+//                            entidadJSON.put("str_direccion",entidad.getStr_direccion());
+//                            entidadJSON.put("dat_hora_inicio",entidad.getDat_hora_inicio().getTime());
+//                            entidadJSON.put("dat_hora_fin",entidad.getDat_hora_fin().getTime());
+//                            entidadJSON.put("int_id_distrito",entidad.getObjDistrito().getInt_id_distrito());
+//                            entidadJSON.put("int_id_banco",entidad.getObjBanco().getInt_id_banco());
+//                            entidadJSON.put("str_nombre_banco",entidad.getObjBanco().getStr_nombre());
+//                            listJSON.add(entidadJSON);
+//                        }
+//
+//                        objListaAgenteJSON.put("lista",listJSON);
+//                        objListaAgenteJSON.put("error",0);
+//                    }
+//                    else
+//                         objListaAgenteJSON.put("error",1);
+//                    
+//                    obj.put("listaAgente",objListaAgenteJSON); 
+//                    // </editor-fold>
+//                    
+//                    //<editor-fold defaultstate="collapsed" desc="objListaServicioJSON">
+//                    JSONObject objListaServicioJSON=new JSONObject();   
+//                    List<clsServicio >listaServicio=clsGestor.ListarServicio();
+//                    if(listaServicio!=null)
+//                    { 
+//                        JSONArray listJSON = new JSONArray();
+//                        for(clsServicio entidad : listaServicio)
+//                        {
+//                            JSONObject entidadJSON=new JSONObject();
+//                            entidadJSON.put("int_id_servicio",entidad.getInt_id_servicio());
+//                            entidadJSON.put("str_nombre",entidad.getStr_nombre());
+//                            listJSON.add(entidadJSON);
+//                        }
+//
+//                        objListaServicioJSON.put("lista",listJSON);
+//                        objListaServicioJSON.put("error",0);
+//                    }
+//                    else
+//                         objListaServicioJSON.put("error",1);
+//                    
+//                    obj.put("listaServicio",objListaServicioJSON); 
+//                    // </editor-fold>
+//                    
+//                    //<editor-fold defaultstate="collapsed" desc="objListaAgenteServicioJSON">
+//                    JSONObject objListaAgenteServicioJSON=new JSONObject();   
+//                    List<clsAgenteServicio >listaAgenteServicio=clsGestor.ListarAgenteServicio();
+//                    if(listaAgenteServicio!=null)
+//                    { 
+//                        JSONArray listJSON = new JSONArray();
+//                        for(clsAgenteServicio entidad : listaAgenteServicio)
+//                        {
+//                            JSONObject entidadJSON=new JSONObject();
+//                            entidadJSON.put("int_agente_servicio",entidad.getInt_agente_servicio());
+//                            entidadJSON.put("int_id_agente",entidad.getInt_id_agente());
+//                            entidadJSON.put("int_id_servicio",entidad.getObjServicio().getInt_id_servicio());
+//                            listJSON.add(entidadJSON);
+//                        }
+//
+//                        objListaAgenteServicioJSON.put("lista",listJSON);
+//                        objListaAgenteServicioJSON.put("error",0);
+//                    }
+//                    else
+//                         objListaAgenteServicioJSON.put("error",1);
+//                    
+//                    obj.put("listaAgenteServicio",objListaAgenteServicioJSON); 
+//                    // </editor-fold>
                      
                 }
                 else

@@ -13,16 +13,10 @@ public class clsTipoMovimiento {
     private int int_id_tipo_movimiento;
     private String str_nombre;  
 
-    public clsTipoMovimiento(int int_id_tipo_movimiento) {
-        this.int_id_tipo_movimiento = int_id_tipo_movimiento;
-    }
-
     public clsTipoMovimiento(int int_id_tipo_movimiento, String str_nombre) {
         this.int_id_tipo_movimiento = int_id_tipo_movimiento;
         this.str_nombre = str_nombre;
     }
-
-   
 
     public clsTipoMovimiento() {
     }

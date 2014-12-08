@@ -13,16 +13,19 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import app.pay.plan.http.http;
+import app.pay.plan.sqlite.clsAgenteDAO;
+import app.pay.plan.sqlite.clsEmpresaDAO;
+import app.pay.plan.sqlite.clsProductoDAO;
+import app.pay.plan.sqlite.clsProductoEmpresaDAO;
+import app.pay.plan.entidades.clsAgente;
+import app.pay.plan.entidades.clsBanco;
 import app.pay.plan.entidades.clsDistrito;
 import app.pay.plan.entidades.clsEmpresa;
 import app.pay.plan.entidades.clsMarca;
 import app.pay.plan.entidades.clsProducto;
 import app.pay.plan.entidades.clsProductoEmpresa;
 import app.pay.plan.entidades.clsTipoProducto;
-import app.pay.plan.http.http;
-import app.pay.plan.sqlite.clsEmpresaDAO;
-import app.pay.plan.sqlite.clsProductoDAO;
-import app.pay.plan.sqlite.clsProductoEmpresaDAO;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -59,36 +62,8 @@ public class LoginActivity extends Activity
     }
     public void btnRegistrarme(View v) 
     {
-        String dato=http.getListarProductos();
-        try {
-            JSONObject objetoLisataProducto = new JSONObject(dato);
-            if(objetoLisataProducto.getInt("error")==0)
-            {
-               JSONArray Array = new JSONArray(objetoLisataProducto.getString("lista"));
-               for(int i=0;i<Array.length();i++){
-                
-                JSONObject json_data = Array.getJSONObject(i);
-                clsTipoProducto objTipoProducto = new clsTipoProducto();
-                objTipoProducto.setInt_id_tipo_producto(json_data.getInt("int_id_tipo_producto"));
-                objTipoProducto.setStr_nombre(json_data.getString("str_nombre_tipo_producto"));
-                
-                clsMarca objMarca = new clsMarca();
-                objMarca.setInt_id_marca(json_data.getInt("int_id_marca"));
-                objMarca.setStr_nombre(json_data.getString("str_nombre_marca"));
-                
-                clsProducto entidad= new clsProducto();            
-                entidad.setInt_id_producto(json_data.getInt("int_id_producto"));
-                entidad.setStr_nombre(json_data.getString("str_nombre"));
-                entidad.setDat_fecha_actualizacion(new Date(json_data.getLong("dat_fecha_actualizacion")));
-                entidad.setObjTipoProducto(objTipoProducto);
-                entidad.setObjMarca(objMarca);
-                clsProductoDAO.Agregar(this, entidad);
-//                   Toast.makeText(LoginActivity.this,""+json_data.getString("str_nombre"), Toast.LENGTH_SHORT).show();
-               }
-            }
-             } catch (JSONException ex) {
-            Logger.getLogger(LoginActivity.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Intent i=new Intent(LoginActivity.this,RegistroActivity.class);
+                        startActivity(i); 
     }
     public void btnIngresar(View v) 
     {
@@ -150,10 +125,10 @@ public class LoginActivity extends Activity
                     if(id>0)
                     {
                         //objetoLisataProducto
-                        JSONObject objetoLisataProducto = new JSONObject(objeto.getString("listaProducto"));
-                        if(objetoLisataProducto.getInt("error")==0)
+                        JSONObject objetoListarProducto = new JSONObject(objeto.getString("listaProducto"));
+                        if(objetoListarProducto.getInt("error")==0)
                         {
-                           JSONArray Array = new JSONArray(objetoLisataProducto.getString("lista"));
+                           JSONArray Array = new JSONArray(objetoListarProducto.getString("lista"));
                            for(int i=0;i<Array.length();i++){
 
                             JSONObject json_data = Array.getJSONObject(i);
@@ -175,11 +150,11 @@ public class LoginActivity extends Activity
                            }
                         }
                         
-                        //objetoLisataProductoEmpresa
-                        JSONObject objetoLisataProductoEmpresa = new JSONObject(objeto.getString("listaProductoEmpresa"));
-                        if(objetoLisataProductoEmpresa.getInt("error")==0)
+                        //objetoListarProductoEmpresa
+                        JSONObject objetoListarProductoEmpresa = new JSONObject(objeto.getString("listaProductoEmpresa"));
+                        if(objetoListarProductoEmpresa.getInt("error")==0)
                         {
-                           JSONArray Array = new JSONArray(objetoLisataProductoEmpresa.getString("lista"));
+                           JSONArray Array = new JSONArray(objetoListarProductoEmpresa.getString("lista"));
                            for(int i=0;i<Array.length();i++){
 
                             JSONObject json_data = Array.getJSONObject(i);
@@ -190,7 +165,34 @@ public class LoginActivity extends Activity
                             clsProductoEmpresaDAO.Agregar(LoginActivity.this, objProductoEmpresa);
                            }
                         }
-                        
+                        //objetoListarProductoEmpresa
+//                        JSONObject objetoListarAgente = new JSONObject(objeto.getString("listaAgente"));
+//                        if(objetoListarAgente.getInt("error")==0)
+//                        {
+//                           JSONArray Array = new JSONArray(objetoListarAgente.getString("lista"));
+//                           for(int i=0;i<Array.length();i++){
+//
+//                            JSONObject json_data = Array.getJSONObject(i);
+//                            clsBanco objBanco = new clsBanco();
+//                            objBanco.setInt_id_banco(json_data.getInt("int_id_banco"));
+//                            objBanco.setStr_nombre(json_data.getString("str_nombre_banco"));
+//                            
+//                            clsAgente objAgente= new clsAgente();            
+//                            objAgente.setInt_id_agente(json_data.getInt("int_id_agente"));
+//                            objAgente.setStr_nombre(json_data.getString("str_nombre"));
+//                            objAgente.setDou_latitud(json_data.getDouble("dou_latitud"));
+//                            objAgente.setDou_longitud(json_data.getDouble("dou_longitud"));
+//                            objAgente.setStr_nombre_encargado(json_data.getString("str_nombre_encargado"));
+//                            objAgente.setStr_telefono(json_data.getString("str_telefono"));
+//                            objAgente.setStr_direccion(json_data.getString("str_direccion"));
+//                            objAgente.setDat_hora_inicio(new Date(json_data.getLong("dat_hora_inicio")));
+//                            objAgente.setDat_hora_fin(new Date(json_data.getLong("dat_hora_fin")));
+//                            objAgente.setObjDistrito(new clsDistrito(json_data.getInt("int_id_distrito")));
+//                            objAgente.setObjBanco(objBanco);
+//                            
+//                            clsAgenteDAO.Agregar(LoginActivity.this, objAgente);
+//                           }
+//                        }
                         pd.dismiss();         
                         Intent i=new Intent(LoginActivity.this,MenuActivity.class);
                         startActivity(i); 
