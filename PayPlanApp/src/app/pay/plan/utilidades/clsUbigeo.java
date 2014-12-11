@@ -2113,7 +2113,14 @@ public class clsUbigeo {
          
         return ListaDistrito;
     }  
-       
+    
+    public static clsDistrito getDistrito(int idDistrito)
+    {
+        for(clsDistrito entidad : getListDistrito())
+            if(entidad.getInt_id_distrito()==idDistrito)
+               return entidad;
+        return null;        
+    }
     
 
 

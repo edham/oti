@@ -13,19 +13,23 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import app.pay.plan.http.http;
-import app.pay.plan.sqlite.clsAgenteDAO;
-import app.pay.plan.sqlite.clsEmpresaDAO;
-import app.pay.plan.sqlite.clsProductoDAO;
-import app.pay.plan.sqlite.clsProductoEmpresaDAO;
 import app.pay.plan.entidades.clsAgente;
+import app.pay.plan.entidades.clsAgenteServicio;
 import app.pay.plan.entidades.clsBanco;
 import app.pay.plan.entidades.clsDistrito;
 import app.pay.plan.entidades.clsEmpresa;
 import app.pay.plan.entidades.clsMarca;
 import app.pay.plan.entidades.clsProducto;
 import app.pay.plan.entidades.clsProductoEmpresa;
+import app.pay.plan.entidades.clsServicio;
 import app.pay.plan.entidades.clsTipoProducto;
+import app.pay.plan.http.http;
+import app.pay.plan.sqlite.clsAgenteDAO;
+import app.pay.plan.sqlite.clsAgenteServicioDAO;
+import app.pay.plan.sqlite.clsEmpresaDAO;
+import app.pay.plan.sqlite.clsProductoDAO;
+import app.pay.plan.sqlite.clsProductoEmpresaDAO;
+import app.pay.plan.sqlite.clsServicioDAO;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -165,34 +169,68 @@ public class LoginActivity extends Activity
                             clsProductoEmpresaDAO.Agregar(LoginActivity.this, objProductoEmpresa);
                            }
                         }
-                        //objetoListarProductoEmpresa
-//                        JSONObject objetoListarAgente = new JSONObject(objeto.getString("listaAgente"));
-//                        if(objetoListarAgente.getInt("error")==0)
-//                        {
-//                           JSONArray Array = new JSONArray(objetoListarAgente.getString("lista"));
-//                           for(int i=0;i<Array.length();i++){
-//
-//                            JSONObject json_data = Array.getJSONObject(i);
-//                            clsBanco objBanco = new clsBanco();
-//                            objBanco.setInt_id_banco(json_data.getInt("int_id_banco"));
-//                            objBanco.setStr_nombre(json_data.getString("str_nombre_banco"));
-//                            
-//                            clsAgente objAgente= new clsAgente();            
-//                            objAgente.setInt_id_agente(json_data.getInt("int_id_agente"));
-//                            objAgente.setStr_nombre(json_data.getString("str_nombre"));
-//                            objAgente.setDou_latitud(json_data.getDouble("dou_latitud"));
-//                            objAgente.setDou_longitud(json_data.getDouble("dou_longitud"));
-//                            objAgente.setStr_nombre_encargado(json_data.getString("str_nombre_encargado"));
-//                            objAgente.setStr_telefono(json_data.getString("str_telefono"));
-//                            objAgente.setStr_direccion(json_data.getString("str_direccion"));
-//                            objAgente.setDat_hora_inicio(new Date(json_data.getLong("dat_hora_inicio")));
-//                            objAgente.setDat_hora_fin(new Date(json_data.getLong("dat_hora_fin")));
-//                            objAgente.setObjDistrito(new clsDistrito(json_data.getInt("int_id_distrito")));
-//                            objAgente.setObjBanco(objBanco);
-//                            
-//                            clsAgenteDAO.Agregar(LoginActivity.this, objAgente);
-//                           }
-//                        }
+                        //objetoListarAgente
+                        JSONObject objetoListarAgente = new JSONObject(objeto.getString("listaAgente"));
+                        if(objetoListarAgente.getInt("error")==0)
+                        {
+                           JSONArray Array = new JSONArray(objetoListarAgente.getString("lista"));
+                           for(int i=0;i<Array.length();i++){
+
+                            JSONObject json_data = Array.getJSONObject(i);
+                            clsBanco objBanco = new clsBanco();
+                            objBanco.setInt_id_banco(json_data.getInt("int_id_banco"));
+                            objBanco.setStr_nombre(json_data.getString("str_nombre_banco"));
+                            
+                            clsAgente objAgente= new clsAgente();            
+                            objAgente.setInt_id_agente(json_data.getInt("int_id_agente"));
+                            objAgente.setStr_nombre(json_data.getString("str_nombre"));
+                            objAgente.setDou_latitud(json_data.getDouble("dou_latitud"));
+                            objAgente.setDou_longitud(json_data.getDouble("dou_longitud"));
+                            objAgente.setStr_nombre_encargado(json_data.getString("str_nombre_encargado"));
+                            objAgente.setStr_telefono(json_data.getString("str_telefono"));
+                            objAgente.setStr_direccion(json_data.getString("str_direccion"));
+                            objAgente.setDat_hora_inicio(new Date(json_data.getLong("dat_hora_inicio")));
+                            objAgente.setDat_hora_fin(new Date(json_data.getLong("dat_hora_fin")));
+                            objAgente.setObjDistrito(new clsDistrito(json_data.getInt("int_id_distrito")));
+                            objAgente.setObjBanco(objBanco);
+                            
+                            clsAgenteDAO.Agregar(LoginActivity.this, objAgente);
+                           }
+                        }
+                        
+                        //objetoListarAgente
+                        JSONObject objetoListarServicio = new JSONObject(objeto.getString("listaServicio"));
+                        if(objetoListarServicio.getInt("error")==0)
+                        {
+                           JSONArray Array = new JSONArray(objetoListarServicio.getString("lista"));
+                           for(int i=0;i<Array.length();i++){
+
+                            JSONObject json_data = Array.getJSONObject(i);
+                                                       
+                            clsServicio objServicio= new clsServicio();            
+                            objServicio.setInt_id_servicio(json_data.getInt("int_id_servicio"));
+                            objServicio.setStr_nombre(json_data.getString("str_nombre"));
+                            
+                            clsServicioDAO.Agregar(LoginActivity.this, objServicio);
+                           }
+                        }
+                         //objetoListarAgente
+                        JSONObject objetoListarAgenteServicio = new JSONObject(objeto.getString("listaAgenteServicio"));
+                        if(objetoListarAgenteServicio.getInt("error")==0)
+                        {
+                           JSONArray Array = new JSONArray(objetoListarAgenteServicio.getString("lista"));
+                           for(int i=0;i<Array.length();i++){
+
+                            JSONObject json_data = Array.getJSONObject(i);
+                                                       
+                            clsAgenteServicio objAgenteServicio= new clsAgenteServicio();            
+                            objAgenteServicio.setInt_agente_servicio(json_data.getInt("int_agente_servicio"));
+                            objAgenteServicio.setInt_id_agente(json_data.getInt("int_id_agente"));
+                            objAgenteServicio.setObjServicio(new clsServicio(json_data.getInt("int_id_servicio")));
+                            clsAgenteServicioDAO.Agregar(LoginActivity.this, objAgenteServicio);
+                           }
+                        }
+                       
                         pd.dismiss();         
                         Intent i=new Intent(LoginActivity.this,MenuActivity.class);
                         startActivity(i); 

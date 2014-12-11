@@ -237,12 +237,9 @@ public class FragmentNuevoMovimiento extends Fragment {
         }
     }
     
-    public void lblInicioPago(){
-        if(ComboTiempo.getSelectedItemPosition()>0)
-        {
-            DialogFragment newFragment = new SelectDateFragment();
-            newFragment.show(getFragmentManager(), "DatePicker");
-        }
+    public void lblInicioPago(){ 
+        DialogFragment newFragment = new SelectDateFragment();
+        newFragment.show(getFragmentManager(), "DatePicker");
     }
     
     public class SelectDateFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {

@@ -25,7 +25,11 @@ public class Utilidades {
         SimpleDateFormat e=new SimpleDateFormat("dd/MM/yyyy");
         return e.format(fecha);
     }
-    
+     public static String getHora(Date fecha)
+    {
+        SimpleDateFormat e=new SimpleDateFormat("HH:mm a");
+        return e.format(fecha);
+    }
     public static String getFechaString(Date fecha)
     {
         SimpleDateFormat e=new SimpleDateFormat("EEEE dd MMMM yyyy - HH:mm a");
