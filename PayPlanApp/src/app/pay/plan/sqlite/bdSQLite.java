@@ -88,6 +88,54 @@ public class bdSQLite extends SQLiteOpenHelper {
                         +"dou_pago numeric NOT NULL,"
                         +"dat_fecha_creacion numeric NOT NULL);";
         
+        private static final String CREATE_PROFORMA_EMPRESA ="CREATE TABLE PROFORMA_EMPRESA ("
+                        +"int_id_proforma integer NOT NULL PRIMARY KEY,"
+                        +"dat_fecha_creacion numeric NOT NULL,"
+                        +"dat_fecha_finalizacion numeric NOT NULL,"
+                        +"int_estado integer NOT NULL);";
+        
+        private static final String CREATE_PROFORMA ="CREATE TABLE PROFORMA ("
+                        +"int_id_proforma integer NOT NULL PRIMARY KEY,"
+                        +"dat_fecha_creacion numeric NOT NULL,"
+                        +"dat_fecha_finalizacion numeric NOT NULL,"
+                        +"str_nombre_usuario_empresa text NOT NULL,"
+                        +"str_apellidos_usuario_empresa text NOT NULL,"
+                        +"str_telefono_empresa text NOT NULL,"
+                        +"bool_empresa_empresa integer NOT NULL,"
+                        +"str_razon_social_empresa text NOT NULL,"
+                        +"str_ruc_empresa text NOT NULL,"
+                        +"str_direccion_empresa text NOT NULL,"
+                        +"int_estado integer NOT NULL);";
+        
+        
+        private static final String CREATE_DETALLE_PROFORMA ="CREATE TABLE DETALLE_PROFORMA ("
+                        +"int_id_detalle_proforma integer NOT NULL PRIMARY KEY,"
+                        +"int_id_proforma integer NOT NULL,"
+                        +"int_id_producto numeric NOT NULL,"
+                        +"int_cantidad numeric NOT NULL,"
+                        +"int_estado integer NOT NULL);";
+        
+        private static final String CREATE_COTIZACION ="CREATE TABLE COTIZACION ("
+                        +"int_id_cotizacion integer NOT NULL PRIMARY KEY,"
+                        +"int_id_proforma integer NOT NULL,"
+                        +"dat_fecha_creacion numeric NOT NULL,"
+                        +"dat_fecha_finalizacion numeric NOT NULL,"
+                        +"str_nombre_usuario_empresa text NOT NULL,"
+                        +"str_apellidos_usuario_empresa text NOT NULL,"
+                        +"str_telefono_empresa text NOT NULL,"
+                        +"bool_empresa_empresa integer NOT NULL,"
+                        +"str_razon_social_empresa text NOT NULL,"
+                        +"str_ruc_empresa text NOT NULL,"
+                        +"str_direccion_empresa text NOT NULL,"
+                        +"int_estado integer NOT NULL);";
+        
+        private static final String CREATE_DETALLE_COTIZACION ="CREATE TABLE DETALLE_COTIZACION ("
+                        +"int_id_detalle_cotizacion integer NOT NULL PRIMARY KEY,"
+                        +"int_id_cotizacion integer NOT NULL,"
+                        +"int_id_producto numeric NOT NULL,"
+                        +"dou_costo numeric NOT NULL,"
+                        +"int_cantidad integer NOT NULL,"
+                        +"int_estado integer NOT NULL);";
 	public bdSQLite(Context context, CursorFactory factory) {
 		super(context, DATABASE_NAME, factory, DATABASE_VERSION);
 	}
@@ -102,6 +150,12 @@ public class bdSQLite extends SQLiteOpenHelper {
                 db.execSQL(CREATE_AGENTE_SERVICIO);
                 db.execSQL(CREATE_MOVIMIENTO);
                 db.execSQL(CREATE_ITEM_MOVIMIENTO);
+                db.execSQL(CREATE_PROFORMA);
+                db.execSQL(CREATE_DETALLE_PROFORMA);
+                db.execSQL(CREATE_PROFORMA_EMPRESA);
+                db.execSQL(CREATE_COTIZACION);
+                db.execSQL(CREATE_DETALLE_COTIZACION);
+                
 
         }   
          
@@ -123,6 +177,17 @@ public class bdSQLite extends SQLiteOpenHelper {
                 db.execSQL("drop table if exists MOVIMIENTO");
                 db.execSQL(CREATE_MOVIMIENTO);
                 db.execSQL("drop table if exists ITEM_MOVIMIENTO");
-                db.execSQL(CREATE_ITEM_MOVIMIENTO);
+                db.execSQL(CREATE_ITEM_MOVIMIENTO);                
+                db.execSQL("drop table if exists PROFORMA");
+                db.execSQL(CREATE_PROFORMA);
+                db.execSQL("drop table if exists DETALLE_PROFORMA");
+                db.execSQL(CREATE_DETALLE_PROFORMA);
+                db.execSQL("drop table if exists PROFORMA_EMPRESA");
+                db.execSQL(CREATE_PROFORMA_EMPRESA);
+                db.execSQL("drop table if exists COTIZACION");
+                db.execSQL(CREATE_COTIZACION);
+                db.execSQL("drop table if exists DETALLE_COTIZACION");
+                db.execSQL(CREATE_DETALLE_COTIZACION);
+                
         }
 }

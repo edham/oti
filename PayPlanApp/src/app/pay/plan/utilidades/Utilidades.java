@@ -9,6 +9,8 @@ package app.pay.plan.utilidades;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -38,7 +40,7 @@ public class Utilidades {
     }
     public static String getFechaCompletaString(Date fecha)
     {
-        SimpleDateFormat e=new SimpleDateFormat("EEEE dd MMMM yyyy - HH:mm a");
+        SimpleDateFormat e=new SimpleDateFormat("EEEE dd MMMM yyyy \n HH:mm a");
         return e.format(fecha);
     }
      public static String getFechaString(Date fecha)
@@ -105,4 +107,19 @@ public static String getMail(Context context) {
       return possibleEmail;
   }
 
+    public static boolean verificaConexion(Context context) {
+        boolean bConectado = false;
+        ConnectivityManager connec = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        // No sólo wifi, también GPRS
+        NetworkInfo[] redes = connec.getAllNetworkInfo();
+        // este bucle debería no ser tan ñapa
+       for (int i = 0; i < redes.length; i++) {
+            // ¿Tenemos conexión? ponemos a true
+            if (redes[i].getState() == NetworkInfo.State.CONNECTED) {
+                bConectado = true;
+            }
+        }
+        return bConectado;
+    }
 }

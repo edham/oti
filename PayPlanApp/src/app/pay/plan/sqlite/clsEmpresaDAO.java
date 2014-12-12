@@ -91,7 +91,7 @@ public class clsEmpresaDAO {
          {
             String query="select int_id_empresa,str_nombre_usuario,str_apellidos_usuario,str_email,"
                     + "str_telefono,str_celular,str_usuario,str_clave,str_ruc,str_direccion,"
-                    + "int_estado,int_id_distrito,bool_empresa from "+NOMBRE_TABLA;
+                    + "int_estado,int_id_distrito,bool_empresa,str_razon_social from "+NOMBRE_TABLA;
 
             Cursor fila=bd.rawQuery(query,null);
             if (fila.moveToFirst())
@@ -114,6 +114,7 @@ public class clsEmpresaDAO {
                     entidad.setBool_empresa(true);
                 else
                     entidad.setBool_empresa(false);
+                 entidad.setStr_razon_social(fila.getString(13));
             }
         }
         bd.close();   

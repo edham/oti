@@ -17,6 +17,9 @@ import android.widget.Toast;
 import app.pay.plan.entidades.clsAgente;
 import app.pay.plan.entidades.clsAgenteServicio;
 import app.pay.plan.entidades.clsBanco;
+import app.pay.plan.entidades.clsCotizacion;
+import app.pay.plan.entidades.clsDetalleCotizacion;
+import app.pay.plan.entidades.clsDetalleProforma;
 import app.pay.plan.entidades.clsDistrito;
 import app.pay.plan.entidades.clsEmpresa;
 import app.pay.plan.entidades.clsItemMovimiento;
@@ -24,17 +27,23 @@ import app.pay.plan.entidades.clsMarca;
 import app.pay.plan.entidades.clsMovimiento;
 import app.pay.plan.entidades.clsProducto;
 import app.pay.plan.entidades.clsProductoEmpresa;
+import app.pay.plan.entidades.clsProforma;
 import app.pay.plan.entidades.clsServicio;
 import app.pay.plan.entidades.clsTipoMovimiento;
 import app.pay.plan.entidades.clsTipoProducto;
 import app.pay.plan.http.http;
 import app.pay.plan.sqlite.clsAgenteDAO;
 import app.pay.plan.sqlite.clsAgenteServicioDAO;
+import app.pay.plan.sqlite.clsCotizacionDAO;
+import app.pay.plan.sqlite.clsDetalleCotizacionDAO;
+import app.pay.plan.sqlite.clsDetalleProformaDAO;
 import app.pay.plan.sqlite.clsEmpresaDAO;
 import app.pay.plan.sqlite.clsItemMovimientoDAO;
 import app.pay.plan.sqlite.clsMovimientoDAO;
 import app.pay.plan.sqlite.clsProductoDAO;
 import app.pay.plan.sqlite.clsProductoEmpresaDAO;
+import app.pay.plan.sqlite.clsProformaDAO;
+import app.pay.plan.sqlite.clsProformaEmpresaDAO;
 import app.pay.plan.sqlite.clsServicioDAO;
 import java.util.Date;
 import java.util.logging.Level;
@@ -279,6 +288,118 @@ public class LoginActivity extends Activity
                             objItemMovimiento.setDou_pago(json_data.getInt("dou_pago"));
                             objItemMovimiento.setDat_fecha_creacion(new Date(json_data.getLong("dat_fecha_creacion")));
                             clsItemMovimientoDAO.Agregar(LoginActivity.this, objItemMovimiento);
+                           }
+                        }
+                         //objListaProformaEmpresa
+                        JSONObject objListaProformaEmpresa = new JSONObject(objeto.getString("listaProformaEmpresa"));
+                        if(objListaProformaEmpresa.getInt("error")==0)
+                        {
+                           JSONArray Array = new JSONArray(objListaProformaEmpresa.getString("lista"));
+                           for(int i=0;i<Array.length();i++){
+
+                            JSONObject json_data = Array.getJSONObject(i);
+                                                       
+                            clsProforma objProforma= new clsProforma();            
+                            objProforma.setInt_id_proforma(json_data.getInt("int_id_proforma"));
+                            objProforma.setInt_estado(json_data.getInt("int_estado"));
+                            objProforma.setDat_fecha_creacion(new Date(json_data.getLong("dat_fecha_creacion")));
+                            objProforma.setDat_fecha_finalizacion(new Date(json_data.getLong("dat_fecha_finalizacion")));
+                            clsProformaEmpresaDAO.Agregar(LoginActivity.this, objProforma);
+                           }
+                        }
+                        //objListaProforma
+                        JSONObject objListaProforma = new JSONObject(objeto.getString("listaProforma"));
+                        if(objListaProforma.getInt("error")==0)
+                        {
+                           JSONArray Array = new JSONArray(objListaProforma.getString("lista"));
+                           for(int i=0;i<Array.length();i++){
+
+                            JSONObject json_data = Array.getJSONObject(i);
+                             clsEmpresa objEmpresa = new clsEmpresa();
+                            objEmpresa.setStr_nombre_usuario(json_data.getString("str_nombre_usuario"));
+                            objEmpresa.setStr_apellidos_usuario(json_data.getString("str_apellidos_usuario"));
+                            objEmpresa.setStr_telefono(json_data.getString("str_telefono"));
+                            objEmpresa.setStr_razon_social(json_data.getString("str_razon_social"));
+                            objEmpresa.setStr_ruc(json_data.getString("str_ruc"));
+                            objEmpresa.setStr_direccion(json_data.getString("str_direccion"));
+                            objEmpresa.setBool_empresa(json_data.getBoolean("bool_empresa"));     
+                            
+                            clsProforma objProforma= new clsProforma();            
+                            objProforma.setInt_id_proforma(json_data.getInt("int_id_proforma"));
+                            objProforma.setInt_estado(json_data.getInt("int_estado"));
+                            objProforma.setDat_fecha_creacion(new Date(json_data.getLong("dat_fecha_creacion")));
+                            objProforma.setDat_fecha_finalizacion(new Date(json_data.getLong("dat_fecha_finalizacion")));
+                            objProforma.setObjEmpresa(objEmpresa);
+                            
+                            clsProformaDAO.Agregar(LoginActivity.this, objProforma);
+                           }
+                        }
+                         //objlistaDetalleProforma
+                        JSONObject objlistaDetalleProforma = new JSONObject(objeto.getString("listaDetalleProforma"));
+                        if(objlistaDetalleProforma.getInt("error")==0)
+                        {
+                           JSONArray Array = new JSONArray(objlistaDetalleProforma.getString("lista"));
+                           for(int i=0;i<Array.length();i++){
+
+                            JSONObject json_data = Array.getJSONObject(i);
+                                                       
+                            clsDetalleProforma objDetalleProforma= new clsDetalleProforma();            
+                            objDetalleProforma.setInt_id_detalle_proforma(json_data.getInt("int_id_detalle_proforma"));
+                            objDetalleProforma.setInt_id_proforma(json_data.getInt("int_id_proforma"));
+                            objDetalleProforma.setObjProducto(new clsProducto(json_data.getInt("int_id_producto")));
+                            objDetalleProforma.setInt_cantidad(json_data.getInt("int_cantidad"));
+                            objDetalleProforma.setInt_estado(json_data.getInt("int_estado"));
+                            clsDetalleProformaDAO.Agregar(LoginActivity.this, objDetalleProforma);
+                           }
+                        }
+                        
+                        //objListaCotizacion
+                        JSONObject objListaCotizacion = new JSONObject(objeto.getString("listaCotizacion"));
+                        if(objListaCotizacion.getInt("error")==0)
+                        {
+                           JSONArray Array = new JSONArray(objListaCotizacion.getString("lista"));
+                           for(int i=0;i<Array.length();i++){
+
+                            JSONObject json_data = Array.getJSONObject(i);
+                             clsEmpresa objEmpresa = new clsEmpresa();
+                            objEmpresa.setStr_nombre_usuario(json_data.getString("str_nombre_usuario"));
+                            objEmpresa.setStr_apellidos_usuario(json_data.getString("str_apellidos_usuario"));
+                            objEmpresa.setStr_telefono(json_data.getString("str_telefono"));
+                            objEmpresa.setStr_razon_social(json_data.getString("str_razon_social"));
+                            objEmpresa.setStr_ruc(json_data.getString("str_ruc"));
+                            objEmpresa.setStr_direccion(json_data.getString("str_direccion"));
+                            objEmpresa.setBool_empresa(json_data.getBoolean("bool_empresa"));     
+                            
+                            clsCotizacion objCotizacion= new clsCotizacion();            
+                            objCotizacion.setInt_id_cotizacion(json_data.getInt("int_id_cotizacion"));
+                            objCotizacion.setObjProforma(new clsProforma(json_data.getInt("int_id_proforma")));
+                            objCotizacion.setInt_estado(json_data.getInt("int_estado"));
+                            objCotizacion.setDat_fecha_creacion(new Date(json_data.getLong("dat_fecha_creacion")));
+                            objCotizacion.setDat_fecha_finalizacion(new Date(json_data.getLong("dat_fecha_finalizacion")));
+                            objCotizacion.setObjEmpresa(objEmpresa);
+                            
+                            clsCotizacionDAO.Agregar(LoginActivity.this, objCotizacion);
+                           }
+                        }
+                        
+                        //objlistaDetalleCotizacion
+                        JSONObject objlistaDetalleCotizacion = new JSONObject(objeto.getString("listaDetalleCotizacion"));
+                        if(objlistaDetalleCotizacion.getInt("error")==0)
+                        {
+                           JSONArray Array = new JSONArray(objlistaDetalleCotizacion.getString("lista"));
+                           for(int i=0;i<Array.length();i++){
+
+                            JSONObject json_data = Array.getJSONObject(i);
+                                                       
+                            clsDetalleCotizacion objDetalleCotizacion= new clsDetalleCotizacion();            
+                            objDetalleCotizacion.setInt_id_detalle_cotizacion(json_data.getInt("int_id_detalle_cotizacion"));
+                            objDetalleCotizacion.setInt_id_cotizacion(json_data.getInt("int_id_cotizacion"));
+                            objDetalleCotizacion.setObjProducto(new clsProducto(json_data.getInt("int_id_producto")));
+                            objDetalleCotizacion.setInt_cantidad(json_data.getInt("int_cantidad"));
+                            objDetalleCotizacion.setInt_estado(json_data.getInt("int_estado"));
+                            objDetalleCotizacion.setDou_costo(json_data.getDouble("dou_costo"));
+                            
+                            clsDetalleCotizacionDAO.Agregar(LoginActivity.this, objDetalleCotizacion);
                            }
                         }
                         pd.dismiss();         

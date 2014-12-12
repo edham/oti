@@ -4,8 +4,11 @@ package app.pay.plan.fragment;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
@@ -25,21 +28,26 @@ import android.widget.TextView;
 import android.widget.Toast;
 import app.pay.plan.entidades.clsDetalleProforma;
 import app.pay.plan.entidades.clsMarca;
-import app.pay.plan.entidades.clsMovimiento;
 import app.pay.plan.entidades.clsProducto;
+import app.pay.plan.entidades.clsProforma;
 import app.pay.plan.entidades.clsTipoProducto;
+import app.pay.plan.http.http;
+import app.pay.plan.sqlite.clsDetalleProformaDAO;
+import app.pay.plan.sqlite.clsEmpresaDAO;
 import app.pay.plan.sqlite.clsProductoDAO;
+import app.pay.plan.sqlite.clsProformaEmpresaDAO;
 import app.pay.plan.ui.R;
-import app.pay.plan.utilidades.Utilidades;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class FragmentNuevoRegistroProformas extends Fragment {
 
-    private  List<clsDetalleProforma> litsMovimientoTemp=null;
-    private  List<clsDetalleProforma> litsMovimiento=null;
+    private  List<clsDetalleProforma> litsDetalleProforma=null;
     
     private AdaptadorDetalle adaptadorDetalle;
     private ListView listaDetalle;
@@ -59,6 +67,8 @@ public class FragmentNuevoRegistroProformas extends Fragment {
     private EditText txtFiltro;
     private Dialog dialogProducto;
     
+    private  ProgressDialog pd;
+    
     @Override
         public void onResume() {
             super.onResume();
@@ -77,7 +87,7 @@ public class FragmentNuevoRegistroProformas extends Fragment {
                 listaTipoProducto=clsProductoDAO.ListarTipoProducto(this.getActivity());
                 listaTipoProducto.add(0,new clsTipoProducto(0,"Todos los Tipos"));
                 
-                litsMovimiento =new ArrayList<clsDetalleProforma>();         
+                litsDetalleProforma =new ArrayList<clsDetalleProforma>();         
                 btnAgregar = (Button)view.findViewById(R.id.btnAgregar);
                 btnAgregar.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -108,10 +118,7 @@ public class FragmentNuevoRegistroProformas extends Fragment {
 
      
       public void setAdapterDetalle()
-    {    
-        litsMovimientoTemp=litsMovimiento;       
-        
-        
+    {         
         adaptadorDetalle = new AdaptadorDetalle(this.getActivity());
         listaDetalle.setAdapter(adaptadorDetalle);
     }
@@ -121,7 +128,7 @@ public class FragmentNuevoRegistroProformas extends Fragment {
     	Activity context;
 
     	AdaptadorDetalle(Activity context) {
-    		super(context, R.layout.lista_productos, litsMovimientoTemp);
+    		super(context, R.layout.lista_productos, litsDetalleProforma);
     		this.context = context;         
     	}
     	
@@ -131,11 +138,12 @@ public class FragmentNuevoRegistroProformas extends Fragment {
             View item = inflater.inflate(R.layout.lista_productos, null);
             
             TextView lblNombreProducto = (TextView)item.findViewById(R.id.lblNombreProducto);
-            lblNombreProducto.setText(litsMovimientoTemp.get(position).getObjProducto().getStr_nombre()+"\nTotal:"+litsMovimientoTemp.get(position).getInt_cantidad());
+            lblNombreProducto.setText(litsDetalleProforma.get(position).getObjProducto().getStr_nombre()+"\nTotal:"+litsDetalleProforma.get(position).getInt_cantidad());
+            
             TextView lblTipoProducto = (TextView)item.findViewById(R.id.lblTipoProducto);
-            lblTipoProducto.setText(litsMovimientoTemp.get(position).getObjProducto().getObjTipoProducto().getStr_nombre());
+            lblTipoProducto.setText(litsDetalleProforma.get(position).getObjProducto().getObjTipoProducto().getStr_nombre());
             TextView lblMarca = (TextView)item.findViewById(R.id.lblMarca);
-            lblMarca.setText(litsMovimientoTemp.get(position).getObjProducto().getObjMarca().getStr_nombre());
+            lblMarca.setText(litsDetalleProforma.get(position).getObjProducto().getObjMarca().getStr_nombre());
             
             Button btnVer = (Button)item.findViewById(R.id.btnVer);
             btnVer.setOnClickListener(new View.OnClickListener() {
@@ -152,11 +160,11 @@ public class FragmentNuevoRegistroProformas extends Fragment {
     public void btnVer(int posicion){
         final int pos=posicion;
         AlertDialog.Builder alert = new AlertDialog.Builder(this.getActivity());
-        alert.setTitle(litsMovimiento.get(posicion).getObjProducto().getStr_nombre());
+        alert.setTitle(litsDetalleProforma.get(posicion).getObjProducto().getStr_nombre());
         alert.setMessage("Desea eliminar este producto.");
         alert.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {  
-                   litsMovimiento.remove(pos);
+                   litsDetalleProforma.remove(pos);
                    setAdapterDetalle();
                 }});
         alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {  
@@ -167,11 +175,54 @@ public class FragmentNuevoRegistroProformas extends Fragment {
     
     public void btnRegistrar()
     {
-        Fragment InicioFragment = new FragmentListaRegistroProformas();	
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.content_frame, InicioFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        if(litsDetalleProforma.size()>0)
+        {
+            pd = new ProgressDialog(this.getActivity());
+            pd.setTitle("Registrando Movimiento");
+            pd.setMessage("Espere un momento");     
+            pd.show();        
+            new Thread() { 
+                public void run() { 
+                    try {
+                        
+                        JSONObject objetoProforma = new JSONObject(http.insertarProforma(clsEmpresaDAO.Buscar(FragmentNuevoRegistroProformas.this.getActivity()).getInt_id_empresa()));
+                        if(objetoProforma.getInt("id")>0)
+                        {
+                            clsProforma objProforma = new clsProforma();
+                            objProforma.setInt_id_proforma(objetoProforma.getInt("id"));
+                            objProforma.setDat_fecha_creacion(new Date());
+                            objProforma.setDat_fecha_finalizacion(new Date());
+                            objProforma.setInt_estado(0);
+                            clsProformaEmpresaDAO.Agregar(FragmentNuevoRegistroProformas.this.getActivity(), objProforma);
+                            for(clsDetalleProforma entidad : litsDetalleProforma)
+                            {
+                                entidad.setInt_id_proforma(objProforma.getInt_id_proforma());
+                                entidad.setInt_estado(0);
+                                JSONObject objetoDetalle = new JSONObject(http.insertarDetalleProforma(entidad));
+                                if(objetoDetalle.getInt("id")>0)
+                                {
+                                    entidad.setInt_id_detalle_proforma(objetoDetalle.getInt("id"));
+                                    clsDetalleProformaDAO.Agregar(FragmentNuevoRegistroProformas.this.getActivity(), entidad);
+
+                                }
+                            }
+                            Message message = handlerEmpresa.obtainMessage();
+                            Bundle bundle = new Bundle();
+                            bundle.putString("data", "0");
+                            message.setData(bundle);     
+                            handlerEmpresa.sendMessage(message);
+                        }
+                        
+                    } catch (JSONException ex) {
+                        Logger.getLogger(FragmentNuevoRegistroProformas.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } 
+            }.start();
+        }
+        else
+            Toast.makeText(this.getActivity(),"Ingrese un Producto o mas", Toast.LENGTH_SHORT).show();
+            
+        
         
     }
     public void btnCancelar()
@@ -301,7 +352,7 @@ public class FragmentNuevoRegistroProformas extends Fragment {
        
      public void setAdapter(String filtro)
     {   
-        itens=clsProductoDAO.Listar(this.getActivity(),listaMarca.get(ComboMarca.getSelectedItemPosition()).getInt_id_marca(),listaTipoProducto.get(ComboTipo.getSelectedItemPosition()).getInt_id_tipo_producto());
+        itens=clsProductoDAO.ListarEmpresa(this.getActivity(),listaMarca.get(ComboMarca.getSelectedItemPosition()).getInt_id_marca(),listaTipoProducto.get(ComboTipo.getSelectedItemPosition()).getInt_id_tipo_producto(),clsEmpresaDAO.Buscar(this.getActivity()).isBool_empresa());
         itensTemp= new ArrayList<clsProducto>();
         for(clsProducto objProducto : itens)
             if(objProducto.getStr_nombre().toLowerCase().indexOf(filtro.toLowerCase()) != -1 )
@@ -312,6 +363,19 @@ public class FragmentNuevoRegistroProformas extends Fragment {
     }
       
    public void btnVerDetalle(int posicion){
+       
+       boolean repetido=false;
+       for(int i=0;i<litsDetalleProforma.size();i++)
+           if(litsDetalleProforma.get(i).getObjProducto().getInt_id_producto()==itensTemp.get(posicion).getInt_id_producto())
+           {
+               repetido=true;
+               i=litsDetalleProforma.size();
+           }
+           
+       
+       
+       if(!repetido)
+       {
         final int pos = posicion;
         final Dialog dialog = new Dialog(this.getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -346,7 +410,8 @@ public class FragmentNuevoRegistroProformas extends Fragment {
                     int precio=Integer.parseInt(txtPrecioD.getText().toString());
                     if(precio>0)
                     {
-                        litsMovimiento.add(new clsDetalleProforma(itensTemp.get(pos),precio));
+                        
+                        litsDetalleProforma.add(new clsDetalleProforma(itensTemp.get(pos),precio));
                         dialog.dismiss();
                         setAdapterDetalle();
                     }
@@ -367,4 +432,23 @@ public class FragmentNuevoRegistroProformas extends Fragment {
         });       
         dialog.show();
     }
+    else
+        Toast.makeText(this.getActivity(),"Este Producto ya esta Selecionado", Toast.LENGTH_SHORT).show();
+   }
+   
+   
+      final  Handler handlerEmpresa = new Handler()
+    {
+        @Override
+        public void handleMessage(Message msg) {
+            Bundle bundle = msg.getData();     
+            Toast.makeText(FragmentNuevoRegistroProformas.this.getActivity(),"Se Registro Correctamente", Toast.LENGTH_SHORT).show();
+            pd.dismiss();   
+            Fragment InicioFragment = new FragmentListaRegistroProformas();	
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_frame, InicioFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+    };
 }

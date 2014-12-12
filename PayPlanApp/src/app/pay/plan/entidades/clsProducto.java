@@ -20,6 +20,7 @@ public class clsProducto {
     private int int_estado;
     private clsTipoProducto objTipoProducto;
     private clsMarca objMarca;
+    private double dou_precio;
 
     public clsProducto() {
     }
@@ -82,6 +83,14 @@ public class clsProducto {
 
     public void setObjMarca(clsMarca objMarca) {
         this.objMarca = objMarca;
+    }
+
+    public double getDou_precio() {
+        return dou_precio;
+    }
+
+    public void setDou_precio(double dou_precio) {
+        this.dou_precio = dou_precio;
     }
     
     

@@ -25,9 +25,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-import app.pay.plan.utilidades.clsDrawerItem;
+import app.pay.plan.entidades.clsEmpresa;
 import app.pay.plan.fragment.*;
+import app.pay.plan.sqlite.*;
+import app.pay.plan.utilidades.clsDrawerItem;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +41,7 @@ public class MenuActivity extends FragmentActivity {
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
         private int posicion=0;
+        private clsEmpresa entidad;
 	CustomDrawerAdapter adapter;
 
 	List<clsDrawerItem> dataList;
@@ -48,7 +50,13 @@ public class MenuActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_menu);
-                
+                entidad=clsEmpresaDAO.Buscar(this);
+                if(entidad==null)
+                {
+                    Intent i=new Intent(this,LoginActivity.class);
+                    startActivity(i); 
+                    finish();
+                }
                 frgManager = getSupportFragmentManager();
 		// Initializing
 		dataList = new ArrayList<clsDrawerItem>();
@@ -62,22 +70,17 @@ public class MenuActivity extends FragmentActivity {
 		// Add Drawer Item to dataList
                 
                 
-		dataList.add(new clsDrawerItem("DATOS", R.drawable.id));
+		dataList.add(new clsDrawerItem("INICIO", R.drawable.id));
                 dataList.add(new clsDrawerItem("MOVIMIENTOS", R.drawable.addressbook));
-                dataList.add(new clsDrawerItem("BUSCAR AGENTES", R.drawable.agents));
+                dataList.add(new clsDrawerItem("BUSCAR AGENTES", R.drawable.agents));                
                 dataList.add(new clsDrawerItem("REGISTRAR PROFORMAS", R.drawable.add_item));
-                dataList.add(new clsDrawerItem("COTIZAR PROFORMAS", R.drawable.dollar));
-                dataList.add(new clsDrawerItem("MIS PRODUCTO", R.drawable.tree));
+                if(entidad.isBool_empresa())
+                {
+                    dataList.add(new clsDrawerItem("COTIZAR PROFORMAS", R.drawable.dollar));
+                    dataList.add(new clsDrawerItem("MIS PRODUCTO", R.drawable.tree));
+                }
                 dataList.add(new clsDrawerItem("CERRAR SESION", R.drawable.shut_down));
-//		dataList.add(new clsDrawerItem(getString(R.string.str_mapa), R.drawable.ic_action_map));
-//		dataList.add(new clsDrawerItem(getString(R.string.str_crud_sqlite), R.drawable.ic_action_crud));
-//		dataList.add(new clsDrawerItem(getString(R.string.str_gernerar_codigo), R.drawable.ic_action_qr));                
-//		dataList.add(new clsDrawerItem(getString(R.string.str_contactos), R.drawable.ic_action_group));
-//                dataList.add(new clsDrawerItem(getString(R.string.str_agregar_pregunta), R.drawable.ic_action_quest));                
-//		
-//		dataList.add(new clsDrawerItem(getString(R.string.str_servicio), R.drawable.ic_action_service));
-//		dataList.add(new clsDrawerItem(getString(R.string.str_salir), R.drawable.ic_action_exit));
-//		
+//	
 		adapter = new CustomDrawerAdapter(this, R.layout.custom_drawer_item,
 				dataList);
 
@@ -136,7 +139,7 @@ public class MenuActivity extends FragmentActivity {
 		Fragment fragment = null;
 		switch (posicion) {
 		case 0:
-			fragment = new FragmentCodigo();
+			fragment = new FragmentInicio();
 			break;
                 case 1:
 			fragment = new FragmentListaMovimientos();
@@ -148,71 +151,23 @@ public class MenuActivity extends FragmentActivity {
 			fragment = new FragmentListaRegistroProformas();
 			break;
                 case 4:
+                        if(entidad.isBool_empresa())
 			fragment = new FragmentListaCotizarProformas();
+                        else
+                            Cerrar();
 			break;
                 case 5:
 			fragment = new FragmentListaMisProductos();
 			break;    
-                
-//		case 1:
-//                        if(utilidades.verificaConexion(this))
-//                        {
-//                            if(utilidades.verificaGPS(this))
-//                            {
-//                                 fragment = new FragmentMapa();
-//                            }
-//                            else
-//                            {
-//                                Toast.makeText(MenuActivity.this, "Active GPS", Toast.LENGTH_SHORT).show();
-//                                opcion=false;
-//                            }
-//                        }
-//                        else
-//                        {
-//                            Toast.makeText(MenuActivity.this, "Active Internet", Toast.LENGTH_SHORT).show();
-//                            opcion=false;
-//                        }
-//			break;
-//		case 2:
-//                    
-//			fragment = new FragmentListaPersonas();
-//			break;
-//		case 3:
-//			fragment = new FragmentCodigo();
-//			break;
-//		case 4:
-//			fragment = new FragmentListaContactos();
-//			break;
-//		case 5:
-//			fragment = new FragmentPregunta();
-//			break;
-//		case 6:
-//			fragment = new FragmentServicio();
-//			break;
-//                    
-//                case 7:
-//                        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-//			alert.setTitle(getString(R.string.str_desea_sms));
-//                        alert.setPositiveButton(getString(R.string.btn_agregar), new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int whichButton) {  
-//                                    android.os.Process.killProcess(android.os.Process.myPid());
-//                                    MenuActivity.this.finish();
-//                                    Intent intent = new Intent(Intent.ACTION_MAIN);
-//                                    intent.addCategory(Intent.CATEGORY_HOME);
-//                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                                    startActivity(intent);
-//
-//                                }});
-//                        alert.setNegativeButton(getString(R.string.btn_cancelar), new DialogInterface.OnClickListener() {  
-//                               public void onClick(DialogInterface dialog, int whichButton) {    
-//                            }});
-//                               alert.show();
-//                        break;
+     
+                case 6:
+                        Cerrar();
+                        break;
 		default:
 			break;
 		}                
                 
-                if(posicion!=7 && opcion)
+                if(fragment!=null)
                 {
 //                    fragment.setArguments(args);		
                     FragmentTransaction fragmentTransaction = frgManager.beginTransaction();
@@ -220,9 +175,10 @@ public class MenuActivity extends FragmentActivity {
                     fragmentTransaction.commit();        
                     mDrawerList.setItemChecked(posicion, true);
                     setTitle(dataList.get(posicion).getItemName());
+                    mDrawerLayout.closeDrawer(mDrawerList); 
                 }
                
-                mDrawerLayout.closeDrawer(mDrawerList);    
+                   
 	}
 
 	@Override
@@ -310,6 +266,37 @@ public class MenuActivity extends FragmentActivity {
 		TextView ItemName;
 		ImageView icon;
 	}
+    }
+     
+    public void Cerrar()
+    {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Desea Cerrar Sesión");
+        alert.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {  
+                    clsAgenteDAO.Borrar(MenuActivity.this);
+                    clsAgenteServicioDAO.Borrar(MenuActivity.this);
+                    clsCotizacionDAO.Borrar(MenuActivity.this);
+                    clsDetalleCotizacionDAO.Borrar(MenuActivity.this);
+                    clsDetalleProformaDAO.Borrar(MenuActivity.this);
+                    clsEmpresaDAO.Borrar(MenuActivity.this);
+                    clsItemMovimientoDAO.Borrar(MenuActivity.this);
+                    clsMovimientoDAO.Borrar(MenuActivity.this);
+                    clsProductoDAO.Borrar(MenuActivity.this);
+                    clsProductoEmpresaDAO.Borrar(MenuActivity.this);
+                    clsProformaDAO.Borrar(MenuActivity.this);
+                    clsProformaEmpresaDAO.Borrar(MenuActivity.this);
+                    clsServicioDAO.Borrar(MenuActivity.this);
+                    
+                    Intent i=new Intent(MenuActivity.this,LoginActivity.class);
+                        startActivity(i); 
+                        finish();
+
+                }});
+        alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {  
+               public void onClick(DialogInterface dialog, int whichButton) {    
+            }});
+               alert.show();
     }
         
     @Override

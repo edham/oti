@@ -127,8 +127,9 @@ public class clsMovimientoDAO {
                         query+=" where m.bool_ingreso=1";
                     else if(tipo==2)
                         query+=" where m.bool_ingreso=0";
-                   
-
+                    
+                    query+=" order by m.dat_fecha_movimiento ASC";
+                    
             Cursor fila=bd.rawQuery(query,null);
             int numRows = fila.getCount();   
             fila.moveToFirst();   

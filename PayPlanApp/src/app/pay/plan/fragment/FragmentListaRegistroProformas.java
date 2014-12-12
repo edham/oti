@@ -2,9 +2,7 @@ package app.pay.plan.fragment;
 
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -12,25 +10,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
-import app.pay.plan.entidades.clsMovimiento;
+import app.pay.plan.entidades.clsProforma;
+import app.pay.plan.sqlite.clsProformaEmpresaDAO;
 import app.pay.plan.ui.R;
 import app.pay.plan.utilidades.Utilidades;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 public class FragmentListaRegistroProformas extends Fragment {
 
-    private  List<clsMovimiento> itensTemp=null;
-    private  List<clsMovimiento> itens=null;
+    private  List<clsProforma> itens=null;
     private Adaptador adaptador;
     private ListView lista;
     private Button btnCancelar;
@@ -66,18 +58,7 @@ public class FragmentListaRegistroProformas extends Fragment {
      
       public void setAdapter( )
     {    
-        itensTemp=new ArrayList<clsMovimiento>();          
-        itensTemp.add(new clsMovimiento());
-        itensTemp.add(new clsMovimiento());
-        itensTemp.add(new clsMovimiento());
-        itensTemp.add(new clsMovimiento());
-        itensTemp.add(new clsMovimiento());
-        itensTemp.add(new clsMovimiento());
-        itensTemp.add(new clsMovimiento());
-        itensTemp.add(new clsMovimiento());
-        itensTemp.add(new clsMovimiento());
-        
-        
+        itens=clsProformaEmpresaDAO.Listar(FragmentListaRegistroProformas.this.getActivity());          
         adaptador = new Adaptador(this.getActivity());
         lista.setAdapter(adaptador);
     }
@@ -87,7 +68,7 @@ public class FragmentListaRegistroProformas extends Fragment {
     	Activity context;
 
     	Adaptador(Activity context) {
-    		super(context, R.layout.lista_proformas, itensTemp);
+    		super(context, R.layout.lista_proformas, itens);
     		this.context = context;         
     	}
     	
@@ -98,12 +79,10 @@ public class FragmentListaRegistroProformas extends Fragment {
             
          
             
-//            TextView lblNombreProducto = (TextView)item.findViewById(R.id.lblNombreProducto);
-//            lblNombreProducto.setText("pro ucto");
+            TextView lblProforma = (TextView)item.findViewById(R.id.lblProforma);
+            lblProforma.setText(Utilidades.getFechaCompletaString(itens.get(position).getDat_fecha_creacion()));
 
-//            TextView lblDetalleProducto = (TextView)item.findViewById(R.id.lblDetalleProducto);
-//            lblDetalleProducto.setText("pro ucto - as sas pro ucto - asa as prod cto - asa as pro cto - asa as");
-//            
+//        
             Button btnVer = (Button)item.findViewById(R.id.btnVer);
             btnVer.setOnClickListener(new View.OnClickListener() {
                 @Override

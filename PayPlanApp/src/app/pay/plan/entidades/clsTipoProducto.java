@@ -19,6 +19,10 @@ public class clsTipoProducto {
     public clsTipoProducto() {
     }
 
+    public clsTipoProducto(String str_nombre) {
+        this.str_nombre = str_nombre;
+    }
+
     public clsTipoProducto(int int_id_tipo_producto) {
         this.int_id_tipo_producto = int_id_tipo_producto;
     }

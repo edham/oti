@@ -8,19 +8,27 @@ package COM;
 
 import DAO.clsAgenteDAO;
 import DAO.clsAgenteServicioDAO;
+import DAO.clsCotizacionDAO;
+import DAO.clsDetalleCotizacionDAO;
+import DAO.clsDetalleProformaDAO;
 import DAO.clsEmpresaDAO;
 import DAO.clsItemMovimientoDAO;
 import DAO.clsMovimientoDAO;
 import DAO.clsProductoDAO;
 import DAO.clsProductoEmpresaDAO;
+import DAO.clsProformaDAO;
 import DAO.clsServicioDAO;
 import entidades.clsAgente;
 import entidades.clsAgenteServicio;
+import entidades.clsCotizacion;
+import entidades.clsDetalleCotizacion;
+import entidades.clsDetalleProforma;
 import entidades.clsEmpresa;
 import entidades.clsItemMovimiento;
 import entidades.clsMovimiento;
 import entidades.clsProducto;
 import entidades.clsProductoEmpresa;
+import entidades.clsProforma;
 import entidades.clsServicio;
 import java.util.List;
 
@@ -72,5 +80,45 @@ public class clsGestor {
     public static List<clsItemMovimiento> ListarItemMovimiento (int idEmpresa) throws Exception
     {
         return clsItemMovimientoDAO.Listar(idEmpresa);
+    }
+    public  static int insertarProforma(int idEmpresa) throws Exception
+    {
+        return clsProformaDAO.insertar(idEmpresa);
+    }
+    
+    public static List<clsProforma> ListarEmpresaProforma (int idEmpresa) throws Exception
+    {
+        return clsProformaDAO.ListarEmpresa(idEmpresa);
+    }
+    public static List<clsProforma> ListarProforma (int idEmpresa) throws Exception
+    {
+        return clsProformaDAO.Listar(idEmpresa);
+    }
+    public  static int insertarDetalleProforma(clsDetalleProforma entidad) throws Exception
+    {
+        return clsDetalleProformaDAO.insertar(entidad);
+        
+    }
+    public static List<clsDetalleProforma> ListarDetalleProforma () throws Exception
+    {
+        return clsDetalleProformaDAO.Listar();
+        
+    }
+    
+    public  static int insertarCotizacion(int idEmpresa,int idProforma) throws Exception
+    {
+        return clsCotizacionDAO.insertar(idEmpresa, idProforma); 
+    }
+    public  static int insertarDetalleCotizacion(clsDetalleCotizacion entidad) throws Exception
+    {
+        return clsDetalleCotizacionDAO.insertar(entidad); 
+    }
+    public static List<clsDetalleCotizacion> ListarDetalleCotizacion () throws Exception
+    {
+        return clsDetalleCotizacionDAO.Listar(); 
+    }
+    public static List<clsCotizacion> ListarCotizacion(int idEmpresa) throws Exception
+    {
+        return clsCotizacionDAO.Listar(idEmpresa); 
     }
 }

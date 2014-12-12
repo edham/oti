@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,36 +36,27 @@ import org.json.simple.JSONObject;
  *
  * @author EdHam
  */
-public class login extends HttpServlet {
+@WebServlet(name = "cargar", urlPatterns = {"/cargar"})
+public class cargar extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
            JSONObject obj=new JSONObject();
-           if(request.getParameter("usuario") != null && request.getParameter("usuario") != "" &&
-            request.getParameter("clave") != null && request.getParameter("clave") != "")
+           if(request.getParameter("idEmpresa") != null && request.getParameter("idEmpresa") != "" )
             {
-                clsEmpresa objEmpresa=clsGestor.loginUsuario(request.getParameter("usuario"), request.getParameter("clave"));
-                
-                if(objEmpresa!=null)
-                { 
-                    obj.put("int_id_empresa",objEmpresa.getInt_id_empresa());
-                    obj.put("str_nombre_usuario",objEmpresa.getStr_nombre_usuario());
-                    obj.put("str_apellidos_usuario",objEmpresa.getStr_apellidos_usuario());
-                    obj.put("str_email",objEmpresa.getStr_email());
-                    obj.put("str_telefono",objEmpresa.getStr_telefono());
-                    obj.put("str_celular",objEmpresa.getStr_celular());
-                    obj.put("str_razon_social",objEmpresa.getStr_razon_social());
-                    obj.put("str_ruc",objEmpresa.getStr_ruc());
-                    obj.put("str_direccion",objEmpresa.getStr_direccion());
-                    obj.put("int_estado",objEmpresa.getInt_estado());
-                    obj.put("bool_empresa",objEmpresa.isBool_empresa());
-                    obj.put("dat_fecha_creacion",objEmpresa.getDat_fecha_creacion().getTime());
-                    obj.put("dat_fecha_actualizacion",objEmpresa.getDat_fecha_actualizacion().getTime());
-                    obj.put("int_id_distrito",objEmpresa.getObjDistrito().getInt_id_distrito());                    
-                    obj.put("error",0); 
+                    int idEmpresa=Integer.parseInt(request.getParameter("idEmpresa"));
                     
                     //<editor-fold defaultstate="collapsed" desc="objListaProductoJSON">
                     JSONObject objListaProductoJSON=new JSONObject();           
@@ -105,7 +97,7 @@ public class login extends HttpServlet {
                     
                     //<editor-fold defaultstate="collapsed" desc="objListaProductoEmpresaJSON">
                     JSONObject objListaProductoEmpresaJSON=new JSONObject();   
-                    List<clsProductoEmpresa> listaProductoEmpresa=clsGestor.ListarProductoEmpresa(objEmpresa.getInt_id_empresa());
+                    List<clsProductoEmpresa> listaProductoEmpresa=clsGestor.ListarProductoEmpresa(idEmpresa);
                     if(listaProductoEmpresa!=null)
                     { 
                         JSONArray listJSON = new JSONArray();
@@ -209,7 +201,7 @@ public class login extends HttpServlet {
                     
                     //<editor-fold defaultstate="collapsed" desc="objListaMovimientoJSON">
                     JSONObject objListaMovimientoJSON=new JSONObject();   
-                    List<clsMovimiento>listaMovimiento=clsGestor.ListarMovimiento(objEmpresa.getInt_id_empresa());
+                    List<clsMovimiento>listaMovimiento=clsGestor.ListarMovimiento(idEmpresa);
                     if(listaMovimiento!=null)
                     { 
                         JSONArray listJSON = new JSONArray();
@@ -245,7 +237,7 @@ public class login extends HttpServlet {
                     
                     //<editor-fold defaultstate="collapsed" desc="objListaItemMovimientoJSON">
                     JSONObject objListaItemMovimientoJSON=new JSONObject();   
-                    List<clsItemMovimiento>listaItemMovimiento=clsGestor.ListarItemMovimiento(objEmpresa.getInt_id_empresa());
+                    List<clsItemMovimiento>listaItemMovimiento=clsGestor.ListarItemMovimiento(idEmpresa);
                     if(listaItemMovimiento!=null)
                     { 
                         JSONArray listJSON = new JSONArray();
@@ -272,7 +264,7 @@ public class login extends HttpServlet {
                     
                     //<editor-fold defaultstate="collapsed" desc="objListaProformaEmpresaJSON">
                     JSONObject objListaProformaEmpresaJSON=new JSONObject();   
-                    List<clsProforma>listaProformaEmpresa=clsGestor.ListarEmpresaProforma(objEmpresa.getInt_id_empresa());
+                    List<clsProforma>listaProformaEmpresa=clsGestor.ListarEmpresaProforma(idEmpresa);
                     if(listaProformaEmpresa!=null)
                     { 
                         JSONArray listJSON = new JSONArray();
@@ -298,7 +290,7 @@ public class login extends HttpServlet {
                     
                     //<editor-fold defaultstate="collapsed" desc="objListaProformaJSON">
                     JSONObject objListaProformaJSON=new JSONObject();   
-                    List<clsProforma>listaProforma=clsGestor.ListarProforma(objEmpresa.getInt_id_empresa());
+                    List<clsProforma>listaProforma=clsGestor.ListarProforma(idEmpresa);
                     if(listaProforma!=null)
                     { 
                         JSONArray listJSON = new JSONArray();
@@ -356,7 +348,7 @@ public class login extends HttpServlet {
                     
                     //<editor-fold defaultstate="collapsed" desc="objListaCotizacionJSON">
                     JSONObject objListaCotizacionJSON=new JSONObject();   
-                    List<clsCotizacion>listaCotizacion=clsGestor.ListarCotizacion(objEmpresa.getInt_id_empresa());
+                    List<clsCotizacion>listaCotizacion=clsGestor.ListarCotizacion(idEmpresa);
                     if(listaCotizacion!=null)
                     { 
                         JSONArray listJSON = new JSONArray();
@@ -414,13 +406,10 @@ public class login extends HttpServlet {
                     obj.put("listaDetalleCotizacion",objListaDetalleCotizacionJSON); 
                     // </editor-fold>
                      
-                }
-                else
-                     obj.put("error",1);
-                   
+                    obj.put("error",0); 
             }
            else
-               obj.put("error",2);
+               obj.put("error",1);
               
            out.println(obj);
         } catch (Exception ex) {
@@ -428,20 +417,43 @@ public class login extends HttpServlet {
         }
     }
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }
+    }// </editor-fold>
 
 }

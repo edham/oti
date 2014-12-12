@@ -22,6 +22,10 @@ public class clsMarca {
         this.int_id_marca = int_id_marca;
     }
 
+    public clsMarca(String str_nombre) {
+        this.str_nombre = str_nombre;
+    }
+
     public clsMarca(int int_id_marca, String str_nombre) {
         this.int_id_marca = int_id_marca;
         this.str_nombre = str_nombre;

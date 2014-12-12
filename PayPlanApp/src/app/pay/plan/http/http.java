@@ -4,6 +4,8 @@
  */
 package app.pay.plan.http;
 
+import app.pay.plan.entidades.clsDetalleCotizacion;
+import app.pay.plan.entidades.clsDetalleProforma;
 import app.pay.plan.entidades.clsEmpresa;
 import app.pay.plan.entidades.clsMovimiento;
 import java.io.IOException;
@@ -30,6 +32,121 @@ public class http {
     private static HttpEntity resEntityGet;
     
     
+      public static String cargar(int idEmpresa) 
+    {
+    client = new DefaultHttpClient();
+    HttpPost httppost = new HttpPost(url+"cargar");
+
+        try {
+            List<NameValuePair> Value = new ArrayList<NameValuePair>(1);
+            Value.add(new BasicNameValuePair("idEmpresa",""+idEmpresa));
+           httppost.setEntity(new UrlEncodedFormEntity(Value));
+            responseGet = client.execute(httppost);
+            resEntityGet = responseGet.getEntity();
+            if (resEntityGet != null) {
+                    return  EntityUtils.toString(resEntityGet).trim();
+            }
+            } catch (ClientProtocolException e) {
+                return "{\"id\":3}";
+            } catch (IOException e) {
+                return "{\"id\":3} ";
+            }
+         return "{\"id\":3} ";
+    }   
+    
+    
+  public static String insertarDetalleCotizacion(clsDetalleProforma entidad) 
+    {
+    client = new DefaultHttpClient();
+    HttpPost httppost = new HttpPost(url+"insertarDetalleCotizacion");
+
+        try {
+            List<NameValuePair> Value = new ArrayList<NameValuePair>(4);
+            Value.add(new BasicNameValuePair("id_cotizacion",""+entidad.getInt_id_proforma()));
+            Value.add(new BasicNameValuePair("idProducto",""+entidad.getObjProducto().getInt_id_producto()));
+            Value.add(new BasicNameValuePair("cantidad",""+entidad.getInt_cantidad()));
+            Value.add(new BasicNameValuePair("costo",""+entidad.getObjProducto().getDou_precio()));
+            httppost.setEntity(new UrlEncodedFormEntity(Value));
+            responseGet = client.execute(httppost);
+            resEntityGet = responseGet.getEntity();
+            if (resEntityGet != null) {
+                    return  EntityUtils.toString(resEntityGet).trim();
+            }
+            } catch (ClientProtocolException e) {
+                return "{\"id\":-2}";
+            } catch (IOException e) {
+                return "{\"id\":-2} ";
+            }
+         return "{\"id\":-2} ";
+    }   
+  public static String insertarCotizacion(int idEmpresa,int idProforma) 
+    {
+    client = new DefaultHttpClient();
+    HttpPost httppost = new HttpPost(url+"insertarCotizacion");
+
+        try {
+            List<NameValuePair> Value = new ArrayList<NameValuePair>(2);
+            Value.add(new BasicNameValuePair("idEmpresa",""+idEmpresa));
+            Value.add(new BasicNameValuePair("idProforma",""+idProforma));
+           httppost.setEntity(new UrlEncodedFormEntity(Value));
+            responseGet = client.execute(httppost);
+            resEntityGet = responseGet.getEntity();
+            if (resEntityGet != null) {
+                    return  EntityUtils.toString(resEntityGet).trim();
+            }
+            } catch (ClientProtocolException e) {
+                return "{\"id\":-2}";
+            } catch (IOException e) {
+                return "{\"id\":-2} ";
+            }
+         return "{\"id\":-2} ";
+    }      
+    
+ public static String insertarDetalleProforma(clsDetalleProforma entidad) 
+    {
+    client = new DefaultHttpClient();
+    HttpPost httppost = new HttpPost(url+"insertarDetalleProforma");
+
+        try {
+            List<NameValuePair> Value = new ArrayList<NameValuePair>(1);
+            Value.add(new BasicNameValuePair("idProforma",""+entidad.getInt_id_proforma()));
+            Value.add(new BasicNameValuePair("idProducto",""+entidad.getObjProducto().getInt_id_producto()));
+            Value.add(new BasicNameValuePair("cantidad",""+entidad.getInt_cantidad()));
+           httppost.setEntity(new UrlEncodedFormEntity(Value));
+            responseGet = client.execute(httppost);
+            resEntityGet = responseGet.getEntity();
+            if (resEntityGet != null) {
+                    return  EntityUtils.toString(resEntityGet).trim();
+            }
+            } catch (ClientProtocolException e) {
+                return "{\"id\":-2}";
+            } catch (IOException e) {
+                return "{\"id\":-2} ";
+            }
+         return "{\"id\":-2} ";
+    }   
+  public static String insertarProforma(int idEmpresa) 
+    {
+    client = new DefaultHttpClient();
+    HttpPost httppost = new HttpPost(url+"insertarProforma");
+
+        try {
+            List<NameValuePair> Value = new ArrayList<NameValuePair>(1);
+            Value.add(new BasicNameValuePair("idEmpresa",""+idEmpresa));
+           httppost.setEntity(new UrlEncodedFormEntity(Value));
+            responseGet = client.execute(httppost);
+            resEntityGet = responseGet.getEntity();
+            if (resEntityGet != null) {
+                    return  EntityUtils.toString(resEntityGet).trim();
+            }
+            } catch (ClientProtocolException e) {
+                return "{\"id\":-2}";
+            } catch (IOException e) {
+                return "{\"id\":-2} ";
+            }
+         return "{\"id\":-2} ";
+    }   
+ 
  public static String insertarEmpresa(clsEmpresa entidad) 
     {
     client = new DefaultHttpClient();

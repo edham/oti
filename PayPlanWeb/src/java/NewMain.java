@@ -39,7 +39,7 @@ public class NewMain {
         entidad.setObjDistrito(new clsDistrito(1));
         entidad.setBool_empresa(true);
         
-        System.out.print(""+clsGestor.ListarMovimiento(0).size());
+        System.out.print(""+clsGestor.ListarEmpresaProforma(1).size());
     }
     
 }

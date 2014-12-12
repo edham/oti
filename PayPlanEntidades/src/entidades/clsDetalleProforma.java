@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package app.pay.plan.entidades;
+package entidades;
 
 /**
  *
@@ -16,13 +16,10 @@ public class clsDetalleProforma {
     private clsProducto objProducto;
     private int int_cantidad;
     private int int_estado;
-    private double dou_costo;
-    private boolean bool_seleccionado;
-    
+
     public clsDetalleProforma() {
     }
 
-    
     public clsDetalleProforma(clsProducto objProducto, int int_cantidad) {
         this.objProducto = objProducto;
         this.int_cantidad = int_cantidad;
@@ -66,22 +63,6 @@ public class clsDetalleProforma {
 
     public void setInt_estado(int int_estado) {
         this.int_estado = int_estado;
-    }
-
-    public double getDou_costo() {
-        return dou_costo;
-    }
-
-    public void setDou_costo(double dou_costo) {
-        this.dou_costo = dou_costo;
-    }
-
-    public boolean isBool_seleccionado() {
-        return bool_seleccionado;
-    }
-
-    public void setBool_seleccionado(boolean bool_seleccionado) {
-        this.bool_seleccionado = bool_seleccionado;
     }
     
 }
