@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import app.pay.plan.entidades.clsDetalleProforma;
 import app.pay.plan.entidades.clsMarca;
 import app.pay.plan.entidades.clsMovimiento;
 import app.pay.plan.entidades.clsProducto;
@@ -37,15 +38,19 @@ import java.util.List;
 
 public class FragmentNuevoRegistroProformas extends Fragment {
 
-    private  List<clsMovimiento> litsMovimientoTemp=null;
-    private  List<clsMovimiento> litsMovimiento=null;
+    private  List<clsDetalleProforma> litsMovimientoTemp=null;
+    private  List<clsDetalleProforma> litsMovimiento=null;
+    
     private AdaptadorDetalle adaptadorDetalle;
     private ListView listaDetalle;
     private ListView lista;
     private Button btnCancelar;
     private Button btnRegistrar;
+    private Button btnAgregar;
+    
     private  List<clsMarca> listaMarca=null;
     private  List<clsTipoProducto> listaTipoProducto=null;
+    
     private  List<clsProducto> itensTemp=null;
     private  List<clsProducto> itens=null;
     private Spinner ComboMarca; 
@@ -72,7 +77,14 @@ public class FragmentNuevoRegistroProformas extends Fragment {
                 listaTipoProducto=clsProductoDAO.ListarTipoProducto(this.getActivity());
                 listaTipoProducto.add(0,new clsTipoProducto(0,"Todos los Tipos"));
                 
-                
+                litsMovimiento =new ArrayList<clsDetalleProforma>();         
+                btnAgregar = (Button)view.findViewById(R.id.btnAgregar);
+                btnAgregar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                       btnAgregar(); 
+                    }
+                }); 
                 
                 btnRegistrar = (Button)view.findViewById(R.id.btnRegistrar);
                 btnRegistrar.setOnClickListener(new View.OnClickListener() {
@@ -89,8 +101,7 @@ public class FragmentNuevoRegistroProformas extends Fragment {
                     }
                 }); 
                 listaDetalle = (ListView)view.findViewById(R.id.lista); 
-                
-                setAdapterDetalle();
+
 //                
 		return view;
 	}
@@ -98,16 +109,7 @@ public class FragmentNuevoRegistroProformas extends Fragment {
      
       public void setAdapterDetalle()
     {    
-        litsMovimientoTemp=new ArrayList<clsMovimiento>();          
-        litsMovimientoTemp.add(new clsMovimiento());
-        litsMovimientoTemp.add(new clsMovimiento());
-        litsMovimientoTemp.add(new clsMovimiento());
-        litsMovimientoTemp.add(new clsMovimiento());
-        litsMovimientoTemp.add(new clsMovimiento());
-        litsMovimientoTemp.add(new clsMovimiento());
-        litsMovimientoTemp.add(new clsMovimiento());
-        litsMovimientoTemp.add(new clsMovimiento());
-        litsMovimientoTemp.add(new clsMovimiento());
+        litsMovimientoTemp=litsMovimiento;       
         
         
         adaptadorDetalle = new AdaptadorDetalle(this.getActivity());
@@ -119,24 +121,22 @@ public class FragmentNuevoRegistroProformas extends Fragment {
     	Activity context;
 
     	AdaptadorDetalle(Activity context) {
-    		super(context, R.layout.lista_proformas, litsMovimientoTemp);
+    		super(context, R.layout.lista_productos, litsMovimientoTemp);
     		this.context = context;         
     	}
     	
     	public View getView(int position, View convertView, ViewGroup parent) {
             final int posicion = position;
             LayoutInflater inflater = context.getLayoutInflater();
-            View item = inflater.inflate(R.layout.lista_proformas, null);
+            View item = inflater.inflate(R.layout.lista_productos, null);
             
-           
-         
+            TextView lblNombreProducto = (TextView)item.findViewById(R.id.lblNombreProducto);
+            lblNombreProducto.setText(litsMovimientoTemp.get(position).getObjProducto().getStr_nombre()+"\nTotal:"+litsMovimientoTemp.get(position).getInt_cantidad());
+            TextView lblTipoProducto = (TextView)item.findViewById(R.id.lblTipoProducto);
+            lblTipoProducto.setText(litsMovimientoTemp.get(position).getObjProducto().getObjTipoProducto().getStr_nombre());
+            TextView lblMarca = (TextView)item.findViewById(R.id.lblMarca);
+            lblMarca.setText(litsMovimientoTemp.get(position).getObjProducto().getObjMarca().getStr_nombre());
             
-//            TextView lblNombreProducto = (TextView)item.findViewById(R.id.lblNombreProducto);
-//            lblNombreProducto.setText("pro ucto");
-
-//            TextView lblDetalleProducto = (TextView)item.findViewById(R.id.lblDetalleProducto);
-//            lblDetalleProducto.setText("pro ucto - as sas pro ucto - asa as prod cto - asa as pro cto - asa as");
-//            
             Button btnVer = (Button)item.findViewById(R.id.btnVer);
             btnVer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -150,7 +150,42 @@ public class FragmentNuevoRegistroProformas extends Fragment {
     }
      
     public void btnVer(int posicion){
- 
+        final int pos=posicion;
+        AlertDialog.Builder alert = new AlertDialog.Builder(this.getActivity());
+        alert.setTitle(litsMovimiento.get(posicion).getObjProducto().getStr_nombre());
+        alert.setMessage("Desea eliminar este producto.");
+        alert.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {  
+                   litsMovimiento.remove(pos);
+                   setAdapterDetalle();
+                }});
+        alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {  
+               public void onClick(DialogInterface dialog, int whichButton) {    
+            }});
+               alert.show();
+}
+    
+    public void btnRegistrar()
+    {
+        Fragment InicioFragment = new FragmentListaRegistroProformas();	
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.content_frame, InicioFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+        
+    }
+    public void btnCancelar()
+    {
+        Fragment InicioFragment = new FragmentListaRegistroProformas();	
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.content_frame, InicioFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+        
+    }
+    
+    public void btnAgregar()
+    {
         dialogProducto = new Dialog(this.getActivity());
         dialogProducto.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialogProducto.setCancelable(false);
@@ -179,8 +214,6 @@ public class FragmentNuevoRegistroProformas extends Fragment {
                 }
             });
             
-            
-        
             List<String> listStringMarca = new ArrayList<String>();
             for(clsMarca objMarca:listaMarca)
                 listStringMarca.add(objMarca.getStr_nombre());
@@ -227,24 +260,6 @@ public class FragmentNuevoRegistroProformas extends Fragment {
         });
         
         dialogProducto.show();
-
-    }
-    public void btnRegistrar()
-    {
-        Fragment InicioFragment = new FragmentListaRegistroProformas();	
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.content_frame, InicioFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-        
-    }
-    public void btnCancelar()
-    {
-        Fragment InicioFragment = new FragmentListaRegistroProformas();	
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.content_frame, InicioFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
         
     }
 
@@ -297,27 +312,14 @@ public class FragmentNuevoRegistroProformas extends Fragment {
     }
       
    public void btnVerDetalle(int posicion){
- 
-         
- 
-//        final CharSequence[] items = {"Contado", "Una Parte","Cancelar"};   
-//        AlertDialog.Builder alert = new AlertDialog.Builder(this.getActivity());
-//        alert.setTitle("Tipo de Pago");
-//
-//        alert.setItems(items, new DialogInterface.OnClickListener() {  
-//            public void onClick(DialogInterface dialog, int item) { 
-////            opciones_pago(item);
-//         }});
-//        alert.show();
-        
-        
+        final int pos = posicion;
         final Dialog dialog = new Dialog(this.getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog_producto);
         
         TextView lblTituloD = (TextView)dialog.findViewById(R.id.lblTituloD);
-        lblTituloD.setText("Agregar a Mis Productos");
+        lblTituloD.setText("Agregar Producto");
         
         TextView lblNombreProductoD = (TextView)dialog.findViewById(R.id.lblNombreProductoD);
         lblNombreProductoD.setText(itensTemp.get(posicion).getStr_nombre());
@@ -328,19 +330,25 @@ public class FragmentNuevoRegistroProformas extends Fragment {
         TextView lblMarcaD = (TextView)dialog.findViewById(R.id.lblMarcaD);
         lblMarcaD.setText(itensTemp.get(posicion).getObjMarca().getStr_nombre());
         
+        TextView lblPrecioD = (TextView)dialog.findViewById(R.id.lblPrecioD);
+        lblPrecioD.setText("Cantidad:");
+         
         final EditText txtPrecioD = (EditText)dialog.findViewById(R.id.txtPrecioD);
         txtPrecioD.setText("");
         
         Button btnRegistrar = (Button) dialog.findViewById(R.id.btnRegistrar);
+        btnRegistrar.setText("Agregar");
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!txtPrecioD.getText().toString().equals(""))
                 {
-                    double precio=Double.parseDouble(txtPrecioD.getText().toString());
+                    int precio=Integer.parseInt(txtPrecioD.getText().toString());
                     if(precio>0)
                     {
+                        litsMovimiento.add(new clsDetalleProforma(itensTemp.get(pos),precio));
                         dialog.dismiss();
+                        setAdapterDetalle();
                     }
                     else
                         Toast.makeText(FragmentNuevoRegistroProformas.this.getActivity(),"Debe ser mayor que 0", Toast.LENGTH_SHORT).show();

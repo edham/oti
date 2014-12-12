@@ -184,6 +184,7 @@
                 android:layout_weight="1"
                 android:orientation="horizontal" >
                     <TextView
+                    android:id="@+id/lblPrecioD"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Precio:"

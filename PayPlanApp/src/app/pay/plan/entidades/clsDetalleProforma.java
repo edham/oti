@@ -20,6 +20,11 @@ public class clsDetalleProforma {
     public clsDetalleProforma() {
     }
 
+    public clsDetalleProforma(clsProducto objProducto, int int_cantidad) {
+        this.objProducto = objProducto;
+        this.int_cantidad = int_cantidad;
+    }
+
     public int getInt_id_detalle_proforma() {
         return int_id_detalle_proforma;
     }
