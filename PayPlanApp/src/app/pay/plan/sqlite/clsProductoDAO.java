@@ -112,11 +112,11 @@ public class clsProductoDAO {
                       + "where pe.int_id_producto_empresa IS NULL";
               
                     if(idMarca>0 && idTipoProducto>0)
-                        query+=" p.int_id_marca="+idMarca+" and p.int_id_tipo_producto="+idTipoProducto;
+                        query+=" and p.int_id_marca="+idMarca+" and p.int_id_tipo_producto="+idTipoProducto;
                     else if(idMarca>0)
-                        query+=" p.int_id_marca="+idMarca;
+                        query+=" and p.int_id_marca="+idMarca;
                     else if(idTipoProducto>0)
-                        query+=" p.int_id_tipo_producto="+idTipoProducto;
+                        query+=" and p.int_id_tipo_producto="+idTipoProducto;
                    
 
             Cursor fila=bd.rawQuery(query,null);

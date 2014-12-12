@@ -4,6 +4,8 @@
  */
 package app.pay.plan.http;
 
+import app.pay.plan.entidades.clsEmpresa;
+import app.pay.plan.entidades.clsMovimiento;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +30,70 @@ public class http {
     private static HttpEntity resEntityGet;
     
     
-    
-   
+ public static String insertarEmpresa(clsEmpresa entidad) 
+    {
+    client = new DefaultHttpClient();
+    HttpPost httppost = new HttpPost(url+"insertarEmpresa");
 
+        try {
+            List<NameValuePair> Value = new ArrayList<NameValuePair>(12);
+            Value.add(new BasicNameValuePair("nombre",entidad.getStr_nombre_usuario()));
+            Value.add(new BasicNameValuePair("apellido",entidad.getStr_apellidos_usuario()));
+            Value.add(new BasicNameValuePair("email",entidad.getStr_email()));
+            Value.add(new BasicNameValuePair("telefono",entidad.getStr_telefono()));
+            Value.add(new BasicNameValuePair("celular",entidad.getStr_celular()));
+            Value.add(new BasicNameValuePair("usuario",entidad.getStr_usuario()));
+            Value.add(new BasicNameValuePair("clave",entidad.getStr_clave()));
+            Value.add(new BasicNameValuePair("razon",entidad.getStr_razon_social()));
+            Value.add(new BasicNameValuePair("ruc",""+entidad.getStr_ruc()));
+            Value.add(new BasicNameValuePair("direccion",entidad.getStr_direccion()));
+            Value.add(new BasicNameValuePair("idDistrito",""+entidad.getObjDistrito().getInt_id_distrito()));
+            Value.add(new BasicNameValuePair("empresa",""+entidad.isBool_empresa()));
+           httppost.setEntity(new UrlEncodedFormEntity(Value));
+            responseGet = client.execute(httppost);
+            resEntityGet = responseGet.getEntity();
+            if (resEntityGet != null) {
+                    return  EntityUtils.toString(resEntityGet).trim();
+            }
+            } catch (ClientProtocolException e) {
+                return "{\"id\":-2}";
+            } catch (IOException e) {
+                return "{\"id\":-2} ";
+            }
+         return "{\"id\":-2} ";
+    }   
+   
+public static String insertarMovimiento(clsMovimiento entidad) 
+    {
+    client = new DefaultHttpClient();
+    HttpPost httppost = new HttpPost(url+"insertarMovimiento");
+
+        try {
+            List<NameValuePair> Value = new ArrayList<NameValuePair>(10);
+            Value.add(new BasicNameValuePair("idEmpresa",""+entidad.getObjEmpresa().getInt_id_empresa()));
+            Value.add(new BasicNameValuePair("idTipoMovimiento",""+entidad.getObjTipoMovimiento().getInt_id_tipo_movimiento()));
+            Value.add(new BasicNameValuePair("idServicio",""+entidad.getObjServicio().getInt_id_servicio()));
+            Value.add(new BasicNameValuePair("fecha",""+entidad.getDat_fecha_movimiento().getTime()));
+            Value.add(new BasicNameValuePair("total",""+entidad.getDou_total()));
+            Value.add(new BasicNameValuePair("couta",""+entidad.getInt_couta_total()));
+            Value.add(new BasicNameValuePair("detalle",entidad.getStr_detalle()));
+            Value.add(new BasicNameValuePair("tipo",""+entidad.isBool_ingreso()));
+            Value.add(new BasicNameValuePair("alerta",""+entidad.getInt_alerta_inicio()));
+            Value.add(new BasicNameValuePair("repeticion",""+entidad.getInt_repeticion_alerta()));
+           httppost.setEntity(new UrlEncodedFormEntity(Value));
+            responseGet = client.execute(httppost);
+            resEntityGet = responseGet.getEntity();
+            if (resEntityGet != null) {
+                    return  EntityUtils.toString(resEntityGet).trim();
+            }
+            } catch (ClientProtocolException e) {
+                return "{\"id\":-2}";
+            } catch (IOException e) {
+                return "{\"id\":-2} ";
+            }
+         return "{\"id\":-2} ";
+    }
+    
     public static String getLogin(String usuario,String clave) 
     {
     client = new DefaultHttpClient();

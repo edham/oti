@@ -51,13 +51,6 @@ public class FragmentListaCotizarProformas extends Fragment {
                        btnNuevo(); 
                     }
                 }); 
-                btnCancelar = (Button)view.findViewById(R.id.btnCancelar);
-                btnCancelar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                       btnCancelar(); 
-                    }
-                }); 
                 lista = (ListView)view.findViewById(R.id.lista); 
                 
                 setAdapter();
@@ -169,13 +162,5 @@ public class FragmentListaCotizarProformas extends Fragment {
         transaction.addToBackStack(null);
         transaction.commit();
         
-    }
-    public void btnCancelar()
-    {
-        Fragment InicioFragment = new FragmentListaMisProductos();	
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.content_frame, InicioFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
     }
 }

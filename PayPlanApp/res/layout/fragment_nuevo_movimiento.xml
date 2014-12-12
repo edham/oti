@@ -68,7 +68,7 @@ android:layout_height="wrap_content" >
                 android:layout_height="40dp"
                 android:src="@drawable/chain" />
                 <Spinner
-                android:id="@+id/ComboTipoMovimiento"
+                android:id="@+id/ComboServicio"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -90,7 +90,7 @@ android:layout_height="wrap_content" >
                 android:layout_height="40dp"
                 android:src="@drawable/chain" />
                 <Spinner
-                android:id="@+id/ComboTiempo"
+                android:id="@+id/ComboMovimiento"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -256,51 +256,7 @@ android:layout_height="wrap_content" >
                 </LinearLayout>   
                 
             </LinearLayout>   
-            <LinearLayout
-            android:id="@+id/viewCoutaPago"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:background="@drawable/blanco"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal" >
-                <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal" >
-                    <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Pago Acumulado:"
-                    android:textStyle="bold"
-                    android:textSize="14dp"
-                    android:gravity="left"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/azul_letras" />         
-                </LinearLayout>   
-        
-                <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal" >
-                    <TextView
-                    android:id="@+id/lblPagoAcumulado"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text=" Pago:"
-                    android:textStyle="bold"
-                    android:textSize="14dp"
-                    android:gravity="center"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/negro_claro" />                 
-                </LinearLayout>   
-                
-            </LinearLayout>   
-            
+           
             <LinearLayout
             android:id="@+id/viewDiasAlerta"
             android:layout_width="fill_parent"

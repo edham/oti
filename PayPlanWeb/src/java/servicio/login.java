@@ -10,6 +10,8 @@ import COM.clsGestor;
 import entidades.clsAgente;
 import entidades.clsAgenteServicio;
 import entidades.clsEmpresa;
+import entidades.clsItemMovimiento;
+import entidades.clsMovimiento;
 import entidades.clsProducto;
 import entidades.clsProductoEmpresa;
 import entidades.clsServicio;
@@ -199,6 +201,69 @@ public class login extends HttpServlet {
                          objListaAgenteServicioJSON.put("error",1);
                     
                     obj.put("listaAgenteServicio",objListaAgenteServicioJSON); 
+                    // </editor-fold>
+                    
+                    //<editor-fold defaultstate="collapsed" desc="objListaMovimientoJSON">
+                    JSONObject objListaMovimientoJSON=new JSONObject();   
+                    List<clsMovimiento>listaMovimiento=clsGestor.ListarMovimiento(objEmpresa.getInt_id_empresa());
+                    if(listaMovimiento!=null)
+                    { 
+                        JSONArray listJSON = new JSONArray();
+                        for(clsMovimiento entidad : listaMovimiento)
+                        {
+                            JSONObject entidadJSON=new JSONObject();
+                            entidadJSON.put("int_id_movimiento",entidad.getInt_id_movimiento());
+                            entidadJSON.put("int_id_tipo_movimiento",entidad.getObjTipoMovimiento().getInt_id_tipo_movimiento());
+                            entidadJSON.put("int_id_servicio",entidad.getObjServicio().getInt_id_servicio());
+                            entidadJSON.put("bool_ingreso",entidad.isBool_ingreso());
+                            entidadJSON.put("str_detalle",entidad.getStr_detalle());
+                            entidadJSON.put("dou_total",entidad.getDou_total());
+                            entidadJSON.put("dou_total_acumulado",entidad.getDou_total_acumulado());
+                            entidadJSON.put("int_couta_total",entidad.getInt_couta_total());
+                            entidadJSON.put("int_couta_ingresadas",entidad.getInt_couta_ingresadas());
+                            entidadJSON.put("int_estado",entidad.getInt_estado());
+                            entidadJSON.put("int_alerta_inicio",entidad.getInt_alerta_inicio());
+                            entidadJSON.put("int_repeticion_alerta",entidad.getInt_repeticion_alerta());
+                            entidadJSON.put("dat_fecha_creacion",entidad.getDat_fecha_creacion().getTime());
+                            entidadJSON.put("dat_fecha_movimiento",entidad.getDat_fecha_movimiento().getTime());
+                            
+                            listJSON.add(entidadJSON);
+                        }
+
+                        objListaMovimientoJSON.put("lista",listJSON);
+                        objListaMovimientoJSON.put("error",0);
+                    }
+                    else
+                         objListaMovimientoJSON.put("error",1);
+                    
+                    obj.put("listaMovimiento",objListaMovimientoJSON); 
+                    // </editor-fold>
+                    
+                    //<editor-fold defaultstate="collapsed" desc="objListaItemMovimientoJSON">
+                    JSONObject objListaItemMovimientoJSON=new JSONObject();   
+                    List<clsItemMovimiento>listaItemMovimiento=clsGestor.ListarItemMovimiento(objEmpresa.getInt_id_empresa());
+                    if(listaItemMovimiento!=null)
+                    { 
+                        JSONArray listJSON = new JSONArray();
+                        for(clsItemMovimiento entidad : listaItemMovimiento)
+                        {
+                            JSONObject entidadJSON=new JSONObject();
+                            entidadJSON.put("int_id_item_movimiento",entidad.getInt_id_item_movimiento());
+                            entidadJSON.put("int_id_movimiento",entidad.getInt_id_movimiento());
+                            entidadJSON.put("int_numero_couta",entidad.getInt_numero_couta());
+                            entidadJSON.put("dou_pago",entidad.getDou_pago());
+                            entidadJSON.put("dat_fecha_creacion",entidad.getDat_fecha_creacion().getTime());
+                            
+                            listJSON.add(entidadJSON);
+                        }
+
+                        objListaItemMovimientoJSON.put("lista",listJSON);
+                        objListaItemMovimientoJSON.put("error",0);
+                    }
+                    else
+                         objListaItemMovimientoJSON.put("error",1);
+                    
+                    obj.put("listaItemMovimiento",objListaItemMovimientoJSON); 
                     // </editor-fold>
                      
                 }

@@ -65,6 +65,29 @@ public class bdSQLite extends SQLiteOpenHelper {
                         +"int_id_agente integer NOT NULL,"
                         +"int_id_servicio integer NOT NULL);";
         
+        private static final String CREATE_MOVIMIENTO ="CREATE TABLE MOVIMIENTO ("
+                        +"int_id_movimiento integer NOT NULL PRIMARY KEY,"
+                        +"int_id_tipo_movimiento integer NOT NULL,"
+                        +"int_id_servicio integer NOT NULL,"
+                        +"bool_ingreso integer NOT NULL,"
+                        +"str_detalle text NOT NULL,"
+                        +"dou_total numeric NOT NULL,"
+                        +"dou_total_acumulado numeric NOT NULL,"
+                        +"int_couta_total integer NOT NULL,"
+                        +"int_couta_ingresadas integer NOT NULL,"
+                        +"int_estado integer NOT NULL,"
+                        +"int_alerta_inicio integer NOT NULL,"
+                        +"int_repeticion_alerta integer NOT NULL,"
+                        +"dat_fecha_creacion numeric NOT NULL,"
+                        +"dat_fecha_movimiento numeric NOT NULL);";
+        
+        private static final String CREATE_ITEM_MOVIMIENTO ="CREATE TABLE ITEM_MOVIMIENTO ("
+                        +"int_id_item_movimiento integer NOT NULL PRIMARY KEY,"
+                        +"int_id_movimiento integer NOT NULL,"
+                        +"int_numero_couta integer NOT NULL,"
+                        +"dou_pago numeric NOT NULL,"
+                        +"dat_fecha_creacion numeric NOT NULL);";
+        
 	public bdSQLite(Context context, CursorFactory factory) {
 		super(context, DATABASE_NAME, factory, DATABASE_VERSION);
 	}
@@ -77,6 +100,8 @@ public class bdSQLite extends SQLiteOpenHelper {
                 db.execSQL(CREATE_AGENTE);
                 db.execSQL(CREATE_SERVICIO);
                 db.execSQL(CREATE_AGENTE_SERVICIO);
+                db.execSQL(CREATE_MOVIMIENTO);
+                db.execSQL(CREATE_ITEM_MOVIMIENTO);
 
         }   
          
@@ -95,5 +120,9 @@ public class bdSQLite extends SQLiteOpenHelper {
                 db.execSQL(CREATE_SERVICIO);
                 db.execSQL("drop table if exists AGENTE_SERVICIO");
                 db.execSQL(CREATE_AGENTE_SERVICIO);
+                db.execSQL("drop table if exists MOVIMIENTO");
+                db.execSQL(CREATE_MOVIMIENTO);
+                db.execSQL("drop table if exists ITEM_MOVIMIENTO");
+                db.execSQL(CREATE_ITEM_MOVIMIENTO);
         }
 }

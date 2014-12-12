@@ -36,7 +36,12 @@ public class FragmentListaRegistroProformas extends Fragment {
     private Button btnCancelar;
     private Button btnNuevo;
     
-        
+         @Override
+        public void onResume() {
+            super.onResume();
+            getActivity().getActionBar().setTitle("REGISTRAR PROFORMAS");
+        }    
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,13 +54,6 @@ public class FragmentListaRegistroProformas extends Fragment {
                     @Override
                     public void onClick(View v) {
                        btnNuevo(); 
-                    }
-                }); 
-                btnCancelar = (Button)view.findViewById(R.id.btnCancelar);
-                btnCancelar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                       btnCancelar(); 
                     }
                 }); 
                 lista = (ListView)view.findViewById(R.id.lista); 
@@ -136,22 +134,22 @@ public class FragmentListaRegistroProformas extends Fragment {
         final Dialog dialog = new Dialog(this.getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
-        dialog.setContentView(R.layout.dialog_producto);
+        dialog.setContentView(R.layout.dialog_producto_proforma);
         
 //        TextView lblHora = (TextView)dialog.findViewById(R.id.lblHora);
 //        lblHora.setText(hora.format(lista.get(posicion).getDat_fecha_registro()));
 
       
         
-        Button btnRegistrar = (Button) dialog.findViewById(R.id.btnRegistrar);
-        btnRegistrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        Button btnCancelar = (Button) dialog.findViewById(R.id.btnCancelar);
-        btnCancelar.setOnClickListener(new View.OnClickListener() {
+//        Button btnRegistrar = (Button) dialog.findViewById(R.id.btnRegistrar);
+//        btnRegistrar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dialog.dismiss();
+//            }
+//        });
+        Button btnCerrar = (Button) dialog.findViewById(R.id.btnCerrar);
+        btnCerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
@@ -163,19 +161,12 @@ public class FragmentListaRegistroProformas extends Fragment {
     }
     public void btnNuevo()
     {
-        Fragment InicioFragment = new FragmentListaMisProductos();	
+        Fragment InicioFragment = new FragmentNuevoRegistroProformas();	
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.content_frame, InicioFragment);
         transaction.addToBackStack(null);
         transaction.commit();
         
     }
-    public void btnCancelar()
-    {
-        Fragment InicioFragment = new FragmentListaMisProductos();	
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.content_frame, InicioFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
+
 }

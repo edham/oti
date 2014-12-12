@@ -11,14 +11,60 @@ import entidades.clsDistrito;
 import entidades.clsEmpresa;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
  * @author Toditos
  */
 public class clsEmpresaDAO {
-
+    
+    public  static int insertar(clsEmpresa entidad) throws Exception
+    {
+        int rpta = 0;
+        Connection conn =null;
+        PreparedStatement  stmt = null;
+        try {
+            
+           String sql="exec SP_Insertar_Empresa ?,?,?,?,?,?,?,?,?,?,?,?";
+           
+            conn = ConexionDAO.getConnection();
+            stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, entidad.getStr_nombre_usuario());
+            stmt.setString(2, entidad.getStr_apellidos_usuario());
+            stmt.setString(3, entidad.getStr_email());
+            stmt.setString(4, entidad.getStr_telefono());
+            stmt.setString(5, entidad.getStr_celular());
+            stmt.setString(6, entidad.getStr_usuario());
+            stmt.setString(7, entidad.getStr_clave());
+            stmt.setInt(8, entidad.getObjDistrito().getInt_id_distrito());
+            stmt.setString(9, entidad.getStr_razon_social());
+            stmt.setString(10, entidad.getStr_ruc());
+            stmt.setString(11, entidad.getStr_direccion());
+            stmt.setBoolean(12, entidad.isBool_empresa());
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            
+            if (rs.next()){
+                rpta=rs.getInt(1);
+            }
+            rs.close();
+        } catch (Exception e) {
+            throw new Exception("Insertar"+e.getMessage(), e);
+        }
+        finally{
+            try {
+                stmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                throw new Exception("Insertar"+e.getMessage(), e);
+            }
+        }
+        return rpta;
+    } 
       
         public static clsEmpresa login (String usuario,String clave) throws Exception
     {

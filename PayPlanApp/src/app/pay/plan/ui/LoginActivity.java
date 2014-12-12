@@ -9,6 +9,7 @@ import android.os.Message;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,15 +19,20 @@ import app.pay.plan.entidades.clsAgenteServicio;
 import app.pay.plan.entidades.clsBanco;
 import app.pay.plan.entidades.clsDistrito;
 import app.pay.plan.entidades.clsEmpresa;
+import app.pay.plan.entidades.clsItemMovimiento;
 import app.pay.plan.entidades.clsMarca;
+import app.pay.plan.entidades.clsMovimiento;
 import app.pay.plan.entidades.clsProducto;
 import app.pay.plan.entidades.clsProductoEmpresa;
 import app.pay.plan.entidades.clsServicio;
+import app.pay.plan.entidades.clsTipoMovimiento;
 import app.pay.plan.entidades.clsTipoProducto;
 import app.pay.plan.http.http;
 import app.pay.plan.sqlite.clsAgenteDAO;
 import app.pay.plan.sqlite.clsAgenteServicioDAO;
 import app.pay.plan.sqlite.clsEmpresaDAO;
+import app.pay.plan.sqlite.clsItemMovimientoDAO;
+import app.pay.plan.sqlite.clsMovimientoDAO;
 import app.pay.plan.sqlite.clsProductoDAO;
 import app.pay.plan.sqlite.clsProductoEmpresaDAO;
 import app.pay.plan.sqlite.clsServicioDAO;
@@ -67,14 +73,14 @@ public class LoginActivity extends Activity
     public void btnRegistrarme(View v) 
     {
         Intent i=new Intent(LoginActivity.this,RegistroActivity.class);
-                        startActivity(i); 
+        startActivity(i); 
+        finish();
     }
     public void btnIngresar(View v) 
     {
       
             
-        if(!txtUsuario.getText().toString().equals(null) && !txtUsuario.getText().toString().equals(null)
-           && !txtPassword.getText().toString().equals("") && !txtPassword.getText().toString().equals(""))
+        if(!txtUsuario.getText().toString().equals("") && !txtPassword.getText().toString().equals(""))
         {
             pd = new ProgressDialog(this);
             pd.setTitle("Datos de Usuario");
@@ -230,10 +236,55 @@ public class LoginActivity extends Activity
                             clsAgenteServicioDAO.Agregar(LoginActivity.this, objAgenteServicio);
                            }
                         }
-                       
+                         //objListaMovimiento
+                        JSONObject objListaMovimiento = new JSONObject(objeto.getString("listaMovimiento"));
+                        if(objListaMovimiento.getInt("error")==0)
+                        {
+                           JSONArray Array = new JSONArray(objListaMovimiento.getString("lista"));
+                           for(int i=0;i<Array.length();i++){
+
+                            JSONObject json_data = Array.getJSONObject(i);
+                                                       
+                            clsMovimiento objMovimiento= new clsMovimiento();            
+                            objMovimiento.setInt_id_movimiento(json_data.getInt("int_id_movimiento"));
+                            objMovimiento.setObjTipoMovimiento(new clsTipoMovimiento(json_data.getInt("int_id_tipo_movimiento")));
+                            objMovimiento.setObjServicio(new clsServicio(json_data.getInt("int_id_servicio")));
+                            objMovimiento.setBool_ingreso(json_data.getBoolean("bool_ingreso"));
+                            objMovimiento.setStr_detalle(json_data.getString("str_detalle"));
+                            objMovimiento.setDou_total(json_data.getDouble("dou_total"));
+                            objMovimiento.setDou_total_acumulado(json_data.getDouble("dou_total_acumulado"));
+                            objMovimiento.setInt_couta_total(json_data.getInt("int_couta_total"));
+                            objMovimiento.setInt_couta_ingresadas(json_data.getInt("int_couta_ingresadas"));
+                            objMovimiento.setInt_estado(json_data.getInt("int_estado"));
+                            objMovimiento.setInt_alerta_inicio(json_data.getInt("int_alerta_inicio"));
+                            objMovimiento.setInt_repeticion_alerta(json_data.getInt("int_repeticion_alerta"));
+                            objMovimiento.setDat_fecha_creacion(new Date(json_data.getLong("dat_fecha_creacion")));
+                            objMovimiento.setDat_fecha_movimiento(new Date(json_data.getLong("dat_fecha_movimiento")));
+                            clsMovimientoDAO.Agregar(LoginActivity.this, objMovimiento);
+                           }
+                        }
+                         //objetoListarAgente
+                        JSONObject objetoListaItemMovimiento = new JSONObject(objeto.getString("listaItemMovimiento"));
+                        if(objetoListaItemMovimiento.getInt("error")==0)
+                        {
+                           JSONArray Array = new JSONArray(objetoListaItemMovimiento.getString("lista"));
+                           for(int i=0;i<Array.length();i++){
+
+                            JSONObject json_data = Array.getJSONObject(i);
+                                                       
+                            clsItemMovimiento objItemMovimiento= new clsItemMovimiento();            
+                            objItemMovimiento.setInt_id_item_movimiento(json_data.getInt("int_id_item_movimiento"));
+                            objItemMovimiento.setInt_id_movimiento(json_data.getInt("int_id_movimiento"));
+                            objItemMovimiento.setInt_numero_couta(json_data.getInt("int_numero_couta"));
+                            objItemMovimiento.setDou_pago(json_data.getInt("dou_pago"));
+                            objItemMovimiento.setDat_fecha_creacion(new Date(json_data.getLong("dat_fecha_creacion")));
+                            clsItemMovimientoDAO.Agregar(LoginActivity.this, objItemMovimiento);
+                           }
+                        }
                         pd.dismiss();         
                         Intent i=new Intent(LoginActivity.this,MenuActivity.class);
                         startActivity(i); 
+                        finish();
                     }
                     
                     
@@ -261,4 +312,12 @@ public class LoginActivity extends Activity
         }
     };
 
+     @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+   
+    
+    return false;
+
+    }
 }

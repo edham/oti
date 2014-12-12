@@ -18,6 +18,10 @@ public class clsTipoMovimiento {
         this.str_nombre = str_nombre;
     }
 
+    public clsTipoMovimiento(int int_id_tipo_movimiento) {
+        this.int_id_tipo_movimiento = int_id_tipo_movimiento;
+    }
+
     public clsTipoMovimiento() {
     }
 

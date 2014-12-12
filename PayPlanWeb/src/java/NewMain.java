@@ -1,5 +1,11 @@
 
 import COM.clsGestor;
+import entidades.clsDistrito;
+import entidades.clsEmpresa;
+import entidades.clsMovimiento;
+import entidades.clsServicio;
+import entidades.clsTipoMovimiento;
+import java.util.Date;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,7 +24,22 @@ public class NewMain {
      */
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
-        System.out.print(""+clsGestor.ListarProducto().size());
+        clsEmpresa entidad = new clsEmpresa();
+        
+        entidad.setStr_nombre_usuario("xd");
+        entidad.setStr_apellidos_usuario("xd");
+        entidad.setStr_email("xd");
+        entidad.setStr_telefono("xd");
+        entidad.setStr_celular("xd");
+        entidad.setStr_usuario("xd");
+        entidad.setStr_clave("xd");
+        entidad.setStr_razon_social("xd");
+        entidad.setStr_ruc("xd");
+        entidad.setStr_direccion("xd");
+        entidad.setObjDistrito(new clsDistrito(1));
+        entidad.setBool_empresa(true);
+        
+        System.out.print(""+clsGestor.ListarMovimiento(0).size());
     }
     
 }

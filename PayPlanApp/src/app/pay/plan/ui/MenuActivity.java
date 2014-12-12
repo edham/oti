@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -309,5 +310,14 @@ public class MenuActivity extends FragmentActivity {
 		TextView ItemName;
 		ImageView icon;
 	}
+    }
+        
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+   
+    
+    return false;
+
     }
 }

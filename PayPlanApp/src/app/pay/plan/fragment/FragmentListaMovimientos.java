@@ -21,6 +21,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import app.pay.plan.entidades.clsMovimiento;
+import app.pay.plan.sqlite.clsMovimientoDAO;
 import app.pay.plan.ui.R;
 import app.pay.plan.utilidades.Utilidades;
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class FragmentListaMovimientos extends Fragment {
     private Button btnRefresh;
     private Button btnNuevo;
     private Button btnEstadisticas;
-    
+    private List<String> listStringMovimiento = Arrays.asList("Movimiento Unico", "Movimiento a Plazos", "Movimiento Mensual");
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -101,28 +102,6 @@ public class FragmentListaMovimientos extends Fragment {
                     }
                 });   
                 calendar = Calendar.getInstance();
-                
-                
-                
-                
-                Calendar calendarA = Calendar.getInstance();
-                calendarA.add(Calendar.DAY_OF_YEAR, -3);
-                itens=new ArrayList<clsMovimiento>();    
-                itens.add(new clsMovimiento(new Date(calendarA.getTimeInMillis())));  
-                itens.add(new clsMovimiento(new Date(calendarA.getTimeInMillis())));  
-                 calendarA.add(Calendar.DAY_OF_YEAR, 1);
-                itens.add(new clsMovimiento(new Date(calendarA.getTimeInMillis())));  
-                itens.add(new clsMovimiento(new Date(calendarA.getTimeInMillis())));  
-                itens.add(new clsMovimiento(new Date()));
-                itens.add(new clsMovimiento(new Date()));
-                calendarA.add(Calendar.DAY_OF_YEAR, 3);
-                itens.add(new clsMovimiento(new Date(calendarA.getTimeInMillis())));  
-                itens.add(new clsMovimiento(new Date(calendarA.getTimeInMillis())));  
-                calendarA.add(Calendar.DAY_OF_YEAR, 1);
-                itens.add(new clsMovimiento(new Date(calendarA.getTimeInMillis())));  
-                itens.add(new clsMovimiento(new Date(calendarA.getTimeInMillis())));  
-        
-                
                 setFecha();
 		return view;
 	}
@@ -186,10 +165,11 @@ public class FragmentListaMovimientos extends Fragment {
     }
     
      public void setAdapter( )
-    {    
+    {   
+        itens=clsMovimientoDAO.Listar(this.getActivity(), ComboTipoMovimiento.getSelectedItemPosition());
         itensTemp=new ArrayList<clsMovimiento>();   
         for(clsMovimiento entidad : itens)
-         if(0<=Utilidades.getDias(entidad.getDat_fecha_creacion(),calendar.getTime()))
+         if(0<=Utilidades.getDias(entidad.getDat_fecha_movimiento(),calendar.getTime()))
              itensTemp.add(entidad);
         
         
@@ -221,7 +201,7 @@ public class FragmentListaMovimientos extends Fragment {
 //                        btnIzquierda();
                 }
             });  
-            int diffDays = Utilidades.getDias(itensTemp.get(position).getDat_fecha_creacion(),new Date());
+            int diffDays = Utilidades.getDias(itensTemp.get(position).getDat_fecha_movimiento(),new Date());
             
             if(diffDays<0)
             {
@@ -236,16 +216,36 @@ public class FragmentListaMovimientos extends Fragment {
                 viewMovimiento.setBackgroundResource(R.drawable.azul); 
             }
             
-            if(position%2==0)
+            if(!itensTemp.get(position).isBool_ingreso())
             {
                 imageTipoMovimiento.setImageResource(R.drawable.btn_menos); 
             }
             
             TextView lblDiaMovimiento = (TextView)item.findViewById(R.id.lblDiaMovimiento);
-            lblDiaMovimiento.setText(Utilidades.getFechaString(itensTemp.get(position).getDat_fecha_creacion()));
+            lblDiaMovimiento.setText(Utilidades.getFechaString(itensTemp.get(position).getDat_fecha_movimiento())+" S/."+Utilidades.getRedondear(itensTemp.get(position).getDou_total(), 2));
 
+            
             TextView lblMovimiento = (TextView)item.findViewById(R.id.lblMovimiento);
-            lblMovimiento.setText(Utilidades.getFechaString(itensTemp.get(position).getDat_fecha_creacion()));
+            
+            if(itensTemp.get(position).getObjTipoMovimiento().getInt_id_tipo_movimiento()==1)
+            {
+                lblMovimiento.setText(listStringMovimiento.get(0)+"\n Servicio "
+                        +itensTemp.get(position).getObjServicio().getStr_nombre()
+                        +"\n"+itensTemp.get(position).getStr_detalle());
+            }
+            else if(itensTemp.get(position).getObjTipoMovimiento().getInt_id_tipo_movimiento()==2)
+            {
+                lblMovimiento.setText(listStringMovimiento.get(1)+"\n Servicio "
+                        +itensTemp.get(position).getObjServicio().getStr_nombre()
+                        +"\n Coutas "+itensTemp.get(position).getInt_couta_ingresadas()+" de "+itensTemp.get(position).getInt_couta_total()
+                        +"\n"+itensTemp.get(position).getStr_detalle());
+            }
+             else if(itensTemp.get(position).getObjTipoMovimiento().getInt_id_tipo_movimiento()==3)
+             {
+                lblMovimiento.setText(listStringMovimiento.get(2)+"\n Servicio "
+                        +itensTemp.get(position).getObjServicio().getStr_nombre()
+                        +"\n"+itensTemp.get(position).getStr_detalle());
+             }
             
                
             return(item);
@@ -260,7 +260,7 @@ public class FragmentListaMovimientos extends Fragment {
         ComboTipoMovimiento.setAdapter(adapter);     
         ComboTipoMovimiento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {          
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {  
-//                ComboProvincia(((clsServicio)ComboTipo.getSelectedItem()).getInt_id_depatamento());
+                setAdapter( );
             }
             public void onNothingSelected(AdapterView<?> parent) {
                 //User selected same item. Nothing to do.

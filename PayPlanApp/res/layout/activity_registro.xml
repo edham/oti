@@ -194,6 +194,8 @@ android:layout_height="wrap_content" >
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                 android:digits="0123456789"
+                android:inputType="number"
                 android:textSize="14dp"
                 android:ems="10"
                 android:hint="Ingrese Telefono fijo"   
@@ -219,6 +221,8 @@ android:layout_height="wrap_content" >
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="14dp"
+                android:digits="0123456789"
+                android:inputType="number"
                 android:ems="10"
                 android:hint="Ingrese Celular fijo"   
                 android:textColor="@color/negro_claro"/>
@@ -249,7 +253,46 @@ android:layout_height="wrap_content" >
                 
             </LinearLayout>            
            
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/blanco"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical" >
         
+                <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Direccion"
+                android:textStyle="bold"
+                android:textSize="14dp"
+                android:gravity="left"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/azul_letras" />     
+                
+                <EditText
+                android:id="@+id/txtDireccion"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="14dp"
+                android:ems="10"
+                android:hint="Ingrese Dirección"   
+                android:layout_centerInParent="true"
+                android:gravity="top|left"
+                android:inputType="textMultiLine"
+                android:lines="5"
+                android:maxWidth="300sp"
+                android:minWidth="10.0dip"
+                android:scrollHorizontally="false"
+                android:textColor="@color/negro_claro"/>      
+                    
+
+            </LinearLayout>   
+            
           <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -321,6 +364,8 @@ android:layout_height="wrap_content" >
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:digits="0123456789"
+                android:inputType="number"
                 android:textSize="14dp"
                 android:ems="10"
                 android:hint="Inrese RUC"   
