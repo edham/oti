@@ -349,15 +349,14 @@ public class FragmentNuevoRegistroProformas extends Fragment {
                     Toast.makeText(FragmentNuevoRegistroProformas.this.getActivity(),"Este campo es obligatorio", Toast.LENGTH_SHORT).show();
             }
         });
+        
         Button btnCancelar = (Button) dialog.findViewById(R.id.btnCancelar);
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
             }
-        });
-        
+        });       
         dialog.show();
-
     }
 }
