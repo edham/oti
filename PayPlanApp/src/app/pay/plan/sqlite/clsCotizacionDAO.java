@@ -51,7 +51,7 @@ public class clsCotizacionDAO {
         return id;
     }
      
-     public static  List<clsCotizacion> Listar(Context context)
+     public static  List<clsCotizacion> Listar(Context context,int idProforma)
      {
         List<clsCotizacion> list=new ArrayList<clsCotizacion>();
         bdSQLite admin=new bdSQLite(context,null); 
@@ -61,7 +61,7 @@ public class clsCotizacionDAO {
               String query="select int_id_cotizacion,int_id_proforma,dat_fecha_creacion,dat_fecha_finalizacion,int_estado,"
                       + "str_nombre_usuario_empresa,str_apellidos_usuario_empresa,str_telefono_empresa,"
                       + "str_razon_social_empresa,str_ruc_empresa,str_direccion_empresa,bool_empresa_empresa from "
-                      +NOMBRE_TABLA;
+                      +NOMBRE_TABLA+" where int_id_proforma="+idProforma;
               
             Cursor fila=bd.rawQuery(query,null);
             int numRows = fila.getCount();   
@@ -87,6 +87,8 @@ public class clsCotizacionDAO {
                     entidad.setDat_fecha_finalizacion(new Date(fila.getLong(3)));
                     entidad.setInt_estado(fila.getInt(4));
                     entidad.setObjEmpresa(objEmpresa);
+                    
+                    entidad.setLista(clsDetalleCotizacionDAO.Listar(context, entidad.getInt_id_cotizacion()));
                     list.add(entidad);
                        
                     fila.moveToNext();   

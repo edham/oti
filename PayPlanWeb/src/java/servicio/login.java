@@ -159,7 +159,7 @@ public class login extends HttpServlet {
                     
                     obj.put("listaAgente",objListaAgenteJSON); 
                     // </editor-fold>
-                    
+//                    
                     //<editor-fold defaultstate="collapsed" desc="objListaServicioJSON">
                     JSONObject objListaServicioJSON=new JSONObject();   
                     List<clsServicio >listaServicio=clsGestor.ListarServicio();
@@ -269,7 +269,7 @@ public class login extends HttpServlet {
                     
                     obj.put("listaItemMovimiento",objListaItemMovimientoJSON); 
                     // </editor-fold>
-                    
+//                    
                     //<editor-fold defaultstate="collapsed" desc="objListaProformaEmpresaJSON">
                     JSONObject objListaProformaEmpresaJSON=new JSONObject();   
                     List<clsProforma>listaProformaEmpresa=clsGestor.ListarEmpresaProforma(objEmpresa.getInt_id_empresa());
@@ -295,7 +295,7 @@ public class login extends HttpServlet {
                     
                     obj.put("listaProformaEmpresa",objListaProformaEmpresaJSON); 
                     // </editor-fold>
-                    
+//                    
                     //<editor-fold defaultstate="collapsed" desc="objListaProformaJSON">
                     JSONObject objListaProformaJSON=new JSONObject();   
                     List<clsProforma>listaProforma=clsGestor.ListarProforma(objEmpresa.getInt_id_empresa());
@@ -327,7 +327,7 @@ public class login extends HttpServlet {
                     
                     obj.put("listaProforma",objListaProformaJSON); 
                     // </editor-fold>
-                    
+//                    
                     //<editor-fold defaultstate="collapsed" desc="objListaDetalleProformaJSON">
                     JSONObject objListaDetalleProformaJSON=new JSONObject();   
                     List<clsDetalleProforma>listaDetalleProforma=clsGestor.ListarDetalleProforma();

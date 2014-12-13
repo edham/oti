@@ -123,8 +123,8 @@ public class clsProformaDAO {
                 objEmpresa.setStr_telefono(dr.getString(8));
                 objEmpresa.setBool_empresa(dr.getBoolean(9));
                 objEmpresa.setStr_razon_social(dr.getString(10));
-                objEmpresa.setStr_ruc(dr.getString(12));
-                objEmpresa.setStr_direccion(dr.getString(13));
+                objEmpresa.setStr_ruc(dr.getString(11));
+                objEmpresa.setStr_direccion(dr.getString(12));
                 
                 clsProforma entidad = new clsProforma();
                 entidad.setInt_id_proforma(dr.getInt(1));                

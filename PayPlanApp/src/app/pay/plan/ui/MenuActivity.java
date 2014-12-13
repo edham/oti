@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import app.pay.plan.entidades.clsEmpresa;
+import app.pay.plan.entidades.clsServicio;
 import app.pay.plan.fragment.*;
 import app.pay.plan.sqlite.*;
 import app.pay.plan.utilidades.clsDrawerItem;
@@ -56,6 +57,11 @@ public class MenuActivity extends FragmentActivity {
                     Intent i=new Intent(this,LoginActivity.class);
                     startActivity(i); 
                     finish();
+                }
+                else
+                {
+                    Intent svc = new Intent(this, clsServicio.class);
+                    startService(svc);
                 }
                 frgManager = getSupportFragmentManager();
 		// Initializing
@@ -287,7 +293,8 @@ public class MenuActivity extends FragmentActivity {
                     clsProformaDAO.Borrar(MenuActivity.this);
                     clsProformaEmpresaDAO.Borrar(MenuActivity.this);
                     clsServicioDAO.Borrar(MenuActivity.this);
-                    
+                     Intent svc = new Intent(MenuActivity.this, clsServicio.class);
+                            stopService(svc); 
                     Intent i=new Intent(MenuActivity.this,LoginActivity.class);
                         startActivity(i); 
                         finish();

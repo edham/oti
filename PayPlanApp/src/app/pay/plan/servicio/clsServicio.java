@@ -66,13 +66,8 @@ public class clsServicio extends Service {
 	@Override
 	public void onCreate() {
             super.onCreate();         
-            objEmpresa=clsEmpresaDAO.Buscar(this.getApplicationContext());            
-//            if(objUsuario!=null)
-//            {
-                   _startService();
-//            }
-//                      else
-//                onDestroy();
+            objEmpresa=clsEmpresaDAO.Buscar(this.getApplicationContext());     
+            _startService();
 	}
 
 	@Override
@@ -87,11 +82,10 @@ public class clsServicio extends Service {
 			new TimerTask() {
 				public void run() {
                          
-                       if(Utilidades.verificaConexion(clsServicio.this.getApplication()))
-                        try {
-                       JSONObject objeto = new JSONObject(http.cargar(objEmpresa.getInt_id_empresa()));
-                       if(objeto.getInt("error")==0)
-                       {
+                       try {
+                JSONObject objeto = new JSONObject(http.getLogin(objEmpresa.getStr_usuario(),objEmpresa.getStr_clave()));
+                if(objeto.getInt("error")==0)
+                {
                     
                         //objetoLisataProducto
                         clsProductoDAO.Borrar(clsServicio.this.getApplication());
@@ -342,9 +336,8 @@ public class clsServicio extends Service {
                             clsCotizacionDAO.Agregar(clsServicio.this.getApplication(), objCotizacion);
                            }
                         }
-                        
+                         clsDetalleCotizacionDAO.Borrar(clsServicio.this.getApplication());
                         //objlistaDetalleCotizacion
-                        clsDetalleCotizacionDAO.Borrar(clsServicio.this.getApplication());
                         JSONObject objlistaDetalleCotizacion = new JSONObject(objeto.getString("listaDetalleCotizacion"));
                         if(objlistaDetalleCotizacion.getInt("error")==0)
                         {
@@ -364,16 +357,11 @@ public class clsServicio extends Service {
                             clsDetalleCotizacionDAO.Agregar(clsServicio.this.getApplication(), objDetalleCotizacion);
                            }
                         }
+                     
                     
-
-                        }
-
-                    }catch (JSONException ex) {
-                        Logger.getLogger(LoginActivity.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                            
-                                    
-                                   
+                }
+           
+            }catch (JSONException ex) { }          
                                     
 				}
 			},

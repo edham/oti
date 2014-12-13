@@ -14,27 +14,26 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+import app.pay.plan.entidades.clsCotizacion;
+import app.pay.plan.entidades.clsDetalleCotizacion;
 import app.pay.plan.entidades.clsProforma;
 import app.pay.plan.sqlite.clsCotizacionDAO;
 import app.pay.plan.sqlite.clsProformaEmpresaDAO;
-import app.pay.plan.ui.LoginActivity;
 import app.pay.plan.ui.R;
 import app.pay.plan.utilidades.Utilidades;
 import java.util.List;
 
-public class FragmentListaRegistroProformas extends Fragment {
+public class FragmentDetalleRegistroProformas extends Fragment {
 
-    private  List<clsProforma> itens=null;
+    private  List<clsCotizacion> itens=null;
     private Adaptador adaptador;
     private ListView lista;
-    private Button btnCancelar;
     private Button btnNuevo;
-    
+    private int idProforma;
          @Override
         public void onResume() {
             super.onResume();
-            getActivity().getActionBar().setTitle("REGISTRAR PROFORMAS");
+            getActivity().getActionBar().setTitle("DETALLE");
         }    
 
 
@@ -44,7 +43,9 @@ public class FragmentListaRegistroProformas extends Fragment {
 //
 		View view = inflater.inflate(R.layout.fragment_lista_regisro_proformas, container,
 				false);
+                idProforma=getArguments().getInt("idProforma");
                 btnNuevo = (Button)view.findViewById(R.id.btnNuevo);
+                btnNuevo.setText("Aceptar");
                 btnNuevo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -61,7 +62,7 @@ public class FragmentListaRegistroProformas extends Fragment {
      
       public void setAdapter( )
     {    
-        itens=clsProformaEmpresaDAO.Listar(FragmentListaRegistroProformas.this.getActivity());          
+        itens=clsCotizacionDAO.Listar(this.getActivity(), idProforma);          
         adaptador = new Adaptador(this.getActivity());
         lista.setAdapter(adaptador);
     }
@@ -84,24 +85,16 @@ public class FragmentListaRegistroProformas extends Fragment {
             
             TextView lblProforma = (TextView)item.findViewById(R.id.lblProforma);
             lblProforma.setText(Utilidades.getFechaCompletaString(itens.get(position).getDat_fecha_creacion()));
-
+            String data="";
+            for(clsDetalleCotizacion entidad : itens.get(position).getLista())
+                    data="\n "+entidad.getObjProducto().getStr_nombre()+" - C:"+entidad.getInt_cantidad()+" - T:"+entidad.getDou_costo();
 //        
+            lblProforma.setText( lblProforma.getText().toString()+data);
             Button btnVer = (Button)item.findViewById(R.id.btnVer);
             btnVer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(clsCotizacionDAO.Listar(FragmentListaRegistroProformas.this.getActivity(), itens.get(posicion).getInt_id_proforma()).size()>0)
-                    {
-                        Bundle args = new Bundle();
-                        args.putInt("idProforma",itens.get(posicion).getInt_id_proforma());
-                        Fragment fragment = new FragmentDetalleRegistroProformas();
-                        fragment.setArguments(args);	
-                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                        transaction.replace(R.id.content_frame, fragment);
-                        transaction.addToBackStack(null);
-                        transaction.commit();
-                    }else
-                        Toast.makeText(FragmentListaRegistroProformas.this.getActivity(),"No tiene contización pendiente", Toast.LENGTH_SHORT).show();
+//                    btnVer(posicion);
                 }
             }); 
                
@@ -154,7 +147,7 @@ public class FragmentListaRegistroProformas extends Fragment {
     }
     public void btnNuevo()
     {
-        Fragment InicioFragment = new FragmentNuevoRegistroProformas();	
+        Fragment InicioFragment = new FragmentListaRegistroProformas();	
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.content_frame, InicioFragment);
         transaction.addToBackStack(null);
