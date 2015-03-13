@@ -152,6 +152,7 @@ public class RegistroActivity extends Activity
         });
         ComboDistrito.setSelection(0);
     }
+    
     public void chkEmpresa(View v)
     {
           if(chkEmpresa.isChecked())
